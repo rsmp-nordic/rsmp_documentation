@@ -530,10 +530,10 @@
 <div class="figure align-center" id="A0008">
 <center><table border="1" class="docutils">
 <colgroup>
+<col width="21%" />
 <col width="18%" />
-<col width="16%" />
-<col width="29%" />
-<col width="38%" />
+<col width="18%" />
+<col width="44%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -545,7 +545,7 @@
 <tbody valign="top">
 <tr class="row-even"><td>timeplan</td>
 <td>integer</td>
-<td>[designation]</td>
+<td>[1-255]</td>
 <td>Current time plan</td>
 </tr>
 </tbody>
@@ -1984,10 +1984,10 @@
 <div class="figure align-center" id="S0096">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="7%" />
-<col width="8%" />
-<col width="8%" />
-<col width="76%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+<col width="60%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1999,33 +1999,33 @@
 <tbody valign="top">
 <tr class="row-even"><td>year</td>
 <td>integer</td>
-<td>YYYY</td>
-<td>Year according to format YYYY. NOTE: UTC is used</td>
+<td>[0-9999]</td>
+<td>Year. Note: UTC is used</td>
 </tr>
 <tr class="row-odd"><td>month</td>
 <td>integer</td>
-<td>MM</td>
-<td>Month (01-12) according to format MM. Note: UTC is used</td>
+<td>[1-12]</td>
+<td>Month. Note: UTC is used</td>
 </tr>
 <tr class="row-even"><td>day</td>
 <td>integer</td>
-<td>DD</td>
-<td>Day of month (01-31) according to format DD.  Note: UTC is used</td>
+<td>[1-31]</td>
+<td>Day of month.  Note: UTC is used</td>
 </tr>
 <tr class="row-odd"><td>hour</td>
 <td>integer</td>
-<td>HH</td>
-<td>Hour of day (00-23) according to format DD. Note: UTC is used</td>
+<td>[0-23]</td>
+<td>Hour of day. Note: UTC is used</td>
 </tr>
 <tr class="row-even"><td>minute</td>
 <td>integer</td>
-<td>MM</td>
-<td>Minute (00-59) according to format MM. Note: UTC is used</td>
+<td>[0-59]</td>
+<td>Minute. Note: UTC is used</td>
 </tr>
 <tr class="row-odd"><td>second</td>
 <td>integer</td>
-<td>SS</td>
-<td>Second (00-59) according to format SS. Note: UTC is used</td>
+<td>[0-59]</td>
+<td>Second. Note: UTC is used</td>
 </tr>
 </tbody>
 </table>
@@ -2128,7 +2128,7 @@
 </tr>
 <tr class="row-odd"><td>vehicles</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of vehicles on a given detector logic (since last update)</td>
 </tr>
 </tbody>
@@ -2161,7 +2161,7 @@
 </tr>
 <tr class="row-odd"><td>speed</td>
 <td>integer</td>
-<td>[speed]</td>
+<td>[0-65535]</td>
 <td>Average speed in km/h</td>
 </tr>
 </tbody>
@@ -2227,47 +2227,47 @@
 </tr>
 <tr class="row-odd"><td>P</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of cars</td>
 </tr>
 <tr class="row-even"><td>PS</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of cars with trailers</td>
 </tr>
 <tr class="row-odd"><td>L</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of trucks</td>
 </tr>
 <tr class="row-even"><td>LS</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of trucks with trailers</td>
 </tr>
 <tr class="row-odd"><td>B</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of busses</td>
 </tr>
 <tr class="row-even"><td>SP</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of trams</td>
 </tr>
 <tr class="row-odd"><td>MC</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of motor cycles</td>
 </tr>
 <tr class="row-even"><td>C</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of bicycles</td>
 </tr>
 <tr class="row-odd"><td>F</td>
 <td>long</td>
-<td>[number]</td>
+<td>[0-65535]</td>
 <td>Number of pedestrians</td>
 </tr>
 </tbody>
@@ -3028,7 +3028,7 @@
 <td>setInput</td>
 <td>string</td>
 <td>[text]</td>
-<td>Sets/Unsets a block of 16 inputs at a time. Can be repeated to set several blocks of 16 inputs. Values are separated with comma. Blocks are separated with semicolon. Since semicolon breaks the SXL csv-format, colon, “:” is used in example below. <br>   <br>  Format: [Offset],[Bits to set],[Bits to unset]:… <br>   <br>  Offset sets where the 16 inputs starts from followed by two 16 bit values telling which bit to set and unset in binary format, i.e. first bit have value 1 and last bit have value 32768. <br>   <br>  Example 1: <br>  “5, 4134, 65” sets input 6,7,10,17 = on and 5,11 = off <br>  (Input starts from no. 5 and bit 1,2,5,12 = 1 and bit 0,6 = 0) <br>   <br>  Example 2: <br>  “22, 1, 4” sets input 22 = on and 24 = off <br>  (Input starts from no. 22 and bit 0 = 1 and bit 2 = 0) <br>   <br>  And both thease examples could be sent in the same message as: <br>  “5,4143:65:22,1,4” <br>   <br>  Such a message would activate input 6,7,10,17,22 and deactivate input 5,11,24</td>
+<td>Sets/Unsets a block of 16 inputs at a time. Can be repeated to set several blocks of 16 inputs. Values are separated with comma. Blocks are separated with semicolon. Since semicolon breaks the SXL csv-format, colon, “:” is used in example below. <br>   <br>  Format: [Offset],[Bits to set],[Bits to unset]:… <br>   <br>  Offset sets where the 16 inputs starts from followed by two 16 bit values telling which bit to set and unset in binary format, i.e. first bit have value 1 and last bit have value 32768. <br>   <br>  Example 1: <br>  “5, 4134, 65” sets input 6,7,10,17 = on and 5,11 = off <br>  (Input starts from no. 5 and bit 1,2,5,12 = 1 and bit 0,6 = 0) <br>   <br>  Example 2: <br>  “22, 1, 4” sets input 22 = on and 24 = off <br>  (Input starts from no. 22 and bit 0 = 1 and bit 2 = 0) <br>   <br>  And both these examples could be sent in the same message as: <br>  “5,4143,65:22,1,4” <br>   <br>  Such a message would activate input 6,7,10,17,22 and deactivate input 5,11,24</td>
 </tr>
 <tr class="row-odd"><td>securityCode</td>
 <td>setInput</td>
@@ -3427,11 +3427,11 @@
 <div class="figure align-center" id="M0104">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
+<col width="13%" />
+<col width="9%" />
+<col width="7%" />
 <col width="8%" />
-<col width="6%" />
-<col width="6%" />
-<col width="70%" />
+<col width="62%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -3451,38 +3451,38 @@
 <tr class="row-odd"><td>year</td>
 <td>setDate</td>
 <td>integer</td>
-<td>[YYYY]</td>
-<td>Changes internal clock. Note: UTC is used <br>  Year according to YYYY</td>
+<td>[0-9999]</td>
+<td>Changes internal clock. Note: UTC is used <br>  Year</td>
 </tr>
 <tr class="row-even"><td>month</td>
 <td>setDate</td>
 <td>integer</td>
-<td>[MM]</td>
-<td>Changes internal clock. Note: UTC is used <br>  Month according to MM (01-12)</td>
+<td>[1-12]</td>
+<td>Changes internal clock. Note: UTC is used <br>  Month</td>
 </tr>
 <tr class="row-odd"><td>day</td>
 <td>setDate</td>
 <td>integer</td>
-<td>[DD]</td>
-<td>Changes internal clock. Note: UTC is used <br>  Day in month according to DD (01-31)</td>
+<td>[1-31]</td>
+<td>Changes internal clock. Note: UTC is used <br>  Day in month</td>
 </tr>
 <tr class="row-even"><td>hour</td>
 <td>setDate</td>
 <td>integer</td>
-<td>[HH]</td>
-<td>Changes internal clock. Note: UTC is used <br>  Hour according to HH (00-23)</td>
+<td>[0-23]</td>
+<td>Changes internal clock. Note: UTC is used <br>  Hour</td>
 </tr>
 <tr class="row-odd"><td>minute</td>
 <td>setDate</td>
 <td>integer</td>
-<td>[MM]</td>
-<td>Changes internal clock. Note: UTC is used <br>  Minute according to MM (00-23)</td>
+<td>[0-59]</td>
+<td>Changes internal clock. Note: UTC is used <br>  Minute</td>
 </tr>
 <tr class="row-even"><td>second</td>
 <td>setDate</td>
 <td>integer</td>
-<td>[SS]</td>
-<td>Changes internal clock. Note: UTC is used <br>  Second according to SS (00-59)</td>
+<td>[0-59]</td>
+<td>Changes internal clock. Note: UTC is used <br>  Second</td>
 </tr>
 </tbody>
 </table>
