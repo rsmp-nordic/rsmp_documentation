@@ -19,7 +19,5 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_core
         ref: ${{ github.event.client_payload.ref }}
-    - name: Install requirements
-      run: apt-get install -y python3-sphinx texlive texlive-latex-extra texlive-humanities mscgen imagemagick librsvg2-bin latexmk graphviz python3-sphinx-rtd-theme
     - name: Build rsmp_core repository
       run: make html
