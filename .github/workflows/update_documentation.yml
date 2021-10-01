@@ -22,4 +22,4 @@ jobs:
     - name: Build rsmp_core repository
       uses: ammaraskar/sphinx-action@master
       with:
-        pre-build-command: "apt-get update -y && apt-get install -y "python-sphinx texlive texlive-latex-extra texlive-humanities mscgen inkscape librsvg2-bin latexmk sphinx python-sphinx-rtd-theme"
+        pre-build-command: "apt-get update -y && apt-get install -y python-sphinx texlive texlive-latex-extra texlive-humanities mscgen inkscape librsvg2-bin latexmk sphinx python-sphinx-rtd-theme"
