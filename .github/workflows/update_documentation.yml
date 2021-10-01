@@ -14,6 +14,8 @@ jobs:
   build-core:
     runs-on: [ self-hosted, Linux ]
     steps:
+    - name: Install docker
+      run: "apt-get update -y && apt-get install -y docker"
     - name: Check out rsmp_core repository
       uses: actions/checkout@v2
       with:
