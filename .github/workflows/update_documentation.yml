@@ -14,17 +14,22 @@ jobs:
   build-core:
     runs-on: [ self-hosted, Linux ]
     steps:
+    - name: Check out rsmp_documentation repository
+      uses: actions/checkout@v2
     - name: Check out rsmp_core repository
       uses: actions/checkout@v2
       with:
         repository: rsmp-nordic/rsmp_core
+        directory: rsmp_core
         ref: ${{ github.event.client_payload.ref }}
     - name: Build rsmp_core repository
-      run: make html
+      run: |
+        cd rsmp_core
+        make html
     - name: Commit documentation changes
       run: |
         mkdir -p docs/core
-        cp -r build/html/* docs/core
+        cp -r rsmp_core/build/html/* docs/core
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add docs/core
