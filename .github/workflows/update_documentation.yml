@@ -30,6 +30,7 @@ jobs:
       run: |
         mkdir -p docs/core
         cp -r rsmp_core/build/html/* docs/core
+        git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add docs/core
@@ -60,6 +61,7 @@ jobs:
       run: |
         mkdir -p docs/rsmp_sxl_traffic_lights
         cp -r rsmp_sxl_traffic_lights/build/html/* docs/rsmp_sxl_traffic_lights
+        git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add docs/rsmp_sxl_traffic_lights
