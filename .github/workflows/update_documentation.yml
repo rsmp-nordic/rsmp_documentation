@@ -21,6 +21,19 @@ jobs:
         ref: ${{ github.event.client_payload.ref }}
     - name: Build rsmp_core repository
       run: make html
+    - name: Commit documentation changes
+      run: |
+        mkdir -p docs/core
+        cp -r build/html/* docs/core
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add docs/core
+        git commit -m "Update documentation" -a || true
+        # The above will fail if no changes were present, so
+        # we ignore the return code.
+     - name: Push changes
+       uses: ad-m/github-push-action@master
+       github_token: ${{ secrets.ACCESS_TOKEN }}
   build-sxl-tlc:
     runs-on: [ self-hosted, Linux ]
     steps:
