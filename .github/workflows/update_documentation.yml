@@ -31,10 +31,10 @@ jobs:
         git commit -m "Update documentation" -a || true
         # The above will fail if no changes were present, so
         # we ignore the return code.
-     - name: Push changes
-       uses: ad-m/github-push-action@master
-       with:
-         github_token: ${{ secrets.ACCESS_TOKEN }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.ACCESS_TOKEN }}
   build-sxl-tlc:
     runs-on: [ self-hosted, Linux ]
     steps:
