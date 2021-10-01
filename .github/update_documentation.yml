@@ -1,0 +1,25 @@
+# This workflow updates the sphinx documentation and builds a website
+
+name: Build documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    repository_dispatch:
+
+jobs:
+  build-core:
+    runs-on: [ self-hosted ]
+    steps:
+    - name: Check out rsmp_core repository
+      uses: actions/checkout@v2
+      with:
+        repository: rsmp-nordic/rsmp_core
+        ref: ${{ github.event.client_payload.ref }}
+    - name: Build rsmp_core repository
+      uses: ammaraskar/sphinx-action@master
+      with:
+        pre-build-command: "apt-get update -y && apt-get install -y "python-sphinx texlive texlive-latex-extra texlive-humanities mscgen inkscape librsvg2-bin latexmk sphinx python-sphinx-rtd-theme"
