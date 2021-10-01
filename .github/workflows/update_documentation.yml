@@ -21,7 +21,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
-        ref: ${{ github.event.client_payload.ref }}
+        ref: 3.2-draft
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
@@ -51,7 +51,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
-        ref: ${{ github.event.client_payload.ref }}
+        ref: 1.1-draft
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
         cd rsmp_sxl_traffic_lights
