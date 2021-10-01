@@ -50,6 +50,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
+        path: rsmp_sxl_traffic_lights
         ref: ${{ github.event.client_payload.ref }}
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
