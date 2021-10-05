@@ -28,7 +28,7 @@ jobs:
         make html
     - name: Commit documentation changes
       run: |
-        mkdir -p docs/core/3.2-draft
+        mkdir -p docs/core/3.1.5
         cp -r rsmp_core/build/html/* docs/core/3.1.5
         git pull -q
         git config --local user.email "action@github.com"
