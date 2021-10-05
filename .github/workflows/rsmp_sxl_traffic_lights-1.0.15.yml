@@ -1,6 +1,6 @@
 # This workflow updates the sphinx documentation and builds a website
 
-name: Build RSMP SXL Traffic Ligths 1.0.15
+name: Build SXL TLC 1.0.15
 
 on:
   push:

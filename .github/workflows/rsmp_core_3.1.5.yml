@@ -1,6 +1,6 @@
 # This workflow updates the sphinx documentation and builds a website
 
-name: Build RSMP Core 3.1.5
+name: Build Core 3.1.5
 
 on:
   push:
