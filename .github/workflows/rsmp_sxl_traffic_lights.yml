@@ -1,6 +1,6 @@
 # This workflow updates the sphinx documentation and builds a website
 
-name: Build documentation
+name: Build RSMP SXL Traffic Lgiths 1.1-draft
 
 on:
   push:
