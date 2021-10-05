@@ -1,0 +1,44 @@
+# This workflow updates the sphinx documentation and builds a website
+
+name: Build RSMP SXL Traffic Ligths 1.1-draft
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  build-sxl-tlc:
+    runs-on: [ self-hosted, Linux ]
+    steps:
+    - name: Check out rsmp_documentation repository
+      uses: actions/checkout@v2
+    - name: Check out rsmp_sxl_traffic_lights repository
+      uses: actions/checkout@v2
+      with:
+        repository: rsmp-nordic/rsmp_sxl_traffic_lights
+        path: rsmp_sxl_traffic_lights
+        ref: 1.1-draft
+    - name: Build rsmp_sxl_traffic_lights repository
+      run: |
+        cd rsmp_sxl_traffic_lights
+        make html
+    - name: Commit documentation changes
+      run: |
+        mkdir -p docs/rsmp_sxl_traffic_lights/1.1-draft
+        cp -r rsmp_sxl_traffic_lights/build/html/* docs/rsmp_sxl_traffic_lights/1.1-draft
+        git pull -q
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add docs/rsmp_sxl_traffic_lights/1.1-draft
+        git commit -m "Update documentation" -a || true
+        # The above will fail if no changes were present, so
+        # we ignore the return code.
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
