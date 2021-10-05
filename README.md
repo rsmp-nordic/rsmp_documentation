@@ -1,6 +1,6 @@
-# rsmp_documentation
+# rsmp_specifications
 
-This repository is currently used to publish the **draft** versions of RSMP Core and RSMP SXL for traffic lights.
+This repository is currently used to publish the various versions of RSMP Core and RSMP SXL for traffic lights.
 
 * [RSMP Core 3.1.4](http://rsmp-nordic.org/rsmp_documentation/core/3.1.4)
 * [RSMP Core 3.1.5](http://rsmp-nordic.org/rsmp_documentation/core/3.1.5)
