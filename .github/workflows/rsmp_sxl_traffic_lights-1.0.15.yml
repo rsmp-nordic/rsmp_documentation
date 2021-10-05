@@ -22,6 +22,9 @@ jobs:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
         ref: 1.0.15
+    - name: Use updated makefile
+      run: |
+        cp .github/makefiles/makefile-sxl-tlc-1.0.15 rsmp_sxl_traffic_lights/Makefile
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
         cd rsmp_sxl_traffic_lights
