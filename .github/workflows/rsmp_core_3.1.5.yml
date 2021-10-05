@@ -21,19 +21,19 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
-        ref: 3.2-draft
+        ref: v3.1.5
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
         make html
     - name: Commit documentation changes
       run: |
-        mkdir -p docs/core
-        cp -r rsmp_core/build/html/* docs/core
+        mkdir -p docs/core/3.2-draft
+        cp -r rsmp_core/build/html/* docs/core/3.1.5
         git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add docs/core
+        git add docs/core/3.1.5
         git commit -m "Update documentation" -a || true
         # The above will fail if no changes were present, so
         # we ignore the return code.
