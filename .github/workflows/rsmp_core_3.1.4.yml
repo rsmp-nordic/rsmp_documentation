@@ -24,7 +24,7 @@ jobs:
         ref: v3.1.4
     - name: Build rsmp_core repository
       run: |
-        cd rsmp_core
+        cd rsmp_core/sphinx
         make html
     - name: Commit documentation changes
       run: |
