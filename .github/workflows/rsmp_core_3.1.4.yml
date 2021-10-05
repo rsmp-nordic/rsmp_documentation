@@ -32,7 +32,7 @@ jobs:
     - name: Commit documentation changes
       run: |
         mkdir -p docs/core/3.1.4
-        cp -r rsmp_core/build/html/* docs/core/3.1.4
+        cp -r rsmp_core/sphinx/build/html/* docs/core/3.1.4
         git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
