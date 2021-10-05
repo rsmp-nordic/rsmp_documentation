@@ -8,40 +8,9 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-    repository_dispatch:
+  repository_dispatch:
 
 jobs:
-  build-core:
-    runs-on: [ self-hosted, Linux ]
-    steps:
-    - name: Check out rsmp_documentation repository
-      uses: actions/checkout@v2
-    - name: Check out rsmp_core repository
-      uses: actions/checkout@v2
-      with:
-        repository: rsmp-nordic/rsmp_core
-        path: rsmp_core
-        ref: 3.2-draft
-    - name: Build rsmp_core repository
-      run: |
-        cd rsmp_core
-        make html
-    - name: Commit documentation changes
-      run: |
-        mkdir -p docs/core
-        cp -r rsmp_core/build/html/* docs/core
-        git pull -q
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add docs/core
-        git commit -m "Update documentation" -a || true
-        # The above will fail if no changes were present, so
-        # we ignore the return code.
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: main
-        github_token: ${{ secrets.GITHUB_TOKEN }}
   build-sxl-tlc:
     runs-on: [ self-hosted, Linux ]
     steps:
