@@ -22,6 +22,9 @@ jobs:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
         ref: v3.1.4
+    - name: Use updated makefile
+      run: |
+        cp .github/makefiles/makefile-core-3.1.4 rsmp_core/sphinx
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core/sphinx
