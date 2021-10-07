@@ -25,7 +25,7 @@ jobs:
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
-        make html
+        make html latexpdf
     - name: Commit documentation changes
       run: |
         mkdir -p docs/core/3.1.5
@@ -40,5 +40,10 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: main
+        branch: main latexpdf
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload PDF as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: PDF
+        path: build/latex/rsmp_spec.pdf

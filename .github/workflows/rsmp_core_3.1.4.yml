@@ -28,7 +28,7 @@ jobs:
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core/sphinx
-        make html
+        make html latexpdf
     - name: Commit documentation changes
       run: |
         mkdir -p docs/core/3.1.4
@@ -45,3 +45,8 @@ jobs:
       with:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload PDF as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: PDF
+        path: build/latex/rsmp_spec.pdf
