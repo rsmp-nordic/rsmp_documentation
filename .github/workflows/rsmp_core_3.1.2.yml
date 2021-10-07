@@ -49,4 +49,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: PDF
-        path: build/latex/rsmp_spec.pdf
+        path: rsmp_core/sphinx/build/latex/rsmp_spec.pdf
