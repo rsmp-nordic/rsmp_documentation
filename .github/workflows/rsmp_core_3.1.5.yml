@@ -40,7 +40,7 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: main latexpdf
+        branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v1
