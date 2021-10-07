@@ -49,4 +49,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: PDF
-        path: build/latex/sxl-tlc.pdf
+        path: rsmp_sxl_traffic_lights/build/latex/sxl-tlc.pdf
