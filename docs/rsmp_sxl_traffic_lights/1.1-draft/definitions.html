@@ -160,31 +160,32 @@
 <p>The following definitions is provided as information for use in RSMP and
 may be simplified from their original meanings.</p>
 <p>RSMP Nordic takes no responsibility for the correctness of the definitions.</p>
+<p>The corresponding ASCII character used for signal group status (S0001) is written first in parentheses.</p>
 <dl class="glossary docutils">
 <dt id="term-red-rest">Red rest</dt>
-<dd>The signal group has no green demand.</dd>
+<dd>(<code class="docutils literal notranslate"><span class="pre">B</span></code>) The signal group has no green demand.</dd>
 <dt id="term-red-rest-without-start-order">Red rest without start order</dt>
-<dd>The signal group isn’t allowed to demand green (green demand held back)
+<dd>(<code class="docutils literal notranslate"><span class="pre">A</span></code>) The signal group isn’t allowed to demand green (green demand held back)
 without a start order.</dd>
 <dt id="term-red-rest-with-privilege-measurement">Red rest with privilege measurement</dt>
-<dd>The signal group has no green demand but can turn green when other
+<dd>(<code class="docutils literal notranslate"><span class="pre">C</span></code>) The signal group has no green demand but can turn green when other
 signal groups in the same phase are turning green (signal group status
-G/0) or are green (signal groups status 1/2/3/4/5). A green demand which
-arrives late when other signal groups are green according to the above,
-results in a change to green.</dd>
+<code class="docutils literal notranslate"><span class="pre">G</span></code>/<code class="docutils literal notranslate"><span class="pre">0</span></code>) or are green (signal groups status <code class="docutils literal notranslate"><span class="pre">1</span></code>/<code class="docutils literal notranslate"><span class="pre">2</span></code>/<code class="docutils literal notranslate"><span class="pre">3</span></code>/<code class="docutils literal notranslate"><span class="pre">4</span></code>/<code class="docutils literal notranslate"><span class="pre">5</span></code>).
+A green demand which arrives late when other signal groups are green according
+to the above, results in a change to green.</dd>
 <dt id="term-red-with-reservation">Red with reservation</dt>
-<dd>The signal group is red due to other priority.</dd>
+<dd>(<code class="docutils literal notranslate"><span class="pre">D</span></code>) The signal group is red due to other priority.</dd>
 <dt id="term-red-with-request">Red with request</dt>
-<dd>The signal group waits for signal group status 1/2/3/4/5 of conflicting
-signal groups to end.</dd>
+<dd>(<code class="docutils literal notranslate"><span class="pre">F</span></code>) The signal group waits for signal group status <code class="docutils literal notranslate"><span class="pre">1</span></code>/<code class="docutils literal notranslate"><span class="pre">2</span></code>/<code class="docutils literal notranslate"><span class="pre">3</span></code>/<code class="docutils literal notranslate"><span class="pre">4</span></code>/<code class="docutils literal notranslate"><span class="pre">5</span></code>
+of conflicting signal groups to end.</dd>
 <dt id="term-red-with-start-in-own-stage">Red with start in own stage</dt>
-<dd>The signal group waits for signal group status 6/7/8/9/N/O/P of
+<dd>(<code class="docutils literal notranslate"><span class="pre">G</span></code>) The signal group waits for signal group status <code class="docutils literal notranslate"><span class="pre">6</span></code>/<code class="docutils literal notranslate"><span class="pre">7</span></code>/<code class="docutils literal notranslate"><span class="pre">8</span></code>/<code class="docutils literal notranslate"><span class="pre">9</span></code>/<code class="docutils literal notranslate"><span class="pre">N</span></code>/<code class="docutils literal notranslate"><span class="pre">O</span></code>/<code class="docutils literal notranslate"><span class="pre">P</span></code> of
 conflicting signal groups to end.</dd>
 <dt id="term-minimum-green">Minimum green</dt>
-<dd>The shortest time which can be shown green for each respective signal
+<dd>(<code class="docutils literal notranslate"><span class="pre">1</span></code>) The shortest time which can be shown green for each respective signal
 group, this time can´t be shortened.</dd>
 <dt id="term-max-minimum-green">Max. minimum green</dt>
-<dd>The signal groups status ”minimum green” should be able to be extended
+<dd>(<code class="docutils literal notranslate"><span class="pre">2</span></code>) The signal groups status ”minimum green” should be able to be extended
 with a traffic controlled variable part up to a maximum “Max.
 minimum-green”. If one or multiple detector logics are programmed to
 extend signal group status “Max. minimum-green”, then the detector
@@ -192,7 +193,7 @@ logics will extend the minimum green time if they are active during red
 signal picture. Signal group status “Max. minimum-green” should
 optionally be able to be shortened or not at prioritization.</dd>
 <dt id="term-maximum-green-extension">Maximum green (extension)</dt>
-<dd>The signal group should be able to extend its showing of green through
+<dd>(<code class="docutils literal notranslate"><span class="pre">3</span></code>) The signal group should be able to extend its showing of green through
 extension, e.g. from detector logics. When the signal group has green
 demand and status minimum green has ended, the signal group should
 continue its display of  green in status maximum green. Maximum green
@@ -200,32 +201,32 @@ should be measured in parallel with minimum green up to a maximum
 “maximum green”. Signal group status “maximum green” should optionally
 be able to be shortened or not at prioritization.</dd>
 <dt id="term-green-rest">Green rest</dt>
-<dd>A signal group continues its display of green due to one or multiple
+<dd>(<code class="docutils literal notranslate"><span class="pre">4</span></code>) A signal group continues its display of green due to one or multiple
 signal group/s in the same traffic pattern has more demand for green
-(signal group status 1/2/3), The signal group has no conflict. It waits
-to be changed, by the rest mode.</dd>
+(signal group status <code class="docutils literal notranslate"><span class="pre">1</span></code>/<code class="docutils literal notranslate"><span class="pre">2</span></code>/<code class="docutils literal notranslate"><span class="pre">3</span></code>), The signal group has no conflict.
+It waits to be changed, by the rest mode.</dd>
 <dt id="term-green-passive">Green passive</dt>
-<dd>A signal group continues its display of green due to other signal groups
+<dd>(<code class="docutils literal notranslate"><span class="pre">5</span></code>) A signal group continues its display of green due to other signal groups
 in the same traffic pattern has more demand for green (signal group
 status 1/2/3). The signal group has conflict. It waits to change, by
 conflicting signal group(s).</dd>
 <dt id="term-fixed-past-end-green">Fixed past-end-green</dt>
-<dd>When the signal group is ordered to change to red it should be able to
+<dd>(<code class="docutils literal notranslate"><span class="pre">6</span></code>) When the signal group is ordered to change to red it should be able to
 continue to be green with a configurable fixed time.</dd>
 <dt id="term-extra-green-according-to-intergreen-times">Extra green according to intergreen times</dt>
-<dd>Signal groups remains green if possible, according to the conflicting
+<dd>(<code class="docutils literal notranslate"><span class="pre">7</span></code>) Signal groups remains green if possible, according to the conflicting
 signal groups</dd>
 <dt id="term-variable-past-end-green">Variable past-end-green</dt>
-<dd>When the signal group is ordered to change to  red it should be able to
+<dd>(<code class="docutils literal notranslate"><span class="pre">8</span></code>) When the signal group is ordered to change to  red it should be able to
 continue to be green during a traffic controlled variable time
-(O function). Signal group status “Past end green” should optionally be
+(O function in LHOVRA). Signal group status “Past end green” should optionally be
 shortened or not at prioritization.</dd>
 <dt id="term-variable-yellow-or-yellow-green">Variable yellow or yellow green</dt>
-<dd>Signal group status ”fixed yellow” can be extended with a traffic
+<dd>(<code class="docutils literal notranslate"><span class="pre">O</span></code>) Signal group status ”fixed yellow” can be extended with a traffic
 controlled variable part “Variable yellow”, the signal group status is
-usually extended by detector logics. (V function).</dd>
+usually extended by detector logics. (V function in LHOVRA).</dd>
 <dt id="term-variable-red">Variable red</dt>
-<dd>The fixed red time/intergreen time should be able to be extended with a
+<dd>(<code class="docutils literal notranslate"><span class="pre">P</span></code>) The fixed red time/intergreen time should be able to be extended with a
 traffic controlled variable part. It is usually measured in parallel
 with the fixed time whereby it must be longer to have any effect.
 (R function)</dd>
