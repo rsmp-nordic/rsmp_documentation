@@ -310,6 +310,7 @@ status updates are stored in the equipment’s outgoing communication buffer.</l
 ceases if the communication disruption occurs.</li>
 <li>Once communication is restored all the buffered messages are sent according to
 the communication establishment sequence.</li>
+<li>When sending buffered status messages, the <code class="docutils literal notranslate"><span class="pre">q</span></code> field should be set to <code class="docutils literal notranslate"><span class="pre">old</span></code></li>
 <li>The communication buffer is stored and sent using the FIFO principle.</li>
 <li>In the event of communications failure or power outage the contens of the
 outgoing communication buffer must not be lost.</li>
