@@ -94,13 +94,14 @@
 <li class="toctree-l2"><a class="reference internal" href="scope.html">4.1. Scope</a></li>
 <li class="toctree-l2"><a class="reference internal" href="object_model.html">4.2. Object model</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. Transport of data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#security">4.3.1. Security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#communication-establishment-between-sites-and-supervision-system">4.3.2. Communication establishment between sites and supervision system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#communication-establishment-between-sites">4.3.3. Communication establishment between sites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#communication-disruption">4.3.4. Communication disruption</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#wrapping-of-packets">4.3.5. Wrapping of packets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transport-between-site-and-supervision-system">4.3.6. Transport between site and supervision system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transport-between-sites">4.3.7. Transport between sites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-supervisors">4.3.1. Multiple supervisors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security">4.3.2. Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-establishment-between-sites-and-supervision-system">4.3.3. Communication establishment between sites and supervision system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-establishment-between-sites">4.3.4. Communication establishment between sites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-disruption">4.3.5. Communication disruption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wrapping-of-packets">4.3.6. Wrapping of packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transport-between-site-and-supervision-system">4.3.7. Transport between site and supervision system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transport-between-sites">4.3.8. Transport between sites</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="basic_structure.html">4.4. Basic structure</a></li>
@@ -190,8 +191,55 @@ formatted text.</p>
 system is waiting for an answer to a previously sent message it can
 can continue to send messages. The exception in the RSMP / SXL version message
 (see section <a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>).</p>
+<p>RSMP connections can be established:</p>
+<ul class="simple">
+<li>Between site and supervision system.
+See <a class="reference internal" href="#communication-establishment-between-sites-and-supervision-system"><span class="std std-ref">communication establishment between sites and supervision system</span></a>.
+The site needs to support multiple RSMP connections to different
+supervisors. See <a class="reference internal" href="#multiple-supervisors"><span class="std std-ref">Multiple supervisors</span></a>.</li>
+<li>Directly between sites.
+See <a class="reference internal" href="#communication-establishment-between-sites"><span class="std std-ref">communication establishment between sites</span></a>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Implementing support for communication between sites is not required unless
+otherwise stated.</p>
+</div>
+<div class="section" id="multiple-supervisors">
+<span id="id2"></span><h2>4.3.1. Multiple supervisors<a class="headerlink" href="#multiple-supervisors" title="Permalink to this headline">¶</a></h2>
+<p>Each site needs to support the following:</p>
+<ul>
+<li><p class="first">At least three (3) RSMP connections to different supervision systems
+simultaneously and handle concurrent communication with all of them.</p>
+<p>For example, a traffic light controller might connect to both a traffic
+management system and a bus priority system. Or it might connect to both a
+traffic management system and a secondary monitoring system.</p>
+</li>
+<li><p class="first">It must be possible to configure the list of supervisors as part of the
+RSMP configuration in the site. In the configuration, supervisors are
+identified by their IP addresses.</p>
+</li>
+<li><p class="first">It must be possible to configure supervisors as read-only. A read-only
+supervisor is not allowed to send commands, but can only request or
+subscribe to status.</p>
+</li>
+<li><p class="first">A command request from a read-only supervisor must be rejected with a
+NotAcknowledge message with reason set to <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">request</span> <span class="pre">rejected</span>
+<span class="pre">because</span> <span class="pre">supervisor</span> <span class="pre">is</span> <span class="pre">configured</span> <span class="pre">as</span> <span class="pre">read-only</span></code>.</p>
+</li>
+<li><p class="first">Except from not handling commands from read-only supervisors, a site must
+handle all types of message from all supervisors, including command requests,
+status requests and status subscriptions. Commands from multiple supervisors
+are served on a first-come basis, without any concept of priority.</p>
+</li>
+<li><p class="first">Supervisor connections are handled separately. When a supervisor sends a
+command or status request, the response is send only to that particular
+supervisor.</p>
+</li>
+</ul>
+</div>
 <div class="section" id="security">
-<h2>4.3.1. Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.2. Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
 <p>Implementing encryption is not required unless otherwise stated. However, if
 encryption is used than the following applies:</p>
 <ul class="simple">
@@ -206,7 +254,7 @@ with the purchaser unless other arrangement is agreed upon.</li>
 </ul>
 </div>
 <div class="section" id="communication-establishment-between-sites-and-supervision-system">
-<span id="id2"></span><h2>4.3.2. Communication establishment between sites and supervision system<a class="headerlink" href="#communication-establishment-between-sites-and-supervision-system" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>4.3.3. Communication establishment between sites and supervision system<a class="headerlink" href="#communication-establishment-between-sites-and-supervision-system" title="Permalink to this headline">¶</a></h2>
 <p>When establishing communication between sites and supervision system,
 messages are sent in the following order.</p>
 <p>Message acknowledgement (see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>) is
@@ -255,10 +303,9 @@ lists depending on the RSMP / SXL version message from the site</li>
 </ul>
 </div>
 <div class="section" id="communication-establishment-between-sites">
-<span id="id3"></span><h2>4.3.3. Communication establishment between sites<a class="headerlink" href="#communication-establishment-between-sites" title="Permalink to this headline">¶</a></h2>
-<p>Implementing support for communication between sites is not required unless
-otherwise stated. However, if communication between sites is used than the
-following applies.</p>
+<span id="id4"></span><h2>4.3.4. Communication establishment between sites<a class="headerlink" href="#communication-establishment-between-sites" title="Permalink to this headline">¶</a></h2>
+<p>When establishing communication directly between sites, messages are sent in
+the following order.</p>
 <p>One site acts as a leader and the other one as a follower.</p>
 <p>When establishing communication between sites, messages are sent in the
 following order.</p>
@@ -300,7 +347,7 @@ component id</li>
 </ul>
 </div>
 <div class="section" id="communication-disruption">
-<span id="id4"></span><h2>4.3.4. Communication disruption<a class="headerlink" href="#communication-disruption" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>4.3.5. Communication disruption<a class="headerlink" href="#communication-disruption" title="Permalink to this headline">¶</a></h2>
 <p>In the event of an communication disruption the following principles applies:</p>
 <ul class="simple">
 <li>If the equipment supports buffering of status messages, the status
@@ -367,7 +414,7 @@ be 10 seconds.</li>
 </ul>
 </div>
 <div class="section" id="wrapping-of-packets">
-<h2>4.3.5. Wrapping of packets<a class="headerlink" href="#wrapping-of-packets" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.6. Wrapping of packets<a class="headerlink" href="#wrapping-of-packets" title="Permalink to this headline">¶</a></h2>
 <p>Both Json and XML packets can be tricky to decode unless one always know that
 the packet is complete. Json lacks an end tag and an XML end tag may be
 embedded in the text source. In order to reliably detect the end of a packet
@@ -419,13 +466,13 @@ establishment) must not be sent, but must be handled</li>
 </ul>
 </div>
 <div class="section" id="transport-between-site-and-supervision-system">
-<h2>4.3.6. Transport between site and supervision system<a class="headerlink" href="#transport-between-site-and-supervision-system" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.7. Transport between site and supervision system<a class="headerlink" href="#transport-between-site-and-supervision-system" title="Permalink to this headline">¶</a></h2>
 <p>Supervision system acts a socket server and waits for the site to
 connect. If the communication were to fail it is the site’s
 responsibility to reconnect.</p>
 </div>
 <div class="section" id="transport-between-sites">
-<h2>4.3.7. Transport between sites<a class="headerlink" href="#transport-between-sites" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.8. Transport between sites<a class="headerlink" href="#transport-between-sites" title="Permalink to this headline">¶</a></h2>
 <p>One site acts as leader and the other one as a follower.</p>
 <ul class="simple">
 <li>The leader site initiates the connection to the following site.</li>
