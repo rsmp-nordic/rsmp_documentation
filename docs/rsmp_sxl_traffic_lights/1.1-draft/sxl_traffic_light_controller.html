@@ -1132,14 +1132,14 @@
 <span class="target" id="S0006"></span></center></div></div>
 <div class="section" id="s0007">
 <h3>2.4.7. S0007<a class="headerlink" href="#s0007" title="Permalink to this headline">¶</a></h3>
-<p>Controller switched on <br>   <br>  The controller is active and is not in dark mode. <br>   <br>  Used to determine if the controller is operating, e.g. it shows red, green or yellow to the vehicles. <br>   <br>  During maintenance work the controller might be using dark mode (no output to the signal heads). <br> </p>
+<p>Controller switched on <br>   <br>  The controller is active and is not in dark mode. <br>   <br>  Used to determine if the controller is operating, e.g. it shows red, green or yellow to the vehicles. <br>   <br>  During maintenance work the controller might be using dark mode (no output to the signal heads). <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “True,False” <br> </p>
 <div class="figure align-center" id="S0007">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="8%" />
 <col width="4%" />
-<col width="9%" />
-<col width="81%" />
+<col width="11%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1152,7 +1152,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>boolean</td>
@@ -1165,14 +1165,14 @@
 <span class="target" id="S0007"></span></center></div></div>
 <div class="section" id="s0008">
 <h3>2.4.8. S0008<a class="headerlink" href="#s0008" title="Permalink to this headline">¶</a></h3>
-<p>Manual control <br>   <br>  Traffic control deactivated in controller <br>   <br>  Signal timings is controlled manually by service personnel using the operating panel of the controller.</p>
+<p>Manual control <br>   <br>  Traffic control deactivated in controller <br>   <br>  Signal timings is controlled manually by service personnel using the operating panel of the controller. <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “True,False”</p>
 <div class="figure align-center" id="S0008">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="8%" />
 <col width="4%" />
-<col width="9%" />
-<col width="81%" />
+<col width="11%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1185,7 +1185,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>boolean</td>
@@ -1198,14 +1198,14 @@
 <span class="target" id="S0008"></span></center></div></div>
 <div class="section" id="s0009">
 <h3>2.4.9. S0009<a class="headerlink" href="#s0009" title="Permalink to this headline">¶</a></h3>
-<p>Fixed time control <br>   <br>  Traffic actuated control deactivated and a pre-timed control is used. <br>   <br>  Usually only used in case normal detectors can’t be used, e.g. during maintenance work.</p>
+<p>Fixed time control <br>   <br>  Traffic actuated control deactivated and a pre-timed control is used. <br>   <br>  Usually only used in case normal detectors can’t be used, e.g. during maintenance work. <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “True,False”</p>
 <div class="figure align-center" id="S0009">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="8%" />
 <col width="4%" />
-<col width="9%" />
-<col width="81%" />
+<col width="11%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1218,7 +1218,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>boolean</td>
@@ -1231,14 +1231,14 @@
 <span class="target" id="S0009"></span></center></div></div>
 <div class="section" id="s0010">
 <h3>2.4.10. S0010<a class="headerlink" href="#s0010" title="Permalink to this headline">¶</a></h3>
-<p>Isolated control <br>   <br>  Isolated control mode indicates that the controller operates independently of any other traffic light controllers. This may different depending on traffic program (time plan). <br>   <br>  Used to determine if the controller is operating independently or operating with other controllers (coordination).</p>
+<p>Isolated control <br>   <br>  Isolated control mode indicates that the controller operates independently of any other traffic light controllers. This may different depending on traffic program (time plan). <br>   <br>  Used to determine if the controller is operating independently or operating with other controllers (coordination). <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “True,False”</p>
 <div class="figure align-center" id="S0010">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="8%" />
 <col width="4%" />
-<col width="9%" />
-<col width="81%" />
+<col width="11%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1251,7 +1251,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>boolean</td>
@@ -1264,14 +1264,14 @@
 <span class="target" id="S0010"></span></center></div></div>
 <div class="section" id="s0011">
 <h3>2.4.11. S0011<a class="headerlink" href="#s0011" title="Permalink to this headline">¶</a></h3>
-<p>Yellow flash <br>   <br>  The controller shows yellow flash. <br>   <br>  Yellow flash may be used during a serious fault (depending on configuration) or maintenance work. However, some countries may use yellow flash as an normal operating mode, and not necessarily during fault. This status can also be manually set using M0001.</p>
+<p>Yellow flash <br>   <br>  The controller shows yellow flash. <br>   <br>  Yellow flash may be used during a serious fault (depending on configuration) or maintenance work. However, some countries may use yellow flash as an normal operating mode, and not necessarily during fault. This status can also be manually set using M0001. <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “True,False”</p>
 <div class="figure align-center" id="S0011">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="8%" />
 <col width="4%" />
-<col width="9%" />
-<col width="81%" />
+<col width="11%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1284,7 +1284,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>boolean</td>
@@ -1297,14 +1297,14 @@
 <span class="target" id="S0011"></span></center></div></div>
 <div class="section" id="s0012">
 <h3>2.4.12. S0012<a class="headerlink" href="#s0012" title="Permalink to this headline">¶</a></h3>
-<p>All red <br>   <br>  The controller show all red <br>   <br>  All red can be manually set using the controllers operating panel during maintenance work.</p>
+<p>All red <br>   <br>  The controller show all red <br>   <br>  All red can be manually set using the controllers operating panel during maintenance work. <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “True,False”</p>
 <div class="figure align-center" id="S0012">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="8%" />
 <col width="4%" />
-<col width="9%" />
-<col width="81%" />
+<col width="11%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1317,7 +1317,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>boolean</td>
@@ -1330,14 +1330,14 @@
 <span class="target" id="S0012"></span></center></div></div>
 <div class="section" id="s0013">
 <h3>2.4.13. S0013<a class="headerlink" href="#s0013" title="Permalink to this headline">¶</a></h3>
-<p>Police key <br>   <br>  The controller is forced to dark mode or yellow flash. <br>   <br>  The “police key” is a external control switch present in some controllers that manually switches the controller to either dark mode or yellow flash.</p>
+<p>Police key <br>   <br>  The controller is forced to dark mode or yellow flash. <br>   <br>  The “police key” is a external control switch present in some controllers that manually switches the controller to either dark mode or yellow flash. <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “0,1”</p>
 <div class="figure align-center" id="S0013">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="7%" />
 <col width="4%" />
-<col width="13%" />
-<col width="77%" />
+<col width="15%" />
+<col width="73%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1350,7 +1350,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>integer</td>
@@ -1531,14 +1531,14 @@
 <span class="target" id="S0019"></span></center></div></div>
 <div class="section" id="s0020">
 <h3>2.4.20. S0020<a class="headerlink" href="#s0020" title="Permalink to this headline">¶</a></h3>
-<p>Control mode <br>   <br>  Can be used for the management system to check the current control mode (startup, normal, standby, failure, test).</p>
+<p>Control mode <br>   <br>  Can be used for the management system to check the current control mode (startup, normal, standby, failure, test). <br>   <br>  Please note that all values in this status uses comma-separated lists <br>  - one value for each intersection, e.g. “1,2” and “startup,control”</p>
 <div class="figure align-center" id="S0020">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="5%" />
+<col width="6%" />
 <col width="3%" />
-<col width="26%" />
-<col width="66%" />
+<col width="30%" />
+<col width="61%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1551,7 +1551,7 @@
 <tr class="row-even"><td>intersection</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>0: Not applicable (only one intersection exists or applicable for all intersection of the traffic light controller) <br>  Other value: Intersection number</td>
+<td>Comma separated list of intersections which the status relates to, <br>  e.g. “1,2”. Use “0” for all intersections of the TLC</td>
 </tr>
 <tr class="row-odd"><td>controlmode</td>
 <td>string</td>
