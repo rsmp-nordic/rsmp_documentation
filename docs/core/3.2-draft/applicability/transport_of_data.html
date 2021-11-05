@@ -189,8 +189,9 @@ is used (TCP/IP), and the data sent is based on the JSon format, i.e.
 formatted text.</p>
 <p>Messages can be sent asynchronously, i.e. while the site or supervision
 system is waiting for an answer to a previously sent message it can
-can continue to send messages. The exception in the RSMP / SXL version message
-(see section <a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>).</p>
+can continue to send messages. The exception is during the first part of
+communication establishment (see section <a class="reference internal" href="#communication-establishment-between-sites-and-supervision-system"><span class="std std-ref">Communication establishment between sites and supervision system</span></a>
+and <a class="reference internal" href="#communication-establishment-between-sites"><span class="std std-ref">Communication establishment between sites</span></a>).</p>
 <p>RSMP connections can be established:</p>
 <ul class="simple">
 <li>Between site and supervision system.
@@ -281,6 +282,8 @@ with a MessageNotAck and closes the connection.
 (see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>)</li>
 <li>The site sends a Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
 <li>The system sends a Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
+<li>Asynchronous message exchange can begin. This means that commands and
+statuses are allowed to be sent</li>
 <li>Aggregated status (according to section <a class="reference internal" href="basic_structure.html#aggregated-status-message"><span class="std std-ref">Aggregated status message</span></a>).
 If no object for aggregated status is defined in the signal exchange list
 then no aggregated status message is sent.</li>
@@ -334,6 +337,8 @@ responds with a MessageNotAck and closes the connection.
 (see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>)</li>
 <li>The follower site sends Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
 <li>The leader site sends Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
+<li>Asynchronous message exchange can begin. This means that commands and
+statuses are allowed to be sent</li>
 <li>Aggregated status (according to section <a class="reference internal" href="basic_structure.html#aggregated-status-message"><span class="std std-ref">Aggregated status message</span></a>)
 If no object for aggregated status is defined in the signal exchange list
 then no aggregated status message is sent.</li>
