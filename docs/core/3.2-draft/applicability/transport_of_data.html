@@ -98,10 +98,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#security">4.3.2. Security</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#communication-establishment-between-sites-and-supervision-system">4.3.3. Communication establishment between sites and supervision system</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#communication-establishment-between-sites">4.3.4. Communication establishment between sites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#communication-disruption">4.3.5. Communication disruption</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#wrapping-of-packets">4.3.6. Wrapping of packets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transport-between-site-and-supervision-system">4.3.7. Transport between site and supervision system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transport-between-sites">4.3.8. Transport between sites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-rejection">4.3.5. Communication rejection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-disruption">4.3.6. Communication disruption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wrapping-of-packets">4.3.7. Wrapping of packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transport-between-site-and-supervision-system">4.3.8. Transport between site and supervision system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transport-between-sites">4.3.9. Transport between sites</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="basic_structure.html">4.4. Basic structure</a></li>
@@ -271,15 +272,16 @@ implicit in the following figure.</p>
 <ol class="arabic simple">
 <li>Site sends RSMP / SXL version (according to section <a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>).</li>
 <li>The supervision system verifies the RSMP version, SXL version and site id.
-If there is a mismatch the sequence does not proceed. The system responds
-with a MessageNotAck and closes the connection
-(see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>)</li>
+If there is a mismatch the sequence does not proceed.
+(see section <a class="reference internal" href="#communication-rejection"><span class="std std-ref">Communication rejection</span></a>)</li>
 <li>The supervision system sends RSMP / SXL version (according to section
 <a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>).</li>
 <li>The site verifies the RSMP version, SXL version and site id.
-If there is a mismatch the sequence does not proceed. The site responds
-with a MessageNotAck and closes the connection.
-(see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>)</li>
+If there is a mismatch the sequence does not proceed.
+(see section <a class="reference internal" href="#communication-rejection"><span class="std std-ref">Communication rejection</span></a>)</li>
+<li>The latest version of RSMP that both communicating parties exchange in the
+RSMP/SXL Version is implicitly selected and used in any further RSMP
+communication.</li>
 <li>The site sends a Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
 <li>The system sends a Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
 <li>Asynchronous message exchange can begin. This means that commands and
@@ -326,15 +328,16 @@ implicit in the following figure.</p>
 <li>The follower site sends RSMP / SXL version (according to section
 <a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>).</li>
 <li>The leader site verifies the RSMP version, SXL version and site id.
-If there is a mismatch the sequence does not proceed. The leader site
-responds with a MessageNotAck and closes the connection.
-(see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>)</li>
+If there is a mismatch the sequence does not proceed.
+(see section <a class="reference internal" href="#communication-rejection"><span class="std std-ref">Communication rejection</span></a>)</li>
 <li>The leader site sends RSMP / SXL version (according to section
 <a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>).</li>
 <li>The follower site verifies the RSMP version, SXL version and site id.
-If there is a mismatch the sequence does not proceed. The follower site
-responds with a MessageNotAck and closes the connection.
-(see section <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>)</li>
+If there is a mismatch the sequence does not proceed.
+(see section <a class="reference internal" href="#communication-rejection"><span class="std std-ref">Communication rejection</span></a>)</li>
+<li>The latest version of RSMP that both communicating parties exchange in the
+RSMP/SXL Version is implicitly selected and used in any further RSMP
+communication.</li>
 <li>The follower site sends Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
 <li>The leader site sends Watchdog (according to section <a class="reference internal" href="basic_structure.html#watchdog"><span class="std std-ref">Watchdog</span></a>)</li>
 <li>Asynchronous message exchange can begin. This means that commands and
@@ -358,8 +361,26 @@ component id</li>
 <li>No communication buffer exist</li>
 </ul>
 </div>
+<div class="section" id="communication-rejection">
+<span id="id5"></span><h2>4.3.5. Communication rejection<a class="headerlink" href="#communication-rejection" title="Permalink to this headline">¶</a></h2>
+<p>During RSMP/SXL Version exchange each communicating party needs to verify:</p>
+<ul class="simple">
+<li>RSMP version(s)</li>
+<li>SXL version</li>
+<li>Site id</li>
+</ul>
+<p>If there is a mismatch of SXL, Site id or unsupported version(s) of RSMP then:</p>
+<ol class="arabic simple">
+<li>The communication establishment sequence does not proceed</li>
+<li>The receiver of the RSMP/SXL version message sends a MessageNotAck with
+reason (<cite>rea</cite>) set to the cause of rejection. For instance,
+<code class="docutils literal notranslate"><span class="pre">RSMP</span> <span class="pre">versions</span> <span class="pre">[3.1.5]</span> <span class="pre">requested,</span> <span class="pre">but</span> <span class="pre">only</span> <span class="pre">[3.1.1,3.1.2,3.1.3,3.1.4]</span> <span class="pre">supported</span></code></li>
+<li>The connection is closed</li>
+</ol>
+<img alt="../_images/communication-rejection.png" class="align-center" src="../_images/communication-rejection.png" />
+</div>
 <div class="section" id="communication-disruption">
-<span id="id5"></span><h2>4.3.5. Communication disruption<a class="headerlink" href="#communication-disruption" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>4.3.6. Communication disruption<a class="headerlink" href="#communication-disruption" title="Permalink to this headline">¶</a></h2>
 <p>In the event of an communication disruption the following principles applies:</p>
 <ul class="simple">
 <li>If the equipment supports buffering of status messages, the status
@@ -426,7 +447,7 @@ be 10 seconds.</li>
 </ul>
 </div>
 <div class="section" id="wrapping-of-packets">
-<h2>4.3.6. Wrapping of packets<a class="headerlink" href="#wrapping-of-packets" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.7. Wrapping of packets<a class="headerlink" href="#wrapping-of-packets" title="Permalink to this headline">¶</a></h2>
 <p>Both Json and XML packets can be tricky to decode unless one always know that
 the packet is complete. Json lacks an end tag and an XML end tag may be
 embedded in the text source. In order to reliably detect the end of a packet
@@ -478,13 +499,13 @@ establishment) must not be sent, but must be handled</li>
 </ul>
 </div>
 <div class="section" id="transport-between-site-and-supervision-system">
-<h2>4.3.7. Transport between site and supervision system<a class="headerlink" href="#transport-between-site-and-supervision-system" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.8. Transport between site and supervision system<a class="headerlink" href="#transport-between-site-and-supervision-system" title="Permalink to this headline">¶</a></h2>
 <p>Supervision system acts a socket server and waits for the site to
 connect. If the communication were to fail it is the site’s
 responsibility to reconnect.</p>
 </div>
 <div class="section" id="transport-between-sites">
-<h2>4.3.8. Transport between sites<a class="headerlink" href="#transport-between-sites" title="Permalink to this headline">¶</a></h2>
+<h2>4.3.9. Transport between sites<a class="headerlink" href="#transport-between-sites" title="Permalink to this headline">¶</a></h2>
 <p>One site acts as leader and the other one as a follower.</p>
 <ul class="simple">
 <li>The leader site initiates the connection to the following site.</li>
