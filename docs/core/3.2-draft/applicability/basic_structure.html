@@ -1379,31 +1379,40 @@ when the value changes.</td>
 </tbody>
 </table>
 <p class="caption"><span class="caption-text">Status Request</span></p>
-<span class="target" id="table-statusrequest-basic"></span></center></div><p>The <strong>updateRate</strong> (uRt) and <strong>sendOnChange</strong> (sOc) determines when a
+<span class="target" id="table-statusrequest-basic"></span></center></div><p>The following applies:</p>
+<ul class="simple">
+<li>The <strong>updateRate</strong> <code class="docutils literal notranslate"><span class="pre">uRt</span></code> and <strong>sendOnChange</strong> <code class="docutils literal notranslate"><span class="pre">sOc</span></code> determines when a
 status update should be sent. <strong>updateRate</strong> defines a specific interval
-when to send updates. If <strong>updateRate</strong> is set to “0” it means that no
-update is sent using an interval. <strong>sendOnChange</strong> defines if an status
-update should be sent as soon as the value changes.</p>
-<p>It is possible to combine <strong>updateRate</strong> and <strong>sendOnChange</strong> to send an
+when to send updates.</li>
+<li>If <strong>updateRate</strong> is set to “0” it means that no update is sent using an
+interval.</li>
+<li><strong>sendOnChange</strong> defines if an status update should be sent as soon as the
+value changes.</li>
+<li>It is possible to combine <strong>updateRate</strong> and <strong>sendOnChange</strong> to send an
 update when the value changes and at the same time using a specific
-interval.</p>
+interval.</li>
+<li>It allowed to change <strong>updateRate</strong> and <strong>sendOnChange</strong> by sending a new
+StatusSubscribe during an active subscription.</li>
+</ul>
 </div>
 <div class="section" id="structure-for-a-response-message-with-answer-to-a-request-for-status-subscription-for-one-or-several-objects">
 <h4>4.4.4.1.5. Structure for a response message with answer to a request for status subscription for one or several objects<a class="headerlink" href="#structure-for-a-response-message-with-answer-to-a-request-for-status-subscription-for-one-or-several-objects" title="Permalink to this headline">¶</a></h4>
 <p>A response message with answer to a request for status subscription
-has the structure according to the example below. This response is
-always sent immediately after request for subscription regardless if
-the value recently changed or as an effect of the interval for the
-subscription. The reason for sending the response immediately is
-because subscriptions usually are established shortly after RSMP
-connection establishment and the supervision system needs to update
-with the current statuses and events.
-If an subscription is already active then the site must not establish
-a new subscription but use the existing one. This message type should
-not be sent if the subscription already exist.
-If the object is not known then the site must not disconnect
+has the structure according to the example below.</p>
+<p>The following applies:</p>
+<ul class="simple">
+<li>A StatusUpdate is always sent immediately after subscription request,
+unless the subscription is already active. The reason for sending the
+response immediately is because subscriptions usually are established
+shortly after RSMP connection establishment and the supervision system
+needs to update with the current statuses.</li>
+<li>If an subscription is already active then the site must not establish
+a new subscription but use the existing one. It allowed to change
+<strong>updateRate</strong> and <strong>sendOnChange</strong>.</li>
+<li>If the object is not known then the site must not disconnect
 but instead answer with this type of message where <strong>q</strong> is set to
-<strong>undefined</strong>.</p>
+<strong>undefined</strong>.</li>
+</ul>
 <div class="highlight-json notranslate" id="json-status-update"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span> <span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;StatusUpdate&quot;</span><span class="p">,</span>
