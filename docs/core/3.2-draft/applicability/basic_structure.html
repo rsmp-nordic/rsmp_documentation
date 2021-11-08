@@ -927,8 +927,8 @@ implicit in the following figures.</p>
 status of the site. The aggregated status applies to the object which is
 defined by <strong>ObjectType</strong> in the signal exchange list. If no object is defined
 then no aggregated status message is sent.</p>
-<p>Aggregated status message are interaction driven and are sent if state
-bits, functional position or functional status are changed at the site.</p>
+<p>Aggregated status message are interaction driven and are sent if state,
+functional position or functional status are changed at the site.</p>
 <div class="section" id="id7">
 <h3>4.4.2.1. Message structure<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>An aggregated status message has the structure according to the example
@@ -1004,7 +1004,7 @@ between the JSon elements and the titles in the SXL.</p>
 </tr>
 <tr class="row-even"><td>se</td>
 <td>State</td>
-<td>Status bits. Array of eight booleans</td>
+<td>Array of eight booleans.</td>
 </tr>
 </tbody>
 </table>
@@ -1020,7 +1020,7 @@ interpret it at the receiving end</li>
 </ul>
 <p>A definition of each boolean element (1-8) is presented in the figure below.
 The signal exchange list (SXL) may define a more detailed definition.</p>
-<img alt="../_images/agg_status_bits.png" class="align-center" src="../_images/agg_status_bits.png" />
+<img alt="../_images/agg_state_array.png" class="align-center" src="../_images/agg_state_array.png" />
 </div>
 </div>
 </div>
@@ -1049,7 +1049,7 @@ below.</p>
 <h3>4.4.3.2. Message exchange between site and supervision system<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>Message acknowledgement (see section <a class="reference internal" href="#message-acknowledgement"><span class="std std-ref">Message acknowledgement</span></a>) is
 implicit in the following figures.</p>
-<p><strong>Functional state, functional position or status bits changes at the
+<p><strong>Functional state, functional position or state booleans changes at the
 site</strong></p>
 <img alt="../_images/aggregated_status.png" class="align-center" src="../_images/aggregated_status.png" />
 <ol class="arabic simple">
