@@ -1004,14 +1004,18 @@ between the JSon elements and the titles in the SXL.</p>
 </tr>
 <tr class="row-even"><td>se</td>
 <td>State</td>
-<td>Status bits. 8 bit status bit array, where each element is
-defined as either <strong>true</strong> or <strong>false</strong>.
-This status bit array defines the status of the site to NTS</td>
+<td>Status bits. 8 bit boolean array.</td>
 </tr>
 </tbody>
 </table>
 <p class="caption"><span class="caption-text">Aggregated status SXL content</span></p>
-<span class="target" id="table-agg-specialisation"></span></center></div><div class="section" id="status-bits-state">
+<span class="target" id="table-agg-specialisation"></span></center></div><ul class="simple">
+<li><strong>Status bits</strong> <code class="docutils literal notranslate"><span class="pre">se</span></code> is an 8 bit boolean array. The status bits defines
+the status of the site to <a class="reference internal" href="../definitions.html#term-nts"><span class="xref std std-term">NTS</span></a>.</li>
+<li>It is technically valid in RSMP to set the status bits to a nonsensical value,
+e.g. all bits to <code class="docutils literal notranslate"><span class="pre">false</span></code>, but it not defined how to interpret it.</li>
+</ul>
+<div class="section" id="status-bits-state">
 <h4>4.4.2.1.1. Status bits (state)<a class="headerlink" href="#status-bits-state" title="Permalink to this headline">¶</a></h4>
 <p>The principle of aggregating of statuses for each bit is defined by the
 associated comments in the signal exchange list (SXL). A generic
