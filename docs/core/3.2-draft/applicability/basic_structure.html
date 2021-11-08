@@ -1004,22 +1004,22 @@ between the JSon elements and the titles in the SXL.</p>
 </tr>
 <tr class="row-even"><td>se</td>
 <td>State</td>
-<td>Status bits. 8 bit boolean array.</td>
+<td>Status bits. Array of eight booleans</td>
 </tr>
 </tbody>
 </table>
 <p class="caption"><span class="caption-text">Aggregated status SXL content</span></p>
-<span class="target" id="table-agg-specialisation"></span></center></div><ul class="simple">
-<li><strong>Status bits</strong> <code class="docutils literal notranslate"><span class="pre">se</span></code> is an 8 bit boolean array. The status bits defines
+<span class="target" id="table-agg-specialisation"></span></center></div><div class="section" id="state">
+<h4>4.4.2.1.1. State<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>State</strong> <code class="docutils literal notranslate"><span class="pre">se</span></code> is an array of eight booleans. The boolean elements defines
 the status of the site to <a class="reference internal" href="../definitions.html#term-nts"><span class="xref std std-term">NTS</span></a>.</li>
-<li>It is technically valid in RSMP to set the status bits to a nonsensical value,
-e.g. all bits to <code class="docutils literal notranslate"><span class="pre">false</span></code>, but it not defined how to interpret it.</li>
+<li>It is technically valid in RSMP to set the boolean elements to a nonsensical
+values, e.g. all boolean elements to <code class="docutils literal notranslate"><span class="pre">false</span></code>, but it is not defined how to
+interpret it at the receiving end</li>
 </ul>
-<div class="section" id="status-bits-state">
-<h4>4.4.2.1.1. Status bits (state)<a class="headerlink" href="#status-bits-state" title="Permalink to this headline">¶</a></h4>
-<p>The principle of aggregating of statuses for each bit is defined by the
-associated comments in the signal exchange list (SXL). A generic
-description of each bit is presented in the figure below</p>
+<p>A definition of each boolean element (1-8) is presented in the figure below.
+The signal exchange list (SXL) may define a more detailed definition.</p>
 <img alt="../_images/agg_status_bits.png" class="align-center" src="../_images/agg_status_bits.png" />
 </div>
 </div>
