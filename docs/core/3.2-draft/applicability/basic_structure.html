@@ -1371,9 +1371,7 @@ e.g. temperature, wind speed, power consumption, manual control.</p>
 <td>updateRate. Determines the interval of which the
 message should be sent.
 Defined in seconds with decimals, e.g. ”2.5” for
-2.5 seconds. Dot (.) is used as decimal point.
-If “0” it means that the value should not be sent
-according to an interval</td>
+2.5 seconds. Dot (.) is used as decimal point.</td>
 </tr>
 <tr class="row-odd"><td>sOc</td>
 <td>boolean</td>
@@ -1395,6 +1393,8 @@ value changes.</li>
 <li>It is possible to combine <strong>updateRate</strong> and <strong>sendOnChange</strong> to send an
 update when the value changes and at the same time using a specific
 interval.</li>
+<li>It is not valid to set <strong>updateRate=0</strong> and <strong>sendOnChange=false</strong> since
+it means that no subscription updates will be sent.</li>
 <li>It allowed to change <strong>updateRate</strong> and <strong>sendOnChange</strong> by sending a new
 StatusSubscribe during an active subscription.</li>
 </ul>
