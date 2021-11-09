@@ -388,6 +388,7 @@ Status
    Traffic Light Controller  `S0030`_        Forced output status
    Traffic Light Controller  `S0031`_        Trigger level sensitivity for loop detector
    Traffic Light Controller  `S0032`_        Coordinated control
+   Traffic Light Controller  `S0033`_        Signal Priority Status
    Traffic Light Controller  `S0091`_        Operator logged in/out OP-panel
    Traffic Light Controller  `S0092`_        Operator logged in/out web-interface
    Traffic Light Controller  `S0095`_        Version of Traffic Light Controller
@@ -418,14 +419,14 @@ Signal group status |br|  |br| Provides the status of each signal group, includi
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.15\linewidth} p{0.08\linewidth} p{0.13\linewidth} p{0.50\linewidth}
 
-   =================  =======  =======  =========================================================================================================================================================================================================================================================
+   =================  =======  =======  ======================================================================================================================================================================================================================================================================================
    Name               Type     Value    Comment
-   =================  =======  =======  =========================================================================================================================================================================================================================================================
+   =================  =======  =======  ======================================================================================================================================================================================================================================================================================
    signalgroupstatus  string   [text]   Signal group status as text field. |br|  |br| Each character represent the state of the signal group in consecutive order. |br| Signal group status is described in detail in the corresponding section |br| - = Signal group is undefined/does not exist
-   cyclecounter       integer  [0-999]  Cycle counter
-   basecyclecounter   integer  [0-999]  Base cycle counter
+   cyclecounter       integer  [0-999]  Cycle counter |br|  |br| Used for handling of coordination between TLC's. |br| Is counted from 0 until it reaches the cycle time (See S0028). |br| Cycle counter is the "base cycle counter" + "offset time" (See S0024) |br|  |br| See the coordination section for more information.
+   basecyclecounter   integer  [0-999]  Base cycle counter |br|  |br| Used for handling of coordination between TLC's. |br| Synchronized between all TLC's in an active coordination. |br|  |br| See the coordination section for more information.
    stage              integer  [0-999]  Current stage (isolated)
-   =================  =======  =======  =========================================================================================================================================================================================================================================================
+   =================  =======  =======  ======================================================================================================================================================================================================================================================================================
 ..
 
 S0002
@@ -1076,6 +1077,30 @@ Coordinated control |br|  |br| This status is used when coordination between tra
    ============  =======  ===============================================================================================  ======================================================================================================================================================================================================================================================================================
 ..
 
+S0033
+^^^^^^^^
+
+Signal Priority Status |br|  |br| The status can only describe the status of a single priority request, |br| and you can therefore only subscribe to this status with update rate set to 0, |br| so you get each individual status change as it happens.
+
+
+.. figtable::
+   :nofig:
+   :label: S0033
+   :caption: S0033
+   :loc: H
+   :spec: >{\raggedright\arraybackslash}p{0.15\linewidth} p{0.08\linewidth} p{0.13\linewidth} p{0.50\linewidth}
+
+   ==========  =======  =======================================================================  ======================================================================================================================================================================================================================
+   Name        Type     Value                                                                    Comment
+   ==========  =======  =======================================================================  ======================================================================================================================================================================================================================
+   requestId   string   [text]                                                                   Id of the request you want the status for.
+   status      string   -queued |br| -activated |br| -rejected |br| -cancelled |br| -overridden  Id of the request you want the status for. |br| queued: Priority is queued |br| activated: Priority is active |br| rejected: Priority rejected |br| cancelled: Priority cancelled |br| overridden: Priority overridden
+   reason      string   [text]                                                                   Reason in case the priority was not given, otherwise empty.
+   overrideId  string   [text]                                                                   Id of the overriding request, if overridden, otherwise empty.
+   gained      integer  [0-255]                                                                  Seconds of extra green time gained by the priority, or 0 if no priority given
+   ==========  =======  =======================================================================  ======================================================================================================================================================================================================================
+..
+
 S0091
 ^^^^^^^^
 
@@ -1421,6 +1446,7 @@ Commands
    Traffic Light Controller  `M0019`_         Force input
    Traffic Light Controller  `M0020`_         Force output
    Traffic Light Controller  `M0021`_         Set trigger level sensitivity for loop detector
+   Signal group              `M0022`_         Request Signal Priority
    Traffic Light Controller  `M0103`_         Set security code
    Traffic Light Controller  `M0104`_         Set clock
    ========================  ===============  ======================================================
@@ -1858,6 +1884,28 @@ Set trigger level sensitivity for loop detector |br|  |br| The trigger level sen
    status        setLevel   string  [text]   Loop detector trigger level sensitivity is written as dd-ss where: |br| dd=loop detector number |br| ss=sensitivity value
    securityCode  setLevel   string  [text]   Security code 2
    ============  =========  ======  =======  =========================================================================================================================
+..
+
+M0022
+^^^^^
+
+Request Signal Priority |br|  |br| The message can be used for bus priority or other type of priority. |br| The benefit over activating IO inputs or detector logics is that you  specify a priority level. |br| You can also can update or cancel the request, or use the corresponding status request or |br| subscription to track the status of the request, including how much priority was actually given.
+
+
+.. figtable::
+   :nofig:
+   :label: M0022
+   :caption: M0022
+   :loc: H
+   :spec: >{\raggedright\arraybackslash}p{0.14\linewidth} p{0.20\linewidth} p{0.07\linewidth} p{0.15\linewidth} p{0.30\linewidth}
+
+   =========  ===============  =======  ==============================  =============================================================================================================================
+   Name       Command          Type     Value                           Comment
+   =========  ===============  =======  ==============================  =============================================================================================================================
+   requestId  requestPriority  string   [text]                          A string that unique identifies the request on this controller.
+   type       requestPriority  string   -new |br| -update |br| -cancel  Type |br| new: New priority request |br| update: Update to existing priority request |br| cancel: Cancel an existing priority
+   level      requestPriority  integer  [0-14]                          0: lowest, 14: highest
+   =========  ===============  =======  ==============================  =============================================================================================================================
 ..
 
 M0103
