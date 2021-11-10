@@ -2105,10 +2105,10 @@
 <div class="figure align-center" id="S0033">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="3%" />
-<col width="2%" />
-<col width="24%" />
-<col width="71%" />
+<col width="6%" />
+<col width="4%" />
+<col width="43%" />
+<col width="47%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -2120,13 +2120,13 @@
 <tbody valign="top">
 <tr class="row-even"><td>requestId</td>
 <td>string</td>
-<td>[text]</td>
-<td>Id of the request you want the status for.</td>
+<td>[id]</td>
+<td>Id of the request.</td>
 </tr>
 <tr class="row-odd"><td>status</td>
 <td>string</td>
 <td>-queued <br>  -activated <br>  -rejected <br>  -cancelled <br>  -overridden</td>
-<td>Id of the request you want the status for. <br>  queued: Priority is queued <br>  activated: Priority is active <br>  rejected: Priority rejected <br>  cancelled: Priority cancelled <br>  overridden: Priority overridden</td>
+<td>Current status of the request.</td>
 </tr>
 <tr class="row-even"><td>reason</td>
 <td>string</td>
@@ -2135,13 +2135,13 @@
 </tr>
 <tr class="row-odd"><td>overrideId</td>
 <td>string</td>
-<td>[text]</td>
-<td>Id of the overriding request, if overridden, otherwise empty.</td>
+<td>[id]</td>
+<td>Id of the overriding request if overridden, otherwise empty.</td>
 </tr>
 <tr class="row-even"><td>gained</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>Seconds of extra green time gained by the priority, or 0 if no priority given</td>
+<td>Seconds of extra green time gained by the priority, or 0 if no priority given.</td>
 </tr>
 </tbody>
 </table>
@@ -3659,7 +3659,7 @@
 <tr class="row-even"><td>requestId</td>
 <td>requestPriority</td>
 <td>string</td>
-<td>[text]</td>
+<td>[id]</td>
 <td>A string that unique identifies the request on this controller.</td>
 </tr>
 <tr class="row-odd"><td>type</td>
