@@ -3652,15 +3652,14 @@ of ways, depending on what is configured in the controller, and in the system th
 requests:</p>
 <ul class="simple">
 <li>Reference a signal group by setting ‘componentId’.
-This method is simpl, but
-will not allow you to have different priority mechanism for the same signal group unless
-they can be distringuished by the vehicle type. For example, if you need to trigger
-different priorities depending on whether a bus goes straight or or makes a turn for the same
-signal group, you must use of the other referencing methods.</li>
-<li>Reference a detector logic setting ‘componentId’. This can be useful if our previously used
-activation of a detector logic to activate priority.</li>
+This method is simple, but will not allow you to have different priority mechanism for the
+same signal group unless they can be distringuished by the vehicle type. For example, if you
+need to trigger different priorities depending on whether a bus goes straight or or makes a turn
+for the same signal group, you must use of the other referencing methods.</li>
+<li>Reference a detector logic setting ‘componentId’. This can be useful if you previously used
+detector logics to activate priority. The detector logic will not be acticated, only the priority.</li>
 <li>Reference an input by setting ‘inputId’. This can be useful if our previously used
-activation of a input to activate priority.</li>
+inputs to activate priority. The input will not be acticated, only the priority.</li>
 <li>Reference a connection by setting ‘connectionId’. A connection is a movement from a specific
 ingoing lane to a specific outgoing lane.</li>
 <li>Reference an intersection approach by setting ‘approachId’.</li>
@@ -3758,12 +3757,18 @@ at some point, but until then it might block requests in other direction.</p>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>enum</td>
-<td>-new
--update
--cancel</td>
-<td>new: Initiate a new priority request
-update: Update an existing priority request
-cancel: Cancel an existing priority request</td>
+<td><div class="first last line-block">
+<div class="line">new</div>
+<div class="line">update</div>
+<div class="line">cancel</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">new: Initiate a new priority request</div>
+<div class="line">update: Update an existing priority request</div>
+<div class="line">cancel: Cancel an existing priority request</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td>level</td>
 <td>integer</td>
@@ -3777,15 +3782,18 @@ cancel: Cancel an existing priority request</td>
 </tr>
 <tr class="row-odd"><td>vehicleType</td>
 <td>enum</td>
-<td>-car
--bus
--bicycle
--twoWheeler
--lightTruck
--heaveTruck
--tram
--emergencyVehicle
--other</td>
+<td><div class="first last line-block">
+<div class="line">car</div>
+<div class="line">bus</div>
+<div class="line">bicycle</div>
+<div class="line">twoWheeler</div>
+<div class="line">lightTruck</div>
+<div class="line">heaveTruck</div>
+<div class="line">tram</div>
+<div class="line">emergencyVehicle</div>
+<div class="line">other</div>
+</div>
+</td>
 <td>(Optional) Vehicle type.</td>
 </tr>
 </tbody>
