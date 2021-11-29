@@ -386,8 +386,9 @@ reason (<cite>rea</cite>) set to the cause of rejection. For instance,
 <li>If the equipment supports buffering of status messages, the status
 subscriptions remains active regardless of communication disruption and the
 status updates are stored in the equipment’s outgoing communication buffer.</li>
-<li>Active subscriptions to status messages which does does not support buffering
-ceases if the communication disruption occurs.</li>
+<li>Active subscriptions to status messages which does not support buffering
+ceases if communication disruption occurs.</li>
+<li>Active subscriptions to status messages ceases if the equipment restarts.</li>
 <li>Once communication is restored all the buffered messages are sent according to
 the communication establishment sequence.</li>
 <li>When sending buffered status messages, the <code class="docutils literal notranslate"><span class="pre">q</span></code> field should be set to <code class="docutils literal notranslate"><span class="pre">old</span></code></li>
