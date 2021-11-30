@@ -2484,8 +2484,8 @@ other: TLC switched status due other reason</td>
 <p>Signal Priority Status</p>
 <p>This status can be used to get updates about priority requests. For example, you can use it to know when
 priority request are activated or cancelled.</p>
-<p>A list of priority events is returned. Each event refer to a request using it’s requestId.
-Note that several events can refer to the same request.</p>
+<p>A list of priority events is returned. Each event refer to a particular request, using a requestId.
+Several events can refer to the same request, for example if the request was first enqueued, then activated.</p>
 <div class="figure align-center" id="S0033">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -2510,7 +2510,7 @@ Note that several events can refer to the same request.</p>
 </tbody>
 </table>
 <p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033</span></p>
-<span class="target" id="S0033"></span></center></div><p>Each event is passed a hash. The attributes of an event is:</p>
+<span class="target" id="S0033"></span></center></div><p>Each event is passed as a hash with the followinmg attributes:</p>
 <div class="figure align-center" id="S0033event">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -2554,6 +2554,12 @@ The priority has timed out because it was never cancelled</td>
 <td>string</td>
 <td>[id]</td>
 <td>(Optional) ID of the overriding priority request. Only used if status is set to override</td>
+</tr>
+<tr class="row-even"><td>gain</td>
+<td>integer</td>
+<td>[integer]</td>
+<td>(Optional) Actual number of seconds gained by the priority.
+Only used when status is complete, override or timeout.</td>
 </tr>
 </tbody>
 </table>
