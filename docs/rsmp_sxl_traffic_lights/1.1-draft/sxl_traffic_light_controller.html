@@ -2539,16 +2539,16 @@ Several events can refer to the same request, for example if the request was fir
 </tr>
 <tr class="row-even"><td>status</td>
 <td>string</td>
-<td>queued <br> 
-activated <br> 
-completed <br> 
-overriden <br> 
-timeout <br> </td>
-<td>A new priority request was received and has been queued
-The priority was activated
-The priority was cancelled (as expected)
-The priority was overridden by another request with a higher priority
-The priority has timed out because it was never cancelled</td>
+<td>-queued <br> 
+-activated <br> 
+-completed <br> 
+-overriden <br> 
+-timeout</td>
+<td>queued: A new priority request was received and has been queued
+activated: The priority was activated <br> 
+completed: The priority was cancelled (as expected) <br> 
+overriden: The priority was overridden by another request with a higher priority <br> 
+timeout: The priority has timed out because it was never cancelled</td>
 </tr>
 <tr class="row-odd"><td>override</td>
 <td>string</td>
