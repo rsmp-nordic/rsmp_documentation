@@ -1101,9 +1101,10 @@ below.</p>
 </pre></div>
 </div>
 <p>JSon code 13: A status request message</p>
-<p>The status code id (<strong>sCI</strong>) and name (<strong>n</strong>) are placed in an array
-(<strong>sS</strong>) in order to enable support for requesting multiple status at once.
-The following table is describing the variable content of the message.</p>
+<p>The status code id (<code class="docutils literal notranslate"><span class="pre">sCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
+(<code class="docutils literal notranslate"><span class="pre">sS</span></code>) in order to enable support for requesting multiple status at
+once.</p>
+<p>The following table is describing the variable content of the message.</p>
 <p>The <em>SXL element</em> column describes the correlation between the JSon
 elements and the titles in the SXL.</p>
 <div class="figure align-center" id="table-statusrequest">
@@ -1136,8 +1137,11 @@ elements and the titles in the SXL.</p>
 <h4>4.4.4.1.2. Structure for a message with status of one or several objects<a class="headerlink" href="#structure-for-a-message-with-status-of-one-or-several-objects" title="Permalink to this headline">¶</a></h4>
 <p>A message with status of one or several objects has the structure
 according to the example below.</p>
-<p>If the component (<strong>cId</strong>) is not known, then the site must not disconnect but
-instead answer with this type of message where <strong>q</strong> is set to <strong>undefined</strong>.</p>
+<p>The status code id (<code class="docutils literal notranslate"><span class="pre">sCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
+(<code class="docutils literal notranslate"><span class="pre">sS</span></code>) in order to enable support for responding to multiple statuses at once.
+The following table is describing the variable content of the message.</p>
+<p>If the component (<code class="docutils literal notranslate"><span class="pre">cId</span></code>) is not known, then the site must not disconnect but
+instead answer with this type of message where <code class="docutils literal notranslate"><span class="pre">q</span></code> is set to <code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
 <div class="highlight-json notranslate" id="json-status-response"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span> <span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;StatusResponse&quot;</span><span class="p">,</span>
@@ -1560,13 +1564,14 @@ implicit in the following figure.</p>
 </div>
 <div class="section" id="command-messages">
 <h2>4.4.5. Command messages<a class="headerlink" href="#command-messages" title="Permalink to this headline">¶</a></h2>
-<p>Command messages are used to give order to do something at the site.
+<p>Command messages are used to give order to one or more requested objects.
 The site responds with a command acknowledgement.</p>
 <p>Command messages are interaction driven and are sent when command are
 requested on any given object by the supervision system or other equipment</p>
 <div class="section" id="id11">
 <h3>4.4.5.1. Message structure<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>Structure of a command message request</p>
+<div class="section" id="structure-of-a-command-for-one-or-more-objects">
+<h4>4.4.5.1.1. Structure of a command for one or more objects<a class="headerlink" href="#structure-of-a-command-for-one-or-more-objects" title="Permalink to this headline">¶</a></h4>
 <p>A command request message has the structure according to the example
 below. A command request message with the intent to change a value of the
 requested object</p>
@@ -1604,6 +1609,9 @@ requested object</p>
 </pre></div>
 </div>
 <p>JSon code 20: A command request message</p>
+<p>The command code (<code class="docutils literal notranslate"><span class="pre">cCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
+(<code class="docutils literal notranslate"><span class="pre">arg</span></code>) in order to enable support for requesting multiple commands at
+once.</p>
 <p>The following table is describing the variable content of the message:</p>
 <p>Values to send with the command (arguments)</p>
 <div class="figure align-center" id="table-commands-argument">
@@ -1692,14 +1700,18 @@ base64 format according to RFC-4648</div>
 </tbody>
 </table>
 <p class="caption"><span class="caption-text">Command arguments defined by SXL</span></p>
-<span class="target" id="table-command-arguments-sxl"></span></center></div><div class="section" id="structure-of-command-response-message">
-<h4>4.4.5.1.1. Structure of command response message<a class="headerlink" href="#structure-of-command-response-message" title="Permalink to this headline">¶</a></h4>
+<span class="target" id="table-command-arguments-sxl"></span></center></div></div>
+<div class="section" id="structure-of-command-response-message">
+<h4>4.4.5.1.2. Structure of command response message<a class="headerlink" href="#structure-of-command-response-message" title="Permalink to this headline">¶</a></h4>
 <p>A command response message has the structure according to the example
 below. A command response message informs about the updated value of the
-requested object.
-If the object is not known then the site must not disconnect
-but instead answer with this type of message where <strong>age</strong> is set to
-<strong>undefined</strong>.</p>
+requested object.</p>
+<p>The command code (<code class="docutils literal notranslate"><span class="pre">cCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
+(<code class="docutils literal notranslate"><span class="pre">rvs</span></code>) in order to enable support for responding to multiple commands at
+once.</p>
+<p>If the object is not known then the site must not disconnect
+but instead answer with this type of message where <code class="docutils literal notranslate"><span class="pre">age</span></code> is set to
+<code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
 <div class="highlight-json notranslate" id="json-command-response"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span> <span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CommandResponse&quot;</span><span class="p">,</span>
@@ -1761,7 +1773,7 @@ the alarm occurs (and not when the message is sent). All timestamps uses UTC.</t
 <p class="caption"><span class="caption-text">Command response</span></p>
 <span class="target" id="table-command-response"></span></center></div></div>
 <div class="section" id="id12">
-<h4>4.4.5.1.2. Return values (returnvalue)<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<h4>4.4.5.1.3. Return values (returnvalue)<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <p>Return values (<strong>rvs</strong>) is always sent but can
 be empty if not return values are defined.</p>
 <div class="figure align-center" id="table-command-returnvalues-rvs">
