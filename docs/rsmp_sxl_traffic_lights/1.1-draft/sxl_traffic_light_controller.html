@@ -2511,7 +2511,7 @@ Several events can refer to the same request, for example if the request was fir
 </table>
 <p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033</span></p>
 <span class="target" id="S0033"></span></center></div><p>Each event is passed as a hash with the following attributes:</p>
-<div class="figure align-center" id="S0033event">
+<div class="figure align-center" id="S0033">
 <center><table border="1" class="docutils">
 <colgroup>
 <col width="8%" />
@@ -2542,12 +2542,12 @@ Several events can refer to the same request, for example if the request was fir
 <td>-queued <br> 
 -activated <br> 
 -completed <br> 
--overriden <br> 
+-overridden <br> 
 -timeout</td>
 <td>queued: A new priority request was received and has been queued <br> 
 activated: The priority was activated <br> 
 completed: The priority was cancelled (as expected) <br> 
-overriden: The priority was overridden by another request with a higher priority <br> 
+overridden: The priority was overridden by another request with a higher priority <br> 
 timeout: The priority has timed out because it was never cancelled</td>
 </tr>
 <tr class="row-odd"><td>override</td>
@@ -2557,14 +2557,14 @@ timeout: The priority has timed out because it was never cancelled</td>
 </tr>
 <tr class="row-even"><td>gain</td>
 <td>integer</td>
-<td>[integer]</td>
-<td>(Optional) Actual number of seconds gained by the priority.
+<td>[0-255]</td>
+<td>(Optional) Actual number of seconds gained by the priority <br> 
 Only used when status is complete, override or timeout.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.48:</strong> S0033 event</span></p>
-<span class="target" id="S0033event"></span></center></div></div>
+<p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033</span></p>
+<span class="target" id="S0033"></span></center></div></div>
 <div class="section" id="s0091">
 <h3>2.4.34. S0091<a class="headerlink" href="#s0091" title="Permalink to this headline">¶</a></h3>
 <p>Operator logged in/out OP-panel</p>
@@ -2596,7 +2596,7 @@ Only used when status is complete, override or timeout.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.49:</strong> S0091</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.48:</strong> S0091</span></p>
 <span class="target" id="S0091"></span></center></div></div>
 <div class="section" id="s0092">
 <h3>2.4.35. S0092<a class="headerlink" href="#s0092" title="Permalink to this headline">¶</a></h3>
@@ -2629,7 +2629,7 @@ Only used when status is complete, override or timeout.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.50:</strong> S0092</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.49:</strong> S0092</span></p>
 <span class="target" id="S0092"></span></center></div></div>
 <div class="section" id="s0095">
 <h3>2.4.36. S0095<a class="headerlink" href="#s0095" title="Permalink to this headline">¶</a></h3>
@@ -2658,7 +2658,7 @@ Only used when status is complete, override or timeout.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.51:</strong> S0095</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.50:</strong> S0095</span></p>
 <span class="target" id="S0095"></span></center></div></div>
 <div class="section" id="s0096">
 <h3>2.4.37. S0096<a class="headerlink" href="#s0096" title="Permalink to this headline">¶</a></h3>
@@ -2712,7 +2712,7 @@ Only used when status is complete, override or timeout.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.52:</strong> S0096</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.51:</strong> S0096</span></p>
 <span class="target" id="S0096"></span></center></div></div>
 <div class="section" id="s0097">
 <h3>2.4.38. S0097<a class="headerlink" href="#s0097" title="Permalink to this headline">¶</a></h3>
@@ -2764,7 +2764,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.53:</strong> S0097</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.52:</strong> S0097</span></p>
 <span class="target" id="S0097"></span></center></div></div>
 <div class="section" id="s0098">
 <h3>2.4.39. S0098<a class="headerlink" href="#s0098" title="Permalink to this headline">¶</a></h3>
@@ -2821,7 +2821,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.54:</strong> S0098</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.53:</strong> S0098</span></p>
 <span class="target" id="S0098"></span></center></div></div>
 <div class="section" id="s0201">
 <h3>2.4.40. S0201<a class="headerlink" href="#s0201" title="Permalink to this headline">¶</a></h3>
@@ -2855,7 +2855,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.55:</strong> S0201</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.54:</strong> S0201</span></p>
 <span class="target" id="S0201"></span></center></div></div>
 <div class="section" id="s0202">
 <h3>2.4.41. S0202<a class="headerlink" href="#s0202" title="Permalink to this headline">¶</a></h3>
@@ -2889,7 +2889,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.56:</strong> S0202</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.55:</strong> S0202</span></p>
 <span class="target" id="S0202"></span></center></div></div>
 <div class="section" id="s0203">
 <h3>2.4.42. S0203<a class="headerlink" href="#s0203" title="Permalink to this headline">¶</a></h3>
@@ -2923,7 +2923,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.57:</strong> S0203</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.56:</strong> S0203</span></p>
 <span class="target" id="S0203"></span></center></div></div>
 <div class="section" id="s0204">
 <h3>2.4.43. S0204<a class="headerlink" href="#s0204" title="Permalink to this headline">¶</a></h3>
@@ -2997,7 +2997,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.58:</strong> S0204</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.57:</strong> S0204</span></p>
 <span class="target" id="S0204"></span></center></div></div>
 <div class="section" id="s0205">
 <h3>2.4.44. S0205<a class="headerlink" href="#s0205" title="Permalink to this headline">¶</a></h3>
@@ -3034,7 +3034,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.59:</strong> S0205</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.58:</strong> S0205</span></p>
 <span class="target" id="S0205"></span></center></div></div>
 <div class="section" id="s0206">
 <h3>2.4.45. S0206<a class="headerlink" href="#s0206" title="Permalink to this headline">¶</a></h3>
@@ -3071,7 +3071,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.60:</strong> S0206</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.59:</strong> S0206</span></p>
 <span class="target" id="S0206"></span></center></div></div>
 <div class="section" id="s0207">
 <h3>2.4.46. S0207<a class="headerlink" href="#s0207" title="Permalink to this headline">¶</a></h3>
@@ -3108,7 +3108,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.61:</strong> S0207</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.60:</strong> S0207</span></p>
 <span class="target" id="S0207"></span></center></div></div>
 <div class="section" id="s0208">
 <h3>2.4.47. S0208<a class="headerlink" href="#s0208" title="Permalink to this headline">¶</a></h3>
@@ -3209,7 +3209,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.62:</strong> S0208</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.61:</strong> S0208</span></p>
 <span class="target" id="S0208"></span></center></div></div>
 </div>
 <div class="section" id="commands">
@@ -3347,7 +3347,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.63:</strong> Commands</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.62:</strong> Commands</span></p>
 <span class="target" id="Commands"></span></center></div><div class="section" id="m0001">
 <h3>2.5.1. M0001<a class="headerlink" href="#m0001" title="Permalink to this headline">¶</a></h3>
 <p>Sets functional position</p>
@@ -3396,7 +3396,7 @@ Dark: Enables dark mode</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.64:</strong> M0001</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.63:</strong> M0001</span></p>
 <span class="target" id="M0001"></span></center></div></div>
 <div class="section" id="m0002">
 <h3>2.5.2. M0002<a class="headerlink" href="#m0002" title="Permalink to this headline">¶</a></h3>
@@ -3440,7 +3440,7 @@ True: Controller uses time plan according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.65:</strong> M0002</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.64:</strong> M0002</span></p>
 <span class="target" id="M0002"></span></center></div></div>
 <div class="section" id="m0003">
 <h3>2.5.3. M0003<a class="headerlink" href="#m0003" title="Permalink to this headline">¶</a></h3>
@@ -3483,7 +3483,7 @@ True: Controller uses traffic situation according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.66:</strong> M0003</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.65:</strong> M0003</span></p>
 <span class="target" id="M0003"></span></center></div></div>
 <div class="section" id="m0004">
 <h3>2.5.4. M0004<a class="headerlink" href="#m0004" title="Permalink to this headline">¶</a></h3>
@@ -3519,7 +3519,7 @@ True: Controller uses traffic situation according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.67:</strong> M0004</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.66:</strong> M0004</span></p>
 <span class="target" id="M0004"></span></center></div></div>
 <div class="section" id="m0005">
 <h3>2.5.5. M0005<a class="headerlink" href="#m0005" title="Permalink to this headline">¶</a></h3>
@@ -3562,7 +3562,7 @@ True: Deactivate emergency route</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.68:</strong> M0005</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.67:</strong> M0005</span></p>
 <span class="target" id="M0005"></span></center></div></div>
 <div class="section" id="m0006">
 <h3>2.5.6. M0006<a class="headerlink" href="#m0006" title="Permalink to this headline">¶</a></h3>
@@ -3607,7 +3607,7 @@ True: Activate input</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.69:</strong> M0006</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.68:</strong> M0006</span></p>
 <span class="target" id="M0006"></span></center></div></div>
 <div class="section" id="m0007">
 <h3>2.5.7. M0007<a class="headerlink" href="#m0007" title="Permalink to this headline">¶</a></h3>
@@ -3645,7 +3645,7 @@ True: Activate fixed time control</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.70:</strong> M0007</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.69:</strong> M0007</span></p>
 <span class="target" id="M0007"></span></center></div></div>
 <div class="section" id="m0008">
 <h3>2.5.8. M0008<a class="headerlink" href="#m0008" title="Permalink to this headline">¶</a></h3>
@@ -3690,7 +3690,7 @@ True: Activate detector logic</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.71:</strong> M0008</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.70:</strong> M0008</span></p>
 <span class="target" id="M0008"></span></center></div></div>
 <div class="section" id="m0010">
 <h3>2.5.9. M0010<a class="headerlink" href="#m0010" title="Permalink to this headline">¶</a></h3>
@@ -3728,7 +3728,7 @@ True: Order a signal group to green</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.72:</strong> M0010</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.71:</strong> M0010</span></p>
 <span class="target" id="M0010"></span></center></div></div>
 <div class="section" id="m0011">
 <h3>2.5.10. M0011<a class="headerlink" href="#m0011" title="Permalink to this headline">¶</a></h3>
@@ -3766,7 +3766,7 @@ True: Order a signal group to red</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.73:</strong> M0011</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.72:</strong> M0011</span></p>
 <span class="target" id="M0011"></span></center></div></div>
 <div class="section" id="m0012">
 <h3>2.5.11. M0012<a class="headerlink" href="#m0012" title="Permalink to this headline">¶</a></h3>
@@ -3826,7 +3826,7 @@ Such a message would order signal group 6,7,10,17,22 to green and signal group 5
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.74:</strong> M0012</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.73:</strong> M0012</span></p>
 <span class="target" id="M0012"></span></center></div></div>
 <div class="section" id="m0013">
 <h3>2.5.12. M0013<a class="headerlink" href="#m0013" title="Permalink to this headline">¶</a></h3>
@@ -3886,7 +3886,7 @@ Format: [Offset];[Bits to set];[Bits to unset];…</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.75:</strong> M0013</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.74:</strong> M0013</span></p>
 <span class="target" id="M0013"></span></center></div></div>
 <div class="section" id="m0014">
 <h3>2.5.13. M0014<a class="headerlink" href="#m0014" title="Permalink to this headline">¶</a></h3>
@@ -3935,7 +3935,7 @@ dd-ee,dd-ee</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.76:</strong> M0014</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.75:</strong> M0014</span></p>
 <span class="target" id="M0014"></span></center></div></div>
 <div class="section" id="m0015">
 <h3>2.5.14. M0015<a class="headerlink" href="#m0015" title="Permalink to this headline">¶</a></h3>
@@ -3976,7 +3976,7 @@ dd-ee,dd-ee</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.77:</strong> M0015</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.76:</strong> M0015</span></p>
 <span class="target" id="M0015"></span></center></div></div>
 <div class="section" id="m0016">
 <h3>2.5.15. M0016<a class="headerlink" href="#m0016" title="Permalink to this headline">¶</a></h3>
@@ -4029,7 +4029,7 @@ d-t,d-t</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.78:</strong> M0016</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.77:</strong> M0016</span></p>
 <span class="target" id="M0016"></span></center></div></div>
 <div class="section" id="m0017">
 <h3>2.5.16. M0017<a class="headerlink" href="#m0017" title="Permalink to this headline">¶</a></h3>
@@ -4083,7 +4083,7 @@ t-o-h-m,t-o-h-m</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.79:</strong> M0017</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.78:</strong> M0017</span></p>
 <span class="target" id="M0017"></span></center></div></div>
 <div class="section" id="m0018">
 <h3>2.5.17. M0018<a class="headerlink" href="#m0018" title="Permalink to this headline">¶</a></h3>
@@ -4124,7 +4124,7 @@ t-o-h-m,t-o-h-m</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.80:</strong> M0018</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.79:</strong> M0018</span></p>
 <span class="target" id="M0018"></span></center></div></div>
 <div class="section" id="m0019">
 <h3>2.5.18. M0019<a class="headerlink" href="#m0019" title="Permalink to this headline">¶</a></h3>
@@ -4174,7 +4174,7 @@ True: input forced to True</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.81:</strong> M0019</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.80:</strong> M0019</span></p>
 <span class="target" id="M0019"></span></center></div></div>
 <div class="section" id="m0020">
 <h3>2.5.19. M0020<a class="headerlink" href="#m0020" title="Permalink to this headline">¶</a></h3>
@@ -4224,7 +4224,7 @@ True: output forced to True</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.82:</strong> M0020</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.81:</strong> M0020</span></p>
 <span class="target" id="M0020"></span></center></div></div>
 <div class="section" id="m0021">
 <h3>2.5.20. M0021<a class="headerlink" href="#m0021" title="Permalink to this headline">¶</a></h3>
@@ -4262,7 +4262,7 @@ ss=sensitivity value</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.83:</strong> M0021</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.82:</strong> M0021</span></p>
 <span class="target" id="M0021"></span></center></div></div>
 <div class="section" id="m0022">
 <h3>2.5.21. M0022<a class="headerlink" href="#m0022" title="Permalink to this headline">¶</a></h3>
@@ -4412,7 +4412,7 @@ cancel: Cancel an existing priority</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.84:</strong> M0022</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.83:</strong> M0022</span></p>
 <span class="target" id="M0022"></span></center></div></div>
 <div class="section" id="m0103">
 <h3>2.5.22. M0103<a class="headerlink" href="#m0103" title="Permalink to this headline">¶</a></h3>
@@ -4454,7 +4454,7 @@ Level2: Change security code 2</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.85:</strong> M0103</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.84:</strong> M0103</span></p>
 <span class="target" id="M0103"></span></center></div></div>
 <div class="section" id="m0104">
 <h3>2.5.23. M0104<a class="headerlink" href="#m0104" title="Permalink to this headline">¶</a></h3>
@@ -4520,7 +4520,7 @@ Second</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.86:</strong> M0104</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.85:</strong> M0104</span></p>
 <span class="target" id="M0104"></span></center></div></div>
 </div>
 </div>
