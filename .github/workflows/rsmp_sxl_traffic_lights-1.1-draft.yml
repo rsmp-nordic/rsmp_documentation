@@ -22,6 +22,11 @@ jobs:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
         ref: 1.1-draft
+    - name: Add draft watermark to the PDF version
+      run: |
+        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' source/style/rsmp.tex
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
         cd rsmp_sxl_traffic_lights
@@ -45,5 +50,5 @@ jobs:
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v1
       with:
-        name: PDF
+        name: sxl-tlc.pdf
         path: rsmp_sxl_traffic_lights/build/latex/sxl-tlc.pdf

@@ -22,6 +22,11 @@ jobs:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
         ref: 3.2-draft
+    - name: Add draft watermark to the PDF version
+      run: |
+        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' source/style/rsmp.tex
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
@@ -45,5 +50,5 @@ jobs:
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v1
       with:
-        name: PDF
+        name: rsmp-spec.pdf
         path: rsmp_core/build/latex/rsmp-spec.pdf
