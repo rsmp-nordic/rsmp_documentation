@@ -24,9 +24,9 @@ jobs:
         ref: 1.1-draft
     - name: Add draft watermark to the PDF version
       run: |
-        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' source/style/rsmp.tex
-        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' source/style/rsmp.tex
-        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' rsmp_sxl_traffic_lights/source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' rsmp_sxl_traffic_lights/source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' rsmp_sxl_traffic_lights/source/style/rsmp.tex
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
         cd rsmp_sxl_traffic_lights

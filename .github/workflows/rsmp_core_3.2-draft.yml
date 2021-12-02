@@ -24,9 +24,9 @@ jobs:
         ref: 3.2-draft
     - name: Add draft watermark to the PDF version
       run: |
-        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' source/style/rsmp.tex
-        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' source/style/rsmp.tex
-        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' rsmp_core/source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' rsmp_core/source/style/rsmp.tex
+        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' rsmp_core/source/style/rsmp.tex
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
