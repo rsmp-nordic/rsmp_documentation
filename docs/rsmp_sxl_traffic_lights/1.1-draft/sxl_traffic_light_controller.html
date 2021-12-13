@@ -2529,10 +2529,10 @@ Several events can refer to the same request, for example if the request was fir
 <div class="figure align-center" id="S0033">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
+<col width="4%" />
 <col width="4%" />
 <col width="10%" />
-<col width="80%" />
+<col width="82%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -2542,18 +2542,18 @@ Several events can refer to the same request, for example if the request was fir
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>requestId</td>
+<tr class="row-even"><td>r</td>
 <td>string</td>
 <td>[id]</td>
 <td>ID of the priority request</td>
 </tr>
-<tr class="row-odd"><td>timestamp</td>
+<tr class="row-odd"><td>t</td>
 <td>string</td>
 <td>[timestamp]</td>
-<td>When the event happened. <br> 
+<td>Timestamp. When the event happened. <br> 
 Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
 </tr>
-<tr class="row-even"><td>status</td>
+<tr class="row-even"><td>s</td>
 <td>string</td>
 <td>-queued <br> 
 -activated <br> 
@@ -2566,12 +2566,12 @@ completed: The priority was cancelled (as expected) <br>
 overridden: The priority was overridden by another request with a higher priority <br> 
 timeout: The priority has timed out because it was never cancelled</td>
 </tr>
-<tr class="row-odd"><td>override</td>
+<tr class="row-odd"><td>o</td>
 <td>string</td>
 <td>[id]</td>
 <td>(Optional) ID of the overriding priority request. Only used if status is set to overridden</td>
 </tr>
-<tr class="row-even"><td>gain</td>
+<tr class="row-even"><td>g</td>
 <td>integer</td>
 <td>[0-255]</td>
 <td>(Optional) Actual number of seconds gained by the priority <br> 
