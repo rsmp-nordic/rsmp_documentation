@@ -4493,6 +4493,8 @@ cancel: Cancel an existing priority</td>
 <p>Switch to a designated time plan if this timeout is reached due to lost connection with the supervisor.
 Disable by setting timeout to ‘0’.</p>
 <p>Used in conjunction with dynamic bands, M0014</p>
+<p>Requires security code 2.
+If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
 <div class="figure align-center" id="M0023">
 <center><table border="1" class="docutils">
 <colgroup>
