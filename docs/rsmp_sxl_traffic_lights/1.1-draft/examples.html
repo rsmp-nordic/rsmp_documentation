@@ -95,9 +95,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#a0002-less-serious-hardware-error">6.1.2. A0002 Less serious hardware error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0003-serious-configuration-error">6.1.3. A0003 Serious configuration error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0004-less-serious-configuration-error">6.1.4. A0004 Less serious configuration error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#a0005-communication-error-between-traffic-light-controllers-synchronisation-error">6.1.5. A0005 Communication error between traffic light controllers / synchronisation error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a0005-synchronisation-error-coordination">6.1.5. A0005 Synchronisation error (coordination)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0006-safety-error">6.1.6. A0006 Safety error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#a0007-communication-error-between-one-or-multiple-traffic-light-controllers-and-central-control-system">6.1.7. A0007 Communication error between one or multiple traffic light controllers and central control system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a0007-communication-error">6.1.7. A0007 Communication error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0008-dead-lock-error">6.1.8. A0008 Dead lock error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0009-other-error">6.1.9. A0009 Other error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0010-door-open">6.1.10. A0010 Door open</a></li>
@@ -106,6 +106,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#a0202-less-serious-lamp-error">6.1.13. A0202 Less serious lamp error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0301-detector-error-hardware">6.1.14. A0301 Detector error (hardware)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a0302-detector-error-logic-error">6.1.15. A0302 Detector error (logic error)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a0303-serious-detector-error-hardware">6.1.16. A0303 Serious detector error (hardware)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a0304-serious-detector-error-logic-error">6.1.17. A0304 Serious detector error (logic error)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#statuses">6.2. Statuses</a><ul>
@@ -140,20 +142,23 @@
 <li class="toctree-l3"><a class="reference internal" href="#s0029-forced-input-status">6.2.29. S0029 Forced input status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0030-forced-output-status">6.2.30. S0030 Forced output status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0031-trigger-level-sensitivity-for-loop-detector">6.2.31. S0031 Trigger level sensitivity for loop detector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0091-operator-logged-in-out-op-panel">6.2.32. S0091 Operator logged in/out OP-panel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0092-operator-logged-web-interface">6.2.33. S0092 Operator logged web-interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0095-version-of-traffic-light-controller">6.2.34. S0095 Version of Traffic Light Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0096-current-date-and-time">6.2.35. S0096 Current date and time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0097-checksum-of-traffic-parameters">6.2.36. S0097 Checksum of traffic parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0098-configuration-of-traffic-parameters">6.2.37. S0098 Configuration of traffic parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0201-traffic-counting-number-of-vehicles">6.2.38. S0201 Traffic Counting: Number of vehicles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0202-traffic-counting-vehicle-speed">6.2.39. S0202 Traffic Counting: Vehicle speed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0203-traffic-counting-occupancy">6.2.40. S0203 Traffic Counting: Occupancy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification">6.2.41. S0204 Traffic Counting: Number of vehicles of given classification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0205-traffic-counting-number-of-vehicles">6.2.42. S0205 Traffic Counting: Number of vehicles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0206-traffic-counting-vehicle-speed">6.2.43. S0206 Traffic Counting: Vehicle speed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0207-traffic-counting-occupancy">6.2.44. S0207 Traffic Counting: Occupancy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification">6.2.45. S0208 Traffic Counting: Number of vehicles of given classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0032-coordinated-control">6.2.32. S0032 Coordinated control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0033-signal-priority-status">6.2.33. S0033 Signal Priority Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0034-timeout-for-dynamic-bands">6.2.34. S0034 Timeout for dynamic bands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0091-operator-logged-in-out-op-panel">6.2.35. S0091 Operator logged in/out OP-panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0092-operator-logged-web-interface">6.2.36. S0092 Operator logged web-interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0095-version-of-traffic-light-controller">6.2.37. S0095 Version of Traffic Light Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0096-current-date-and-time">6.2.38. S0096 Current date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0097-checksum-of-traffic-parameters">6.2.39. S0097 Checksum of traffic parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0098-configuration-of-traffic-parameters">6.2.40. S0098 Configuration of traffic parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0201-traffic-counting-number-of-vehicles">6.2.41. S0201 Traffic Counting: Number of vehicles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0202-traffic-counting-vehicle-speed">6.2.42. S0202 Traffic Counting: Vehicle speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0203-traffic-counting-occupancy">6.2.43. S0203 Traffic Counting: Occupancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification">6.2.44. S0204 Traffic Counting: Number of vehicles of given classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0205-traffic-counting-number-of-vehicles">6.2.45. S0205 Traffic Counting: Number of vehicles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0206-traffic-counting-vehicle-speed">6.2.46. S0206 Traffic Counting: Vehicle speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0207-traffic-counting-occupancy">6.2.47. S0207 Traffic Counting: Occupancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification">6.2.48. S0208 Traffic Counting: Number of vehicles of given classification</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#commands">6.3. Commands</a><ul>
@@ -177,8 +182,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#m0019-force-input">6.3.18. M0019 Force input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m0020-force-output">6.3.19. M0020 Force output</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#m0021-set-trigger-level-sensitivity-for-loop-detector">6.3.20. M0021 Set trigger level sensitivity for loop detector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#m0103-set-security-code">6.3.21. M0103 Set security code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#m0104-set-clock">6.3.22. M0104 Set clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m0022-request-signal-priority">6.3.21. M0022 Request Signal Priority</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m0023-set-timeout-for-dynamic-bands">6.3.22. M0023 Set timeout for dynamic bands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m0103-set-security-code">6.3.23. M0103 Set security code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#m0104-set-clock">6.3.24. M0104 Set clock</a></li>
 </ul>
 </li>
 </ul>
@@ -256,9 +263,9 @@
 <li><a class="reference internal" href="#a0002-less-serious-hardware-error">A0002 Less serious hardware error</a></li>
 <li><a class="reference internal" href="#a0003-serious-configuration-error">A0003 Serious configuration error</a></li>
 <li><a class="reference internal" href="#a0004-less-serious-configuration-error">A0004 Less serious configuration error</a></li>
-<li><a class="reference internal" href="#a0005-communication-error-between-traffic-light-controllers-synchronisation-error">A0005 Communication error between traffic light controllers / synchronisation error</a></li>
+<li><a class="reference internal" href="#a0005-synchronisation-error-coordination">A0005 Synchronisation error (coordination)</a></li>
 <li><a class="reference internal" href="#a0006-safety-error">A0006 Safety error</a></li>
-<li><a class="reference internal" href="#a0007-communication-error-between-one-or-multiple-traffic-light-controllers-and-central-control-system">A0007 Communication error between one or multiple traffic light controllers and central control system</a></li>
+<li><a class="reference internal" href="#a0007-communication-error">A0007 Communication error</a></li>
 <li><a class="reference internal" href="#a0008-dead-lock-error">A0008 Dead lock error</a></li>
 <li><a class="reference internal" href="#a0009-other-error">A0009 Other error</a></li>
 <li><a class="reference internal" href="#a0010-door-open">A0010 Door open</a></li>
@@ -267,6 +274,8 @@
 <li><a class="reference internal" href="#a0202-less-serious-lamp-error">A0202 Less serious lamp error</a></li>
 <li><a class="reference internal" href="#a0301-detector-error-hardware">A0301 Detector error (hardware)</a></li>
 <li><a class="reference internal" href="#a0302-detector-error-logic-error">A0302 Detector error (logic error)</a></li>
+<li><cite>A0303 Serious detector error (hardware)</cite></li>
+<li><cite>A0304 Serious detector error (logic error)</cite></li>
 </ul>
 <p><a class="reference internal" href="#statuses">Statuses</a></p>
 <ul class="simple">
@@ -301,6 +310,9 @@
 <li><a class="reference internal" href="#s0029-forced-input-status">S0029 Forced input status</a></li>
 <li><a class="reference internal" href="#s0030-forced-output-status">S0030 Forced output status</a></li>
 <li><a class="reference internal" href="#s0031-trigger-level-sensitivity-for-loop-detector">S0031 Trigger level sensitivity for loop detector</a></li>
+<li><a class="reference internal" href="#s0032-coordinated-control">S0032 Coordinated control</a></li>
+<li><a class="reference internal" href="#s0033-signal-priority-status">S0033 Signal Priority Status</a></li>
+<li><a class="reference internal" href="#s0034-timeout-for-dynamic-bands">S0034 Timeout for dynamic bands</a></li>
 <li><a class="reference internal" href="#s0091-operator-logged-in-out-op-panel">S0091 Operator logged in/out OP-panel</a></li>
 <li><a class="reference internal" href="#s0092-operator-logged-web-interface">S0092 Operator logged web-interface</a></li>
 <li><a class="reference internal" href="#s0095-version-of-traffic-light-controller">S0095 Version of Traffic Light Controller</a></li>
@@ -338,6 +350,8 @@
 <li><a class="reference internal" href="#m0019-force-input">M0019 Force input</a></li>
 <li><a class="reference internal" href="#m0020-force-output">M0020 Force output</a></li>
 <li><a class="reference internal" href="#m0021-set-trigger-level-sensitivity-for-loop-detector">M0021 Set trigger level sensitivity for loop detector</a></li>
+<li><a class="reference internal" href="#m0022-request-signal-priority">M0022 Request Signal Priority</a></li>
+<li><a class="reference internal" href="#m0023-set-timeout-for-dynamic-bands">M0023 Set timeout for dynamic bands</a></li>
 <li><a class="reference internal" href="#m0103-set-security-code">M0103 Set security code</a></li>
 <li><a class="reference internal" href="#m0104-set-clock">M0104 Set clock</a></li>
 </ul>
@@ -438,8 +452,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="a0005-communication-error-between-traffic-light-controllers-synchronisation-error">
-<h3>6.1.5. A0005 Communication error between traffic light controllers / synchronisation error<a class="headerlink" href="#a0005-communication-error-between-traffic-light-controllers-synchronisation-error" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="a0005-synchronisation-error-coordination">
+<h3>6.1.5. A0005 Synchronisation error (coordination)<a class="headerlink" href="#a0005-synchronisation-error-coordination" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
      <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Alarm&quot;</span><span class="p">,</span>
@@ -448,7 +462,7 @@
      <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
      <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG0503=001TC000&quot;</span><span class="p">,</span>
      <span class="nt">&quot;aCId&quot;</span><span class="p">:</span><span class="s2">&quot;A0005&quot;</span><span class="p">,</span>
-     <span class="nt">&quot;xACId&quot;</span><span class="p">:</span><span class="s2">&quot;ERROR: COMM ERROR 4&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;xACId&quot;</span><span class="p">:</span><span class="s2">&quot;ERROR: SYNC ERROR 4&quot;</span><span class="p">,</span>
      <span class="nt">&quot;xNACId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
      <span class="nt">&quot;aSp&quot;</span><span class="p">:</span><span class="s2">&quot;Issue&quot;</span><span class="p">,</span>
      <span class="nt">&quot;ack&quot;</span><span class="p">:</span><span class="s2">&quot;notAcknowledged&quot;</span><span class="p">,</span>
@@ -486,8 +500,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="a0007-communication-error-between-one-or-multiple-traffic-light-controllers-and-central-control-system">
-<h3>6.1.7. A0007 Communication error between one or multiple traffic light controllers and central control system<a class="headerlink" href="#a0007-communication-error-between-one-or-multiple-traffic-light-controllers-and-central-control-system" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="a0007-communication-error">
+<h3>6.1.7. A0007 Communication error<a class="headerlink" href="#a0007-communication-error" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
      <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Alarm&quot;</span><span class="p">,</span>
@@ -496,7 +510,7 @@
      <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
      <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG0503=001TC000&quot;</span><span class="p">,</span>
      <span class="nt">&quot;aCId&quot;</span><span class="p">:</span><span class="s2">&quot;A0007&quot;</span><span class="p">,</span>
-     <span class="nt">&quot;xACId&quot;</span><span class="p">:</span><span class="s2">&quot;ERROR COMM ERROR #9&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;xACId&quot;</span><span class="p">:</span><span class="s2">&quot;ERROR NTP ERROR #9&quot;</span><span class="p">,</span>
      <span class="nt">&quot;xNACId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
      <span class="nt">&quot;aSp&quot;</span><span class="p">:</span><span class="s2">&quot;Issue&quot;</span><span class="p">,</span>
      <span class="nt">&quot;ack&quot;</span><span class="p">:</span><span class="s2">&quot;notAcknowledged&quot;</span><span class="p">,</span>
@@ -505,7 +519,10 @@
      <span class="nt">&quot;aTs&quot;</span><span class="p">:</span><span class="s2">&quot;2019-09-26T12:50:12.402Z&quot;</span><span class="p">,</span>
      <span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
      <span class="nt">&quot;pri&quot;</span><span class="p">:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
-     <span class="nt">&quot;rvs&quot;</span><span class="p">:[]</span>
+     <span class="nt">&quot;rvs&quot;</span><span class="p">:[{</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;protocol&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;ntp&quot;</span>
+     <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -734,6 +751,81 @@
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;logicerror&quot;</span><span class="p">,</span>
              <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;always_off&quot;</span>
      <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a0303-serious-detector-error-hardware">
+<h3>6.1.16. A0303 Serious detector error (hardware)<a class="headerlink" href="#a0303-serious-detector-error-hardware" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Alarm&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;efb6a4c5-f2ea-4947-9deb-667756926203&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001DL001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aCId&quot;</span><span class="p">:</span><span class="s2">&quot;A0303&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xACId&quot;</span><span class="p">:</span><span class="s2">&quot;ERROR DETECTOR LOGIC OPEN #1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNACId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aSp&quot;</span><span class="p">:</span><span class="s2">&quot;Issue&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span><span class="s2">&quot;notAcknowledged&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aS&quot;</span><span class="p">:</span><span class="s2">&quot;Active&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sS&quot;</span><span class="p">:</span><span class="s2">&quot;notSuspended&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aTs&quot;</span><span class="p">:</span><span class="s2">&quot;2021-12-13T09:35:25.602Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;pri&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rvs&quot;</span><span class="p">:[{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;type&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;loop&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;errormode&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;on&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a0304-serious-detector-error-logic-error">
+<h3>6.1.17. A0304 Serious detector error (logic error)<a class="headerlink" href="#a0304-serious-detector-error-logic-error" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Alarm&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;efb6a4c5-f2ea-4947-9deb-667756926203&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001DL001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aCId&quot;</span><span class="p">:</span><span class="s2">&quot;A0304&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xACId&quot;</span><span class="p">:</span><span class="s2">&quot;ERROR DETECTOR LOGIC OPEN #1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNACId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aSp&quot;</span><span class="p">:</span><span class="s2">&quot;Issue&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span><span class="s2">&quot;notAcknowledged&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aS&quot;</span><span class="p">:</span><span class="s2">&quot;Active&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sS&quot;</span><span class="p">:</span><span class="s2">&quot;notSuspended&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aTs&quot;</span><span class="p">:</span><span class="s2">&quot;2021-12-13T09:35:25.602Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;pri&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rvs&quot;</span><span class="p">:[{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;detector&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;type&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;loop&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;errormode&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;on&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span>
+    <span class="p">},{</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;logicerror&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;always_off&quot;</span>
+    <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1021,6 +1113,9 @@
      <span class="p">},{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0007&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0007&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1044,6 +1139,11 @@
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0007&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1065,6 +1165,9 @@
      <span class="p">},{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0008&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0008&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1088,6 +1191,11 @@
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0008&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1109,6 +1217,9 @@
      <span class="p">},{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0009&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0009&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1132,6 +1243,11 @@
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0009&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1153,6 +1269,9 @@
      <span class="p">},{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0010&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0010&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1176,6 +1295,11 @@
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0010&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1197,6 +1321,9 @@
      <span class="p">},{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0011&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0011&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1220,6 +1347,11 @@
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0011&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1241,6 +1373,9 @@
      <span class="p">},{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0012&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0012&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1263,6 +1398,11 @@
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0012&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0012&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
@@ -1326,6 +1466,9 @@
      <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0014&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0014&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1343,6 +1486,11 @@
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0014&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;9&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0014&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
@@ -1362,6 +1510,9 @@
      <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0015&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0015&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;source&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1379,6 +1530,11 @@
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0015&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
              <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0015&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;forced&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
@@ -2025,8 +2181,153 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="s0032-coordinated-control">
+<h3>6.2.32. S0032 Coordinated control<a class="headerlink" href="#s0032-coordinated-control" title="Permalink to this headline">¶</a></h3>
+<p><strong>Status Request</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+     &quot;mType&quot;:&quot;rSMsg&quot;,
+     &quot;type&quot;:&quot;StatusRequest&quot;,
+     &quot;mId&quot;:&quot;c764a831-e3c9-4b01-a938-2171fb3d9bbd&quot;,
+     &quot;ntsOId&quot;:&quot;KK+AG9998=001TC000&quot;,
+     &quot;xNId&quot;:&quot;&quot;,
+     &quot;cId&quot;:&quot;KK+AG9998=001TC000&quot;,
+     &quot;sS&quot;:[{
+             &quot;sCI&quot;:&quot;S0032&quot;,
+             &quot;n&quot;:&quot;intersection&quot;
+     },{
+             &quot;sCI&quot;:&quot;S0032&quot;,
+             &quot;n&quot;:&quot;status&quot;
+     },{
+             &quot;sCI&quot;:&quot;S0032&quot;,
+             &quot;n&quot;:&quot;source&quot;
+     ]}
+}
+</pre></div>
+</div>
+<p><strong>Status Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+     &quot;mType&quot;:&quot;rSMsg&quot;,
+     &quot;type&quot;:&quot;StatusResponse&quot;,
+     &quot;mId&quot;:&quot;56fcfe6b-a07e-4a87-bf9f-4ecd76a805a7&quot;,
+     &quot;ntsOId&quot;:&quot;KK+AG9998=001TC000&quot;,
+     &quot;xNId&quot;:&quot;&quot;,
+     &quot;cId&quot;:&quot;KK+AG9998=001TC000&quot;,
+     &quot;sTs&quot;:&quot;2021-12-13T11:11:07.317Z&quot;,
+     &quot;sS&quot;:[{
+             &quot;sCI&quot;:&quot;S0032&quot;,
+             &quot;n&quot;:&quot;intersection&quot;,
+             &quot;s&quot;:&quot;0&quot;,
+             &quot;q&quot;:&quot;recent&quot;
+     },{
+             &quot;sCI&quot;:&quot;S0032&quot;,
+             &quot;n&quot;:&quot;status&quot;,
+             &quot;s&quot;:&quot;local&quot;,
+             &quot;q&quot;:&quot;recent&quot;
+     },{
+             &quot;sCI&quot;:&quot;S0032&quot;,
+             &quot;n&quot;:&quot;source&quot;,
+             &quot;s&quot;:&quot;calendar_clock&quot;,
+             &quot;q&quot;:&quot;recent&quot;
+     ]}
+ }
+</pre></div>
+</div>
+</div>
+<div class="section" id="s0033-signal-priority-status">
+<h3>6.2.33. S0033 Signal Priority Status<a class="headerlink" href="#s0033-signal-priority-status" title="Permalink to this headline">¶</a></h3>
+<p><strong>Status Request</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;mType&quot;</span><span class="p">:</span> <span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;StatusRequest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mId&quot;</span><span class="p">:</span> <span class="s2">&quot;f1a13213-b90a-4abc-8953-2b8142923c55&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sS&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="nt">&quot;sCI&quot;</span><span class="p">:</span> <span class="s2">&quot;S0033&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;events&quot;</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Status Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;mType&quot;</span><span class="p">:</span> <span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;StatusResponse&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mId&quot;</span><span class="p">:</span> <span class="s2">&quot;f1a13213-b90a-4abc-8953-2b8142923c55&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sTs&quot;</span><span class="p">:</span><span class="s2">&quot;2021-12-13T11:11:07.317Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sS&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="nt">&quot;sCI&quot;</span><span class="p">:</span> <span class="s2">&quot;S0033&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;events&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;q&quot;</span><span class="p">:</span> <span class="s2">&quot;recent&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;s&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="s2">&quot;f90c&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-09T15:06:38.796Z&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;queued&quot;</span>
+            <span class="p">},{</span>
+                    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="s2">&quot;f90c&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-09T15:06:38.796Z&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;activated&quot;</span>
+            <span class="p">},{</span>
+                    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="s2">&quot;f90c&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-09T15:06:39.796Z&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;completed&quot;</span>
+            <span class="p">},{</span>
+                    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="s2">&quot;e33a2&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-09T15:06:48.796Z&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;overridden&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;o&quot;</span><span class="p">:</span> <span class="s2">&quot;ff30&quot;</span>
+            <span class="p">},{</span>
+                    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="s2">&quot;58c0&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-09T15:06:48.796Z&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;timeout&quot;</span>
+            <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s0034-timeout-for-dynamic-bands">
+<h3>6.2.34. S0034 Timeout for dynamic bands<a class="headerlink" href="#s0034-timeout-for-dynamic-bands" title="Permalink to this headline">¶</a></h3>
+<p><strong>Status Request</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;mType&quot;</span><span class="p">:</span> <span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;StatusRequest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mId&quot;</span><span class="p">:</span> <span class="s2">&quot;f1a13213-b90a-4abc-8953-2b8142923c55&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sS&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="nt">&quot;sCI&quot;</span><span class="p">:</span> <span class="s2">&quot;S0034&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Status Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;StatusResponse&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;c4064647-65c8-4ebd-aa41-e52576329d8e&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sTs&quot;</span><span class="p">:</span><span class="s2">&quot;2021-12-13T11:55:13.399Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
+            <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0034&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;30&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="s0091-operator-logged-in-out-op-panel">
-<h3>6.2.32. S0091 Operator logged in/out OP-panel<a class="headerlink" href="#s0091-operator-logged-in-out-op-panel" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.35. S0091 Operator logged in/out OP-panel<a class="headerlink" href="#s0091-operator-logged-in-out-op-panel" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2038,9 +2339,6 @@
      <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0091&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;user&quot;</span>
-     <span class="p">},{</span>
-             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0091&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -2057,12 +2355,7 @@
      <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0091&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
-     <span class="p">},{</span>
-             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0091&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;login&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
@@ -2070,7 +2363,7 @@
 </div>
 </div>
 <div class="section" id="s0092-operator-logged-web-interface">
-<h3>6.2.33. S0092 Operator logged web-interface<a class="headerlink" href="#s0092-operator-logged-web-interface" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.36. S0092 Operator logged web-interface<a class="headerlink" href="#s0092-operator-logged-web-interface" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2082,9 +2375,6 @@
      <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0092&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;user&quot;</span>
-     <span class="p">},{</span>
-             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0092&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -2101,12 +2391,7 @@
      <span class="nt">&quot;sS&quot;</span><span class="p">:[{</span>
              <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0092&quot;</span><span class="p">,</span>
              <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
-     <span class="p">},{</span>
-             <span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0092&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
-             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;login&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
              <span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
      <span class="p">}]</span>
 <span class="p">}</span>
@@ -2114,7 +2399,7 @@
 </div>
 </div>
 <div class="section" id="s0095-version-of-traffic-light-controller">
-<h3>6.2.34. S0095 Version of Traffic Light Controller<a class="headerlink" href="#s0095-version-of-traffic-light-controller" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.37. S0095 Version of Traffic Light Controller<a class="headerlink" href="#s0095-version-of-traffic-light-controller" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2150,7 +2435,7 @@
 </div>
 </div>
 <div class="section" id="s0096-current-date-and-time">
-<h3>6.2.35. S0096 Current date and time<a class="headerlink" href="#s0096-current-date-and-time" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.38. S0096 Current date and time<a class="headerlink" href="#s0096-current-date-and-time" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2226,7 +2511,7 @@
 </div>
 </div>
 <div class="section" id="s0097-checksum-of-traffic-parameters">
-<h3>6.2.36. S0097 Checksum of traffic parameters<a class="headerlink" href="#s0097-checksum-of-traffic-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.39. S0097 Checksum of traffic parameters<a class="headerlink" href="#s0097-checksum-of-traffic-parameters" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2270,7 +2555,7 @@
 </div>
 </div>
 <div class="section" id="s0098-configuration-of-traffic-parameters">
-<h3>6.2.37. S0098 Configuration of traffic parameters<a class="headerlink" href="#s0098-configuration-of-traffic-parameters" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.40. S0098 Configuration of traffic parameters<a class="headerlink" href="#s0098-configuration-of-traffic-parameters" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2322,7 +2607,7 @@
 </div>
 </div>
 <div class="section" id="s0201-traffic-counting-number-of-vehicles">
-<h3>6.2.38. S0201 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0201-traffic-counting-number-of-vehicles" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.41. S0201 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0201-traffic-counting-number-of-vehicles" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2366,7 +2651,7 @@
 </div>
 </div>
 <div class="section" id="s0202-traffic-counting-vehicle-speed">
-<h3>6.2.39. S0202 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0202-traffic-counting-vehicle-speed" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.42. S0202 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0202-traffic-counting-vehicle-speed" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2410,7 +2695,7 @@
 </div>
 </div>
 <div class="section" id="s0203-traffic-counting-occupancy">
-<h3>6.2.40. S0203 Traffic Counting: Occupancy<a class="headerlink" href="#s0203-traffic-counting-occupancy" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.43. S0203 Traffic Counting: Occupancy<a class="headerlink" href="#s0203-traffic-counting-occupancy" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2454,7 +2739,7 @@
 </div>
 </div>
 <div class="section" id="s0204-traffic-counting-number-of-vehicles-of-given-classification">
-<h3>6.2.41. S0204 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.44. S0204 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2562,7 +2847,7 @@
 </div>
 </div>
 <div class="section" id="s0205-traffic-counting-number-of-vehicles">
-<h3>6.2.42. S0205 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0205-traffic-counting-number-of-vehicles" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.45. S0205 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0205-traffic-counting-number-of-vehicles" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2606,7 +2891,7 @@
 </div>
 </div>
 <div class="section" id="s0206-traffic-counting-vehicle-speed">
-<h3>6.2.43. S0206 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0206-traffic-counting-vehicle-speed" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.46. S0206 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0206-traffic-counting-vehicle-speed" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2650,7 +2935,7 @@
 </div>
 </div>
 <div class="section" id="s0207-traffic-counting-occupancy">
-<h3>6.2.44. S0207 Traffic Counting: Occupancy<a class="headerlink" href="#s0207-traffic-counting-occupancy" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.47. S0207 Traffic Counting: Occupancy<a class="headerlink" href="#s0207-traffic-counting-occupancy" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -2694,7 +2979,7 @@
 </div>
 </div>
 <div class="section" id="s0208-traffic-counting-number-of-vehicles-of-given-classification">
-<h3>6.2.45. S0208 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline">¶</a></h3>
+<h3>6.2.48. S0208 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline">¶</a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -3904,8 +4189,124 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="m0022-request-signal-priority">
+<h3>6.3.21. M0022 Request Signal Priority<a class="headerlink" href="#m0022-request-signal-priority" title="Permalink to this headline">¶</a></h3>
+<p><strong>Command Request</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;CommandRequest&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;e4e9668a-b562-4fbe-9c1e-d4a30733ddea&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;arg&quot;</span><span class="p">:[{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;requestId&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;cO&quot;</span><span class="p">:</span><span class="s2">&quot;requestPriority&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;f90c&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;connectionId&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;cO&quot;</span><span class="p">:</span><span class="s2">&quot;requestPriority&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;5&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;type&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;cO&quot;</span><span class="p">:</span><span class="s2">&quot;requestPriority&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;new&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;vehicleType&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;cO&quot;</span><span class="p">:</span><span class="s2">&quot;requestPriority&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;bus&quot;</span>
+     <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Command Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;CommandResponse&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;092418fe-e79a-44f7-91b2-13413bab7910&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;cTS&quot;</span><span class="p">:</span><span class="s2">&quot;2021-12-13T11:44:45.461Z&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;rvs&quot;</span><span class="p">:[{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;requestId&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;f90c&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;connectionId&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;5&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;type&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;new&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0022&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;vehicleType&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;bus&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="m0023-set-timeout-for-dynamic-bands">
+<h3>6.3.22. M0023 Set timeout for dynamic bands<a class="headerlink" href="#m0023-set-timeout-for-dynamic-bands" title="Permalink to this headline">¶</a></h3>
+<p><strong>Command Request</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;CommandRequest&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;0052a94b-3678-483e-9ee8-4e4f52771051&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;arg&quot;</span><span class="p">:[{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0023&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;securityCode&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;cO&quot;</span><span class="p">:</span><span class="s2">&quot;setTimeout&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0023&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;cO&quot;</span><span class="p">:</span><span class="s2">&quot;setTimeout&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;30&quot;</span>
+     <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Command Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;CommandResponse&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;20615c0c-d9d0-412e-836a-749c85cb5d13&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG9998=001TC000&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;cTS&quot;</span><span class="p">:</span><span class="s2">&quot;2021-12-13T11:57:21.586Z&quot;</span><span class="p">,</span>
+     <span class="nt">&quot;rvs&quot;</span><span class="p">:[{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0023&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;securityCode&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">},{</span>
+             <span class="nt">&quot;cCI&quot;</span><span class="p">:</span><span class="s2">&quot;M0023&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;30&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span>
+     <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="m0103-set-security-code">
-<h3>6.3.21. M0103 Set security code<a class="headerlink" href="#m0103-set-security-code" title="Permalink to this headline">¶</a></h3>
+<h3>6.3.23. M0103 Set security code<a class="headerlink" href="#m0103-set-security-code" title="Permalink to this headline">¶</a></h3>
 <p><strong>Command Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
@@ -3963,7 +4364,7 @@
 </div>
 </div>
 <div class="section" id="m0104-set-clock">
-<h3>6.3.22. M0104 Set clock<a class="headerlink" href="#m0104-set-clock" title="Permalink to this headline">¶</a></h3>
+<h3>6.3.24. M0104 Set clock<a class="headerlink" href="#m0104-set-clock" title="Permalink to this headline">¶</a></h3>
 <p><strong>Command Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span>
