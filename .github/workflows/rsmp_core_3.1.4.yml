@@ -25,6 +25,11 @@ jobs:
     - name: Use updated makefile
       run: |
         cp .github/makefiles/makefile-core-3.1.4 rsmp_core/sphinx/Makefile
+    - name: Install dependencies
+      run: |
+        apt update
+        apt -u install \
+              mscgen
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core/sphinx
