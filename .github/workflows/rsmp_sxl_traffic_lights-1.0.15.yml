@@ -27,8 +27,8 @@ jobs:
         cp .github/makefiles/makefile-sxl-tlc-1.0.15 rsmp_sxl_traffic_lights/Makefile
     - name: Install dependencies
       run: |
-        apt update
-        apt -u install \
+        sudo apt-get update
+        sudo apt-get -y install \
               mscgen
     - name: Build rsmp_sxl_traffic_lights repository
       run: |

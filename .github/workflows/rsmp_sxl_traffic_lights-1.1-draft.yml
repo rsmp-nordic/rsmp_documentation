@@ -29,8 +29,8 @@ jobs:
         gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' rsmp_sxl_traffic_lights/source/style/rsmp.tex
     - name: Install dependencies
       run: |
-        apt update
-        apt -u install \
+        sudo apt-get update
+        sudo apt-get -y install \
               mscgen
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
