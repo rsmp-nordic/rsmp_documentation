@@ -27,6 +27,7 @@ jobs:
         cp .github/makefiles/makefile-sxl-tlc-1.0.15 rsmp_sxl_traffic_lights/Makefile
     - name: Install dependencies
       run: |
+        sudo snap install inkscape
         sudo apt-get update
         sudo apt-get -y install \
               python3-sphinx \
