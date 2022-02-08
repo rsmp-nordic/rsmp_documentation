@@ -35,9 +35,8 @@ jobs:
               texlive-latex-extra \
               texlive-humanities \
               imagemagick \
-              libsvg2-bin \
+              librsvg2-bin \
               latexmk \
-              sphinx \
               graphviz \
               mscgen
     - name: Build rsmp_core repository
