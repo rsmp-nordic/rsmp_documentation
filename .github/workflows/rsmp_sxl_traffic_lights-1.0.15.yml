@@ -29,9 +29,14 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install \
-              python-sphinx \
-              python-sphinx-rtd-theme \
-              sphinx \
+              python3-sphinx \
+              python3-sphinx-rtd-theme \
+              texlive \
+              texlive-latex-extra \
+              texlive-humanities \
+              imagemagick \
+              librsvg2-bin \
+              latexmk \
               mscgen
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
