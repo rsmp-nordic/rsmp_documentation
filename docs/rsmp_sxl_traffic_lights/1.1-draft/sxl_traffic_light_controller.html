@@ -2500,11 +2500,59 @@ other: Other reason</td>
 <p>Signal Priority Status</p>
 <p>This status can be used to get updates about priority requests. For example, you can use it to know when
 priority requests are activated or cancelled.</p>
-<p>A list of priority events is returned. Each event refer to a particular request, using a requestId.
-Several events can refer to the same request, for example if the request was first enqueued, then activated.</p>
+<p>A list of priorities is returned, referred to by their request ids. The same request id can appear only once.</p>
+<p>All priorities are included in the list (not only the ones that have changed state since the last update).
+This is done regardless of whether the status is send in respond to a status request, or due to a
+status subscription, and also regardless of whether a status subscription uses an update interval,
+or send-on-change, or both.</p>
+<p>When a priority reached on of the end states ‘completed’, ‘timeout’, ‘rejected’, ‘cooldown’ or ‘removed’,
+it should be included once in the next status update, and then not anymore.</p>
+<p>If you subscribe using an update interval, you’re not guaranteed to get all intermediate states.
+To guarantee that, send-on-change must be used when subscribing.</p>
 <p>All events are send on every status update, regardless of whether an interval, or sendOnChange (or both) is used.
 Events that complete or timeout are send once, then removed from the list of events.</p>
-<div class="figure align-center" id="S0033eventarray">
+<p>A request always starts in the ‘received’ state. The following table shows the possible state transitions:</p>
+<div class="figure align-center" id="S0033requesttransitions">
+<center><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">State</th>
+<th class="head">Possible next states</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>received</td>
+<td>queued, activated, rejected, cooldown</td>
+</tr>
+<tr class="row-odd"><td>queued</td>
+<td>activated, timeout</td>
+</tr>
+<tr class="row-even"><td>activated</td>
+<td>completed, removed</td>
+</tr>
+<tr class="row-odd"><td>completed</td>
+<td>(end state)</td>
+</tr>
+<tr class="row-even"><td>timeout</td>
+<td>(end state)</td>
+</tr>
+<tr class="row-odd"><td>rejected</td>
+<td>(end state)</td>
+</tr>
+<tr class="row-even"><td>cooldown</td>
+<td>(end state)</td>
+</tr>
+<tr class="row-odd"><td>removed</td>
+<td>(end state)</td>
+</tr>
+</tbody>
+</table>
+<p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033 request transitions</span></p>
+<span class="target" id="S0033requesttransitions"></span></center></div><p>The priorities is passed as an array:</p>
+<div class="figure align-center" id="S0033priorityarray">
 <center><table border="1" class="docutils">
 <colgroup>
 <col width="9%" />
@@ -2522,20 +2570,20 @@ Events that complete or timeout are send once, then removed from the list of eve
 <tbody valign="top">
 <tr class="row-even"><td>status</td>
 <td>array</td>
-<td>[events]</td>
-<td>List of events. See the table below for details.</td>
+<td>[priorities]</td>
+<td>List of priorities. See the table below for details.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033 event array</span></p>
-<span class="target" id="S0033eventarray"></span></center></div><p>Each event is passed as a hash with the following attributes:</p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.48:</strong> S0033 priority array</span></p>
+<span class="target" id="S0033priorityarray"></span></center></div><p>Each priority is passed as a hash with the following attributes:</p>
 <div class="figure align-center" id="S0033">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="4%" />
-<col width="4%" />
-<col width="10%" />
-<col width="82%" />
+<col width="5%" />
+<col width="6%" />
+<col width="12%" />
+<col width="77%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -2553,40 +2601,38 @@ Events that complete or timeout are send once, then removed from the list of eve
 <tr class="row-odd"><td>t</td>
 <td>string</td>
 <td>[timestamp]</td>
-<td>Timestamp. When the event happened. <br> 
-Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
+<td>Timestamp. When the priority last changed state. <br> 
+Format according to W3C XML dateTime with a resolution of 3 decimal places. <br> 
+All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
 </tr>
 <tr class="row-even"><td>s</td>
 <td>string</td>
 <td>-received <br> 
--rejected <br> 
--cooldown <br> 
 -queued <br> 
 -activated <br> 
 -completed <br> 
--timeout</td>
-<td>received: A new priority request was received <br> 
-rejected: The priority request was rejected <br> 
-cooldown: The priority request was rejected because maximum number of requests reached within time frame <br> 
-queued: The priority request has been queued <br> 
+-timeout <br> 
+-rejected <br> 
+-cooldown <br> 
+-removed</td>
+<td>received: A new priority request was received but has not yet been processed <br> 
+queued: The priority request has been queued for later activation <br> 
 activated: The priority was activated <br> 
-completed: The priority was cancelled (as expected) <br> 
-timeout: The priority has timed out because it was never cancelled</td>
+completed: The priority was cancelled as expected <br> 
+timeout: The priority has been queued for too long <br> 
+rejected: The priority request cannot be granted <br> 
+cooldown: A similar priority request means the priority request cannot be activated now <br> 
+removed: A prior request was not cancelled within a reasonable time and was therefore removed</td>
 </tr>
-<tr class="row-odd"><td>o</td>
-<td>string</td>
-<td>[id]</td>
-<td>(Optional) ID of the overriding priority request. Only used if status is set to overridden</td>
-</tr>
-<tr class="row-even"><td>g</td>
+<tr class="row-odd"><td>g</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>(Optional) Actual number of seconds gained by the priority <br> 
-Only used when status is complete, override or timeout.</td>
+<td>(Optional) Estimated number of seconds actually gained by the priority <br> 
+Only used when state is ‘completed’.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.48:</strong> S0033</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.49:</strong> S0033</span></p>
 <span class="target" id="S0033"></span></center></div></div>
 <div class="section" id="s0034">
 <h3>2.4.34. S0034<a class="headerlink" href="#s0034" title="Permalink to this headline">¶</a></h3>
@@ -2617,7 +2663,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.49:</strong> S0034</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.50:</strong> S0034</span></p>
 <span class="target" id="S0034"></span></center></div></div>
 <div class="section" id="s0091">
 <h3>2.4.35. S0091<a class="headerlink" href="#s0091" title="Permalink to this headline">¶</a></h3>
@@ -2650,7 +2696,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.50:</strong> S0091</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.51:</strong> S0091</span></p>
 <span class="target" id="S0091"></span></center></div></div>
 <div class="section" id="s0092">
 <h3>2.4.36. S0092<a class="headerlink" href="#s0092" title="Permalink to this headline">¶</a></h3>
@@ -2683,7 +2729,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.51:</strong> S0092</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.52:</strong> S0092</span></p>
 <span class="target" id="S0092"></span></center></div></div>
 <div class="section" id="s0095">
 <h3>2.4.37. S0095<a class="headerlink" href="#s0095" title="Permalink to this headline">¶</a></h3>
@@ -2712,7 +2758,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.52:</strong> S0095</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.53:</strong> S0095</span></p>
 <span class="target" id="S0095"></span></center></div></div>
 <div class="section" id="s0096">
 <h3>2.4.38. S0096<a class="headerlink" href="#s0096" title="Permalink to this headline">¶</a></h3>
@@ -2766,7 +2812,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.53:</strong> S0096</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.54:</strong> S0096</span></p>
 <span class="target" id="S0096"></span></center></div></div>
 <div class="section" id="s0097">
 <h3>2.4.39. S0097<a class="headerlink" href="#s0097" title="Permalink to this headline">¶</a></h3>
@@ -2818,7 +2864,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.54:</strong> S0097</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.55:</strong> S0097</span></p>
 <span class="target" id="S0097"></span></center></div></div>
 <div class="section" id="s0098">
 <h3>2.4.40. S0098<a class="headerlink" href="#s0098" title="Permalink to this headline">¶</a></h3>
@@ -2875,7 +2921,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.55:</strong> S0098</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.56:</strong> S0098</span></p>
 <span class="target" id="S0098"></span></center></div></div>
 <div class="section" id="s0201">
 <h3>2.4.41. S0201<a class="headerlink" href="#s0201" title="Permalink to this headline">¶</a></h3>
@@ -2909,7 +2955,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.56:</strong> S0201</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.57:</strong> S0201</span></p>
 <span class="target" id="S0201"></span></center></div></div>
 <div class="section" id="s0202">
 <h3>2.4.42. S0202<a class="headerlink" href="#s0202" title="Permalink to this headline">¶</a></h3>
@@ -2943,7 +2989,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.57:</strong> S0202</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.58:</strong> S0202</span></p>
 <span class="target" id="S0202"></span></center></div></div>
 <div class="section" id="s0203">
 <h3>2.4.43. S0203<a class="headerlink" href="#s0203" title="Permalink to this headline">¶</a></h3>
@@ -2977,7 +3023,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.58:</strong> S0203</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.59:</strong> S0203</span></p>
 <span class="target" id="S0203"></span></center></div></div>
 <div class="section" id="s0204">
 <h3>2.4.44. S0204<a class="headerlink" href="#s0204" title="Permalink to this headline">¶</a></h3>
@@ -3051,7 +3097,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.59:</strong> S0204</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.60:</strong> S0204</span></p>
 <span class="target" id="S0204"></span></center></div></div>
 <div class="section" id="s0205">
 <h3>2.4.45. S0205<a class="headerlink" href="#s0205" title="Permalink to this headline">¶</a></h3>
@@ -3088,7 +3134,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.60:</strong> S0205</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.61:</strong> S0205</span></p>
 <span class="target" id="S0205"></span></center></div></div>
 <div class="section" id="s0206">
 <h3>2.4.46. S0206<a class="headerlink" href="#s0206" title="Permalink to this headline">¶</a></h3>
@@ -3125,7 +3171,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.61:</strong> S0206</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.62:</strong> S0206</span></p>
 <span class="target" id="S0206"></span></center></div></div>
 <div class="section" id="s0207">
 <h3>2.4.47. S0207<a class="headerlink" href="#s0207" title="Permalink to this headline">¶</a></h3>
@@ -3162,7 +3208,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.62:</strong> S0207</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.63:</strong> S0207</span></p>
 <span class="target" id="S0207"></span></center></div></div>
 <div class="section" id="s0208">
 <h3>2.4.48. S0208<a class="headerlink" href="#s0208" title="Permalink to this headline">¶</a></h3>
@@ -3263,7 +3309,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.63:</strong> S0208</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.64:</strong> S0208</span></p>
 <span class="target" id="S0208"></span></center></div></div>
 </div>
 <div class="section" id="commands">
@@ -3406,7 +3452,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.64:</strong> Commands</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.65:</strong> Commands</span></p>
 <span class="target" id="Commands"></span></center></div><div class="section" id="m0001">
 <h3>2.5.1. M0001<a class="headerlink" href="#m0001" title="Permalink to this headline">¶</a></h3>
 <p>Sets functional position</p>
@@ -3456,7 +3502,7 @@ Dark: Enables dark mode</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.65:</strong> M0001</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.66:</strong> M0001</span></p>
 <span class="target" id="M0001"></span></center></div></div>
 <div class="section" id="m0002">
 <h3>2.5.2. M0002<a class="headerlink" href="#m0002" title="Permalink to this headline">¶</a></h3>
@@ -3501,7 +3547,7 @@ True: Controller uses time plan according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.66:</strong> M0002</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.67:</strong> M0002</span></p>
 <span class="target" id="M0002"></span></center></div></div>
 <div class="section" id="m0003">
 <h3>2.5.3. M0003<a class="headerlink" href="#m0003" title="Permalink to this headline">¶</a></h3>
@@ -3545,7 +3591,7 @@ True: Controller uses traffic situation according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.67:</strong> M0003</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.68:</strong> M0003</span></p>
 <span class="target" id="M0003"></span></center></div></div>
 <div class="section" id="m0004">
 <h3>2.5.4. M0004<a class="headerlink" href="#m0004" title="Permalink to this headline">¶</a></h3>
@@ -3582,7 +3628,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.68:</strong> M0004</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.69:</strong> M0004</span></p>
 <span class="target" id="M0004"></span></center></div></div>
 <div class="section" id="m0005">
 <h3>2.5.5. M0005<a class="headerlink" href="#m0005" title="Permalink to this headline">¶</a></h3>
@@ -3626,7 +3672,7 @@ True: Activate emergency route</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.69:</strong> M0005</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.70:</strong> M0005</span></p>
 <span class="target" id="M0005"></span></center></div></div>
 <div class="section" id="m0006">
 <h3>2.5.6. M0006<a class="headerlink" href="#m0006" title="Permalink to this headline">¶</a></h3>
@@ -3672,7 +3718,7 @@ True: Activate input</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.70:</strong> M0006</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.71:</strong> M0006</span></p>
 <span class="target" id="M0006"></span></center></div></div>
 <div class="section" id="m0007">
 <h3>2.5.7. M0007<a class="headerlink" href="#m0007" title="Permalink to this headline">¶</a></h3>
@@ -3711,7 +3757,7 @@ True: Activate fixed time control</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.71:</strong> M0007</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.72:</strong> M0007</span></p>
 <span class="target" id="M0007"></span></center></div></div>
 <div class="section" id="m0008">
 <h3>2.5.8. M0008<a class="headerlink" href="#m0008" title="Permalink to this headline">¶</a></h3>
@@ -3757,7 +3803,7 @@ True: Activate detector logic</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.72:</strong> M0008</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.73:</strong> M0008</span></p>
 <span class="target" id="M0008"></span></center></div></div>
 <div class="section" id="m0010">
 <h3>2.5.9. M0010<a class="headerlink" href="#m0010" title="Permalink to this headline">¶</a></h3>
@@ -3796,7 +3842,7 @@ True: Order a signal group to green</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.73:</strong> M0010</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.74:</strong> M0010</span></p>
 <span class="target" id="M0010"></span></center></div></div>
 <div class="section" id="m0011">
 <h3>2.5.10. M0011<a class="headerlink" href="#m0011" title="Permalink to this headline">¶</a></h3>
@@ -3835,7 +3881,7 @@ True: Order a signal group to red</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.74:</strong> M0011</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.75:</strong> M0011</span></p>
 <span class="target" id="M0011"></span></center></div></div>
 <div class="section" id="m0012">
 <h3>2.5.11. M0012<a class="headerlink" href="#m0012" title="Permalink to this headline">¶</a></h3>
@@ -3896,7 +3942,7 @@ Such a message would order signal group 6,7,10,17,22 to green and signal group 5
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.75:</strong> M0012</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.76:</strong> M0012</span></p>
 <span class="target" id="M0012"></span></center></div></div>
 <div class="section" id="m0013">
 <h3>2.5.12. M0013<a class="headerlink" href="#m0013" title="Permalink to this headline">¶</a></h3>
@@ -3958,7 +4004,7 @@ Format: [Offset];[Bits to set];[Bits to unset];…</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.76:</strong> M0013</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.77:</strong> M0013</span></p>
 <span class="target" id="M0013"></span></center></div></div>
 <div class="section" id="m0014">
 <h3>2.5.13. M0014<a class="headerlink" href="#m0014" title="Permalink to this headline">¶</a></h3>
@@ -4008,7 +4054,7 @@ dd-ee,dd-ee</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.77:</strong> M0014</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.78:</strong> M0014</span></p>
 <span class="target" id="M0014"></span></center></div></div>
 <div class="section" id="m0015">
 <h3>2.5.14. M0015<a class="headerlink" href="#m0015" title="Permalink to this headline">¶</a></h3>
@@ -4050,7 +4096,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.78:</strong> M0015</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.79:</strong> M0015</span></p>
 <span class="target" id="M0015"></span></center></div></div>
 <div class="section" id="m0016">
 <h3>2.5.15. M0016<a class="headerlink" href="#m0016" title="Permalink to this headline">¶</a></h3>
@@ -4104,7 +4150,7 @@ d-t,d-t</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.79:</strong> M0016</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.80:</strong> M0016</span></p>
 <span class="target" id="M0016"></span></center></div></div>
 <div class="section" id="m0017">
 <h3>2.5.16. M0017<a class="headerlink" href="#m0017" title="Permalink to this headline">¶</a></h3>
@@ -4159,7 +4205,7 @@ t-o-h-m,t-o-h-m</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.80:</strong> M0017</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.81:</strong> M0017</span></p>
 <span class="target" id="M0017"></span></center></div></div>
 <div class="section" id="m0018">
 <h3>2.5.17. M0018<a class="headerlink" href="#m0018" title="Permalink to this headline">¶</a></h3>
@@ -4201,7 +4247,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.81:</strong> M0018</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.82:</strong> M0018</span></p>
 <span class="target" id="M0018"></span></center></div></div>
 <div class="section" id="m0019">
 <h3>2.5.18. M0019<a class="headerlink" href="#m0019" title="Permalink to this headline">¶</a></h3>
@@ -4252,7 +4298,7 @@ True: input forced to True</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.82:</strong> M0019</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.83:</strong> M0019</span></p>
 <span class="target" id="M0019"></span></center></div></div>
 <div class="section" id="m0020">
 <h3>2.5.19. M0020<a class="headerlink" href="#m0020" title="Permalink to this headline">¶</a></h3>
@@ -4303,7 +4349,7 @@ True: output forced to True</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.83:</strong> M0020</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.84:</strong> M0020</span></p>
 <span class="target" id="M0020"></span></center></div></div>
 <div class="section" id="m0021">
 <h3>2.5.20. M0021<a class="headerlink" href="#m0021" title="Permalink to this headline">¶</a></h3>
@@ -4342,7 +4388,7 @@ ss=sensitivity value</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.84:</strong> M0021</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.85:</strong> M0021</span></p>
 <span class="target" id="M0021"></span></center></div></div>
 <div class="section" id="m0022">
 <h3>2.5.21. M0022<a class="headerlink" href="#m0022" title="Permalink to this headline">¶</a></h3>
@@ -4350,8 +4396,8 @@ ss=sensitivity value</td>
 <p>Useful for bus priority or other type of priorities like emergency vehicles or groups of cyclists.</p>
 <p>The benefit of using this message over activating inputs or detector logics is that you
 can specify a priority level, vehicle type and estimated time of arrival.
-You can also update or cancel the request, or use the corresponding status request or
-subscription to track the status of the request, including how much priority was actually given.</p>
+You can also update or cancel the request, and use the corresponding status message
+to track the status of the request, including how much priority was actually given.</p>
 <p>Activating signal priority is expected to provide more green time for a particular movement
 through the intersection, but the exact mechanism must typically be configured in the controller.</p>
 <p>The movement to prioritize can be referenced in a number of ways, depending on what is configured
@@ -4361,7 +4407,7 @@ in the controller, and in the system that sends priority requests. Either:</p>
 This method is simple, but will not allow you to have different priority mechanism for the
 same signal group, unless they can be distinguished by the vehicle type. For example, if you
 need to trigger different priorities depending on whether a bus goes straight or makes a turn
-for the same signal group, you must use of the other referencing methods.</li>
+for the same signal group, you need to use of the other referencing methods.</li>
 <li>Reference an input by setting ‘inputId’. This can be useful if you previously used
 inputs to activate priority. The input will not be activated, only the priority.</li>
 <li>Reference a connection by setting ‘connectionId’. A connection is a movement from a specific
@@ -4370,7 +4416,8 @@ ingoing lane to a specific outgoing lane.</li>
 <li>Reference an ingoing lane by setting ‘laneInId’, and
 optionally also reference an outgoing lane by setting ‘laneOutId’.</li>
 </ul>
-<p>Referencing attributes that are not used must be left out, rather than set to null or empty strings:</p>
+<p>Referencing attributes that are not used must be left out, rather than set to null or empty strings.
+This includes:</p>
 <ul class="simple">
 <li>signalGroupId</li>
 <li>inputId</li>
@@ -4380,27 +4427,36 @@ optionally also reference an outgoing lane by setting ‘laneOutId’.</li>
 <li>laneOutId</li>
 </ul>
 <p>Referencing attributes are only used when initiating a request. When updating or cancelling the request,
-the request is identified by it’s requestId, and no referencing attributes are allowed.</p>
+the request is identified by its requestId, and no referencing attributes are allowed.</p>
 <p>You initiate a priority request with type set to ‘new’. You must provide a request id that
 uniquely identifies the request on the controller. It can be a randomly generated UUID
 (universally unique identifier), or it can be constructed by combining e.g. a vehicle id
 and some other identifier. When updating or cancelling a request, you must pass the same request id again.</p>
 <p>Providing ETA (estimated time of arrival) when initiating a request is optional,
 but can help the controller plan ahead in cases where you’re able to send the request before
-the vehicle arrives at the intersection. You’re allowed the initiate the request without an ETA
+the vehicle arrives at the intersection. You’re allowed to initiate the request without an ETA
 and provide it in a later request update. But providing the ETA when initiating
 the request is recommended, since it will give the controller more time to plan ahead.</p>
 <p>Like ETA, providing a vehicle type is optional, but can help the controller decide how
-to best handle the request. If not vehicle type is provided.</p>
+to best handle the request.</p>
 <p>The priority level provides a way to indicate the relative importance of the request compared
-to other requests. For example, emergency vehicles or delayed buses could be given a higher priority level.
-Another request with a higher level can override an existing priority with a lower level.</p>
-<p>If the ETA changes before the priority is cancelled, or you want to change the priority level, you send
+to other requests. For example, emergency vehicles or delayed buses could be given a higher priority level.</p>
+<p>A request with a higher level can override existing priorities with lower levels.</p>
+<p>If the ETA changes before the priority is cancelled, or you want to change the priority level, you can send
 another request message with type set to ‘update’. The vehicle type cannot be changed.</p>
-<p>A priority request should always be cancelled as soon as there’s no need for the priority anymore
-(e.g. because the bus has passed the intersection). You cancel a request by sending another request
-message with type set to ‘cancel’. If not cancelled, the controller is expected to time-out the priority
-at some point, but until then it might block requests in other direction.</p>
+<p>When you send a priority request, it will be processed to decide if it’s possible to activate the requested priority.</p>
+<p>If the request is accepted, the priority can either be activated immediately, or if another priority is
+currently active, it can be queued for later activation.</p>
+<p>If the priority cannot be accepted the request is rejected. Cooldown is a specific type of rejection, which means that
+s similar request has just completed, and some time needs to pass before a similar request can be activated.</p>
+<p>When a request is queued, it is expected to become activated later, but in case too long passes without
+activation, the controller is expected to time out the request.</p>
+<p>Once a priority is activated, you’re excepted to cancel it as soon as there’s no need it anymore, typically
+when the vehicle has passed the intersection. You cancel a request by sending a request passing the
+existing request id setting the type to ‘cancel’.</p>
+<p>If a request is never cancelled, the controller is expected to remove the priority at some point,
+but until then the priority might block requests in other direction which is why you should always cancel a priority
+when it’s not needed anymore.</p>
 <div class="figure align-center" id="M0022">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4492,7 +4548,7 @@ cancel: Cancel an existing priority</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.85:</strong> M0022</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.86:</strong> M0022</span></p>
 <span class="target" id="M0022"></span></center></div></div>
 <div class="section" id="m0023">
 <h3>2.5.22. M0023<a class="headerlink" href="#m0023" title="Permalink to this headline">¶</a></h3>
@@ -4530,7 +4586,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.86:</strong> M0023</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.87:</strong> M0023</span></p>
 <span class="target" id="M0023"></span></center></div></div>
 <div class="section" id="m0103">
 <h3>2.5.23. M0103<a class="headerlink" href="#m0103" title="Permalink to this headline">¶</a></h3>
@@ -4572,7 +4628,7 @@ Level2: Change security code 2</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.87:</strong> M0103</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.88:</strong> M0103</span></p>
 <span class="target" id="M0103"></span></center></div></div>
 <div class="section" id="m0104">
 <h3>2.5.24. M0104<a class="headerlink" href="#m0104" title="Permalink to this headline">¶</a></h3>
@@ -4639,7 +4695,7 @@ Second</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.88:</strong> M0104</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.89:</strong> M0104</span></p>
 <span class="target" id="M0104"></span></center></div></div>
 </div>
 </div>
