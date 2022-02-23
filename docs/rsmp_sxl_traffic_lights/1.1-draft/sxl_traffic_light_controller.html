@@ -2556,15 +2556,19 @@ Format according to W3C XML dateTime with a resolution of 3 decimal places. All 
 </tr>
 <tr class="row-even"><td>s</td>
 <td>string</td>
-<td>-queued <br> 
+<td>-received <br> 
+-rejected <br> 
+-cooldown <br> 
+-queued <br> 
 -activated <br> 
 -completed <br> 
--overridden <br> 
 -timeout</td>
-<td>queued: A new priority request was received and has been queued <br> 
+<td>received: A new priority request was received <br> 
+rejected: The priority request was rejected <br> 
+cooldown: The priority request was rejected because maximum number of requests reached within time frame <br> 
+queued: The priority request has been queued <br> 
 activated: The priority was activated <br> 
 completed: The priority was cancelled (as expected) <br> 
-overridden: The priority was overridden by another request with a higher priority <br> 
 timeout: The priority has timed out because it was never cancelled</td>
 </tr>
 <tr class="row-odd"><td>o</td>
