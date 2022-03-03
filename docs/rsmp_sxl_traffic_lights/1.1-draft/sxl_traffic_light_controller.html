@@ -2505,12 +2505,11 @@ priority requests are activated or cancelled.</p>
 This is done regardless of whether the status is send in respond to a status request, or due to a
 status subscription, and also regardless of whether a status subscription uses an update interval,
 or send-on-change, or both.</p>
-<p>When a priority reached on of the end states ‘completed’, ‘timeout’, ‘rejected’, ‘cooldown’ or ‘removed’,
-it should be included once in the next status update, and then not anymore.</p>
 <p>If you subscribe using an update interval, you’re not guaranteed to get all intermediate states.
 To guarantee that, send-on-change must be used when subscribing.</p>
-<p>All events are send on every status update, regardless of whether an interval, or sendOnChange (or both) is used.
-Events that complete or timeout are send once, then removed from the list of events.</p>
+<p>All priorities are send on every status update, regardless of whether an interval, or sendOnChange (or both) is used.</p>
+<p>When a priority reaches an end states (completed, timeout, rejected, cooldown or stale), it must be
+sent once on the next status update, then removed from the list.</p>
 <p>A request always starts in the ‘received’ state. The following table shows the possible state transitions:</p>
 <div class="figure align-center" id="S0033requesttransitions">
 <center><table border="1" class="docutils">
@@ -2531,22 +2530,22 @@ Events that complete or timeout are send once, then removed from the list of eve
 <td>activated, timeout</td>
 </tr>
 <tr class="row-even"><td>activated</td>
-<td>completed, removed</td>
+<td>completed, stale</td>
 </tr>
 <tr class="row-odd"><td>completed</td>
-<td>(end state)</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>timeout</td>
-<td>(end state)</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>rejected</td>
-<td>(end state)</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>cooldown</td>
-<td>(end state)</td>
+<td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>removed</td>
-<td>(end state)</td>
+<tr class="row-odd"><td>stale</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -2570,7 +2569,7 @@ Events that complete or timeout are send once, then removed from the list of eve
 <tbody valign="top">
 <tr class="row-even"><td>status</td>
 <td>array</td>
-<td>[priorities]</td>
+<td>[list]</td>
 <td>List of priorities. See the table below for details.</td>
 </tr>
 </tbody>
@@ -2601,7 +2600,7 @@ Events that complete or timeout are send once, then removed from the list of eve
 <tr class="row-odd"><td>t</td>
 <td>string</td>
 <td>[timestamp]</td>
-<td>Timestamp. When the priority last changed state. <br> 
+<td>Timestamp, indicating when the priority last changed state. <br> 
 Format according to W3C XML dateTime with a resolution of 3 decimal places. <br> 
 All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
 </tr>
@@ -2614,7 +2613,7 @@ All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
 -timeout <br> 
 -rejected <br> 
 -cooldown <br> 
--removed</td>
+-stale</td>
 <td>received: A new priority request was received but has not yet been processed <br> 
 queued: The priority request has been queued for later activation <br> 
 activated: The priority was activated <br> 
@@ -2622,12 +2621,12 @@ completed: The priority was cancelled as expected <br>
 timeout: The priority has been queued for too long <br> 
 rejected: The priority request cannot be granted <br> 
 cooldown: A similar priority request means the priority request cannot be activated now <br> 
-removed: A prior request was not cancelled within a reasonable time and was therefore removed</td>
+stale: The priority has been active too long without cancellation, and was therefore removed</td>
 </tr>
 <tr class="row-odd"><td>g</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>(Optional) Estimated number of seconds actually gained by the priority <br> 
+<td>(Optional) Estimated number of seconds of green time gained by the priority. <br> 
 Only used when state is ‘completed’.</td>
 </tr>
 </tbody>
