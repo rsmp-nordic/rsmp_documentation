@@ -2623,10 +2623,16 @@ rejected: The priority request cannot be granted <br>
 cooldown: A similar priority request means the priority request cannot be activated now <br> 
 stale: The priority has been active too long without cancellation, and was therefore removed</td>
 </tr>
-<tr class="row-odd"><td>g</td>
+<tr class="row-odd"><td>e</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>(Optional) Estimated number of seconds of green time gained by the priority. <br> 
+<td>(Optional) Estimated green extension provided by the priority, in seconds <br> 
+Only used when state is ‘completed’.</td>
+</tr>
+<tr class="row-even"><td>d</td>
+<td>integer</td>
+<td>[0-255]</td>
+<td>(Optional) Estimated red reduction provided by the priority, in seconds <br> 
 Only used when state is ‘completed’.</td>
 </tr>
 </tbody>
@@ -4533,15 +4539,17 @@ cancel: Cancel an existing priority</td>
 </tr>
 <tr class="row-odd"><td>vehicleType</td>
 <td>string</td>
-<td>-car <br> 
--bus <br> 
+<td>-pedestrian <br> 
 -bicycle <br> 
--pedestrian <br> 
--twoWheeler <br> 
+-motorcycle <br> 
+-car <br> 
+-bus <br> 
 -lightTruck <br> 
 -heavyTruck <br> 
 -tram <br> 
 -emergencyVehicle <br> 
+-safetyCar <br> 
+-specialTransport <br> 
 -other</td>
 <td>(Optional) Vehicle type</td>
 </tr>
