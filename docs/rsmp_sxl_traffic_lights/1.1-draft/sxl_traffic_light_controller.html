@@ -4409,7 +4409,7 @@ currently active, it can be queued for later activation.</p>
 s similar request has just completed, and some time needs to pass before a similar request can be activated.</p>
 <p>When a request is queued, it is expected to become activated later, but in case too long passes without
 activation, the controller is expected to time out the request.</p>
-<p>Once a priority is activated, you’re excepted to cancel it as soon as there’s no need it anymore, typically
+<p>Once a priority is activated, you’re excepted to cancel it as soon as there’s no need for it anymore, typically
 when the vehicle has passed the intersection. You cancel a request by sending a request passing the
 existing request id setting the type to ‘cancel’.</p>
 <p>If a request is never cancelled, the controller is expected to remove the priority at some point,
@@ -4515,7 +4515,8 @@ heavyTruck: Heavy truck <br>
 tram: Trams used for Public transport <br> 
 emergency: Police, fire or ambulance <br> 
 safetyCar: For e.g. escort vehicles <br> 
-specialTransport: For e.g. heavy load</td>
+specialTransport: For e.g. heavy load <br> 
+other: Other type of vehicle</td>
 </tr>
 </tbody>
 </table>
