@@ -217,7 +217,9 @@ JSon boolean elements are used.</p>
 <p>The reason why JSon string elements are heavily used is to simplify
 deserialisation of values where the data type in unknown before casting is
 performed, for instance for the values in “return values”.</p>
-<p>Parsing needs to be performed case sensitive.</p>
+<p>Parsing needs to be performed case sensitive.
+All enum values (e.g. <a class="reference internal" href="#alarm-status"><span class="std std-ref">Alarm status</span></a>) must use the exact casing stated
+in this specification.</p>
 <p>Empty values are sent as <strong>“”</strong> for simple values and as <strong>[]</strong> for arrays.
 Optional values can be omitted, but can not be sent as <strong>null</strong> unless
 otherwise stated.</p>
