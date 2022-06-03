@@ -2514,6 +2514,8 @@ status subscription, and also regardless of whether a status subscription uses a
 or send-on-change, or both.</p>
 <p>If you subscribe using an update interval, you’re not guaranteed to get all intermediate states.
 To guarantee that, send-on-change must be used when subscribing.</p>
+<p>To understand how this status relates to ETSI/J2735, please see the
+<a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.</p>
 <p>All priorities are send on every status update, regardless of whether an interval, or sendOnChange (or both) is used.</p>
 <p>When a priority reaches an end states (completed, timeout, rejected, cooldown or stale), it must be
 sent once on the next status update, then removed from the list.</p>
@@ -3330,10 +3332,10 @@ Note: <br>
 <div class="figure align-center" id="Commands">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="21%" />
-<col width="13%" />
-<col width="18%" />
-<col width="47%" />
+<col width="22%" />
+<col width="14%" />
+<col width="20%" />
+<col width="44%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">ObjectType</th>
@@ -4356,6 +4358,8 @@ ss=sensitivity value</td>
 can specify a priority level, vehicle type and estimated time of arrival.
 You can also update or cancel the request, and use the corresponding status message
 to track the status of the request, including how much priority was actually given.</p>
+<p>To understand how this status relates to ETSI/J2735, please see the
+<a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.</p>
 <p>Activating signal priority is expected to provide more green time for a particular movement
 through the intersection, but the exact mechanism must typically be configured in the controller.</p>
 <p>The movement to prioritize can be referenced in a number of ways, depending on what is configured
