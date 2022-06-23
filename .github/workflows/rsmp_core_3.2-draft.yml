@@ -1,6 +1,6 @@
 # This workflow updates the sphinx documentation and builds a website
 
-name: Build Core 3.2-draft
+name: Build Core 3.2
 
 on:
   push:
@@ -21,24 +21,19 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
-        ref: 3.2-draft
-    - name: Add draft watermark to the PDF version
-      run: |
-        gawk -i inplace '{if ($0 ~ /draftwatermark/) {sub(/% /,"")}; print}' rsmp_core/source/style/rsmp.tex
-        gawk -i inplace '{if ($0 ~ /SetWatermarkText/) {sub(/% /,"")}; print}' rsmp_core/source/style/rsmp.tex
-        gawk -i inplace '{if ($0 ~ /SetWatermarkScale/) {sub(/% /,"")}; print}' rsmp_core/source/style/rsmp.tex
+        ref: 3.2
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
         make html latexpdf
     - name: Commit documentation changes
       run: |
-        mkdir -p docs/core/3.2-draft
-        cp -r rsmp_core/build/html/* docs/core/3.2-draft
+        mkdir -p docs/core/3.2
+        cp -r rsmp_core/build/html/* docs/core/3.2
         git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add docs/core/3.2-draft
+        git add docs/core/3.2
         git commit -m "Update documentation" -a || true
         # The above will fail if no changes were present, so
         # we ignore the return code.
