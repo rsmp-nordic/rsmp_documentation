@@ -20,8 +20,8 @@ This document contains examples for all message types.
 + `A0202 Less serious lamp error`_
 + `A0301 Detector error (hardware)`_
 + `A0302 Detector error (logic error)`_
-+ `A0303 Serious detector error (hardware)`
-+ `A0304 Serious detector error (logic error)`
++ `A0303 Serious detector error (hardware)`_
++ `A0304 Serious detector error (logic error)`_
 
 `Statuses`_
 
@@ -2148,7 +2148,7 @@ S0032 Coordinated control
         },{
                 "sCI":"S0032",
                 "n":"source"
-        ]}
+        }]
    }
 
 
@@ -2179,7 +2179,7 @@ S0032 Coordinated control
                 "n":"source",
                 "s":"calendar_clock",
                 "q":"recent"
-        ]}
+        }]
     }
 
 S0033 Signal Priority Status
@@ -2198,7 +2198,7 @@ S0033 Signal Priority Status
         "cId":"KK+AG9998=001TC000",
         "sS": [{
                 "sCI": "S0033",
-                "n": "events"
+                "n": "list"
         }]
     }
 
@@ -2216,14 +2216,20 @@ S0033 Signal Priority Status
         "sTs":"2021-12-13T11:11:07.317Z",
         "sS": [{
                 "sCI": "S0033",
-                "n": "events",
+                "n": "list",
                 "q": "recent",
                 "s": [{
                         "r": "f90c",
                         "t": "2021-11-09T15:06:38.796Z",
-                        "s": "queued"
+                        "s": "received"
                 },{
-                        "r": "f90c",
+                        "r": "uhnv",
+                        "t": "2021-11-09T15:04:12.348Z",
+                        "s": "completed",
+                        "e": "5",
+                        "d": "10"
+                },{
+                        "r": "oh0i",
                         "t": "2021-11-09T15:06:38.796Z",
                         "s": "activated"
                 },{
@@ -2231,12 +2237,11 @@ S0033 Signal Priority Status
                         "t": "2021-11-09T15:06:39.796Z",
                         "s": "completed"
                 },{
-                        "r": "e33a2",
+                        "r": "3ia2",
                         "t": "2021-11-09T15:06:48.796Z",
-                        "s": "overridden",
-                        "o": "ff30"
+                        "s": "queued",
                 },{
-                        "r": "58c0",
+                        "r": "5hc0",
                         "t": "2021-11-09T15:06:48.796Z",
                         "s": "timeout"
                 }]
@@ -4378,6 +4383,16 @@ M0022 Request Signal Priority
                 "v":"new"
         },{
                 "cCI":"M0022",
+                "n":"level",
+                "cO":"requestPriority",
+                "v":"14"
+        },{
+                "cCI":"M0022",
+                "n":"eta",
+                "cO":"requestPriority",
+                "v":"20"
+        },{
+                "cCI":"M0022",
                 "n":"vehicleType",
                 "cO":"requestPriority",
                 "v":"bus"
@@ -4410,6 +4425,16 @@ M0022 Request Signal Priority
                 "cCI":"M0022",
                 "n":"type",
                 "v":"new",
+                "age":"recent"
+        },{
+                "cCI":"M0022",
+                "n":"level",
+                "v":"14",
+                "age":"recent"
+        },{
+                "cCI":"M0022",
+                "n":"eta",
+                "v":"20",
                 "age":"recent"
         },{
                 "cCI":"M0022",

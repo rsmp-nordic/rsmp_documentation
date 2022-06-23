@@ -514,7 +514,12 @@ Can be used to draw a live signal group diagram as well provide diagnostic infor
                                         |br|
                                         Used for handling of coordination between TLC's. |br|
                                         Is counted from 0 until it reaches the cycle time (See S0028). |br|
-                                        Cycle counter is the "base cycle counter" + "offset time" (See S0024) |br|
+                                        :math:`{c=(b+o)\mod t}` |br|
+                                        where c = cycle counter, |br|
+                                        b = base cycle counter, |br|
+                                        o = offset, |br|
+                                        t = cycle time, |br|
+                                        mod = modulo |br|
                                         |br|
                                         See the coordination section for more information.
    basecyclecounter   integer  [0-999]  Base cycle counter |br|
@@ -582,7 +587,7 @@ Input is used where the traffic light controller must react to external control.
                                          0 = Input is not active |br|
                                          1 = Input is active |br|
                                          - = Input is undefined/does not exist
-   extendedinputstatus  string  [text]   Extended input status as text field |br|
+   extendedinputstatus  string  [text]   ``Deprecated`` Extended input status as text field |br|
                                          |br|
                                          Each character represent the state of the extended input status in consecutive order. |br|
                                          0 = Input is not active |br|
@@ -617,7 +622,7 @@ Can be used for all types of output where the traffic light controller needs to 
                                           0 = Output is not active |br|
                                           1 = Output is active |br|
                                           - = Output is undefined/does not exist
-   extendedoutputstatus  string  [text]   Output status as text field |br|
+   extendedoutputstatus  string  [text]   ``Deprecated`` Output status as text field |br|
                                           |br|
                                           Each character represent the state of the exteded output status in consecutive order. |br|
                                           0 = Output is not active |br|
@@ -688,8 +693,8 @@ Used to determine if the controller is operating, e.g. it shows red, green or ye
 
 During maintenance work the controller might be using dark mode (no output to the signal heads).
 
-Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. "1,2" and "True,False"
+Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. "0" and "True" (one intersection) or "1,2" and "True,False" (two intersections).
 
 
 
@@ -726,8 +731,8 @@ Traffic control deactivated in controller
 
 Signal timings is controlled manually by service personnel using the operating panel of the controller.
 
-Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. "1,2" and "True,False"
+Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. "0" and "True" (one intersection) or "1,2" and "True,False" (two intersections).
 
 
 .. figtable::
@@ -763,8 +768,8 @@ Traffic actuated control deactivated and a pre-timed control is used.
 
 Usually only used in case normal detectors can't be used, e.g. during maintenance work.
 
-Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. "1,2" and "True,False"
+Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. "0" and "True" (one intersection) or "1,2" and "True,False" (two intersections).
 
 
 .. figtable::
@@ -796,12 +801,11 @@ S0010
 
 Isolated control
 
-Isolated control mode indicates that the controller operates independently of any other traffic light controllers. This may different depending on traffic program (time plan).
+Isolated control mode indicates that the controller operates independently of any other traffic light controller.
+This control mode may be active or not depending on the current traffic program (time plan).
 
-Used to determine if the controller is operating independently or operating with other controllers (coordination).
-
-Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. "1,2" and "True,False"
+Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. "0" and "True" (one intersection) or "1,2" and "True,False" (two intersections).
 
 
 .. figtable::
@@ -1500,26 +1504,65 @@ Signal Priority Status
 This status can be used to get updates about priority requests. For example, you can use it to know when
 priority requests are activated or cancelled.
 
-A list of priority events is returned. Each event refer to a particular request, using a requestId.
-Several events can refer to the same request, for example if the request was first enqueued, then activated.
+A list of priorities is returned, referred to by their request ids. The same request id can appear only once.
 
+All priorities are included in the list (not only the ones that have changed state since the last update).
+This is done regardless of whether the status is send in respond to a status request, or due to a
+status subscription, and also regardless of whether a status subscription uses an update interval,
+or send-on-change, or both.
+
+If you subscribe using an update interval, you're not guaranteed to get all intermediate states.
+To guarantee that, send-on-change must be used when subscribing.
+
+To understand how this status relates to ETSI/J2735, please see the
+`wiki <https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735>`_.
+
+All priorities are send on every status update, regardless of whether an interval, or sendOnChange (or both) is used.
+
+When a priority reaches an end states (completed, timeout, rejected, cooldown or stale), it must be
+sent once on the next status update, then removed from the list.
+
+A request always starts in the 'received' state. The following table shows the possible state transitions:
 
 .. figtable::
    :nofig:
-   :label: S0033 event array
-   :caption: S0033 event array
+   :label: S0033 request transitions
+   :caption: S0033 request transitions
+   :loc: H
+   :spec: >{\raggedright\arraybackslash}p{0.15\linewidth} p{0.50\linewidth}
+   
+   ==========  =====================================
+   State       Possible next states
+   ==========  =====================================
+   received    queued, activated, rejected, cooldown
+   queued      activated, timeout
+   activated   completed, stale
+   completed
+   timeout
+   rejected
+   cooldown
+   stale
+   ==========  =====================================
+..
+
+The priorities are passed as an array:
+
+.. figtable::
+   :nofig:
+   :label: S0033 priority array
+   :caption: S0033 priority array
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.15\linewidth} p{0.08\linewidth} p{0.13\linewidth} p{0.50\linewidth}
 
    ==========  =======  ===============  ==============================================================================
    Name        Type     Value            Comment
    ==========  =======  ===============  ==============================================================================
-   status      array    [events]         List of events. See the table below for details.
+   status      array    [list]           List of priorities. See the table below for details.
    ==========  =======  ===============  ==============================================================================
 ..
 
 
-Each event is passed as a hash with the following attributes:
+Each priority is passed as a hash with the following attributes:
 
 
 .. figtable::
@@ -1529,21 +1572,26 @@ Each event is passed as a hash with the following attributes:
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.15\linewidth} p{0.08\linewidth} p{0.13\linewidth} p{0.50\linewidth}
 
-   ======  =======  ================  =================================================================================================================================
-   Name    Type     Value             Comment
-   ======  =======  ================  =================================================================================================================================
-   r       string   [id]              ID of the priority request
-   t       string   [timestamp]       Timestamp. When the event happened. |br|
-                                      Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z
-   s       string   -queued |br|      queued: A new priority request was received and has been queued |br|
-                    -activated |br|   activated: The priority was activated |br|
-                    -completed |br|   completed: The priority was cancelled (as expected) |br|
-                    -overridden |br|  overridden: The priority was overridden by another request with a higher priority |br|
-                    -timeout          timeout: The priority has timed out because it was never cancelled
-   o       string   [id]              (Optional) ID of the overriding priority request. Only used if status is set to overridden
-   g       integer  [0-255]           (Optional) Actual number of seconds gained by the priority |br|
-                                      Only used when status is complete, override or timeout.
-   ======  =======  ================  =================================================================================================================================
+   ======  =======  ===============  ============================================================================================
+   Name    Type     Value            Comment
+   ======  =======  ===============  ============================================================================================
+   r       string   [id]             ID of the priority request
+   t       string   [timestamp]      Timestamp, indicating when the priority last changed state. |br|
+                                     Format according to W3C XML dateTime with a resolution of 3 decimal places. |br|
+                                     All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z
+   s       string   -received |br|   received: A new priority request was received but has not yet been processed |br|
+                    -queued |br|     queued: The priority request has been queued for later activation |br|
+                    -activated |br|  activated: The priority was activated |br|
+                    -completed |br|  completed: The priority was cancelled as expected |br|
+                    -timeout |br|    timeout: The priority has been queued for too long |br|
+                    -rejected |br|   rejected: The priority request cannot be granted |br|
+                    -cooldown |br|   cooldown: A similar priority request means the priority request cannot be activated now |br|
+                    -stale           stale: The priority has been active too long without cancellation, and was therefore removed
+   e       integer  [0-255]          (Optional) Estimated green extension provided by the priority, in seconds |br|
+                                     Only used when state is 'completed'.
+   d       integer  [0-255]          (Optional) Estimated red reduction provided by the priority, in seconds |br|
+                                     Only used when state is 'completed'.
+   ======  =======  ===============  ============================================================================================
 ..
 
 S0034
@@ -1600,7 +1648,7 @@ S0092
 
 Operator logged in/out web-interface
 
-Provides information if maintenance personnel is currently working with the controller.
+Provides information about whether maintenance personnel is currently working with the controller.
 
 
 .. figtable::
@@ -1705,7 +1753,8 @@ For instance, depending on controller, maintenance personnel can modify traffic 
                                     - other device settings that are not part of the signal program |br|
                                     |br|
                                     Note: |br|
-                                    - The checksum should be calculated using the same data as used in S0098
+                                    The checksum should be calculated using the same data as used in S0098 |br|
+                                    Downloaded data with S0098, hashed with SHA-2, should match this value.
    timestamp  string  [time stamp]  Time stamp of the checksum. Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z
    =========  ======  ============  =============================================================================================================================================================
 ..
@@ -1999,9 +2048,9 @@ Commands
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.24\linewidth} p{0.15\linewidth} p{0.21\linewidth} p{0.21\linewidth}
 
-   ========================  ===============  =====================  ======================================================
+   ========================  ===============  =====================  ===============================================
    ObjectType                commandCodeId    Command                Description
-   ========================  ===============  =====================  ======================================================
+   ========================  ===============  =====================  ===============================================
    Traffic Light Controller  `M0001`_         setValue               Sets functional position
    Traffic Light Controller  `M0002`_         setPlan                Sets current time plan
    Traffic Light Controller  `M0003`_         setTrafficSituation    Sets traffic situation the controller uses.
@@ -2010,9 +2059,9 @@ Commands
    Traffic Light Controller  `M0006`_         setInput               Activate input
    Traffic Light Controller  `M0007`_         setFixedTime           Activate fixed time control
    Detector logic            `M0008`_         setForceDetectorLogic  Sets manual activation of detector logic
-   Signal group              `M0010`_         setStart               Start of signal group. Orders a signal group to green.
-   Signal group              `M0011`_         setStop                Stop of signal group. Orders a signal group to red.
-   Traffic Light Controller  `M0012`_         setStart               Request start or stop of a series of signal groups.
+   Signal group              `M0010`_         setStart               ``Reserved``
+   Signal group              `M0011`_         setStop                ``Reserved``
+   Traffic Light Controller  `M0012`_         setStart               ``Reserved``
    Traffic Light Controller  `M0013`_         setInput               Activate a series of inputs
    Traffic Light Controller  `M0014`_         setCommands            Set dynamic bands
    Traffic Light Controller  `M0015`_         setOffset              Set Offset time
@@ -2026,7 +2075,7 @@ Commands
    Traffic Light Controller  `M0023`_         setTimeout             Set timeout for dynamic bands
    Traffic Light Controller  `M0103`_         setSecurityCode        Set security code
    Traffic Light Controller  `M0104`_         setDate                Set clock
-   ========================  ===============  =====================  ======================================================
+   ========================  ===============  =====================  ===============================================
 ..
 
 M0001
@@ -2037,7 +2086,6 @@ Sets functional position
 Sets the controller to yellow flash, dark mode or normal control.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2072,7 +2120,6 @@ Typical usages is scenario based control where change of program is used to chan
 This command changes the signal timings for optimal traffic flow.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2102,7 +2149,6 @@ Used for area-based control where a command can be sent to a master traffic ligh
 Traffic situation is a concept used to divide multiple TLC's into areas and sub-areas. The traffic situation gives the possibility to change the TLC sub-area dynamically depending on the time of day and the traffic flow. Depending on the traffic situation each TLC selects the time plan dynamically.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2130,7 +2176,6 @@ Restarts Traffic Light Controller
 Used in the event of serious faults in the device where a restart is considered to be able to remedy a problem.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2159,7 +2204,6 @@ The function is made for emergency prioritization. Works in the same way as the 
 Should be used in situations where full priority is given in the emergency vehicle program.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2193,7 +2237,6 @@ Can be used for all types of input where the traffic light controller must react
 Typical usages are bus priority, coordination between traffic controllers, external control systems, and much more.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2223,7 +2266,6 @@ Deactivates the traffic actuated control using detectors and activates pre-timed
 Can be used in case normal detectors can't be used, e.g. during maintenance work.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2252,7 +2294,6 @@ Set given detector logic (1-255) to either true or false.
 Can e.g. be used to connect RSMP compatible detection equipment to the traffic light controller. Can also be used for prioritization.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2276,14 +2317,7 @@ If the incorrect security code is used then the TLC replies with ``MessageNotAck
 M0010
 ^^^^^
 
-Start of signal group. Orders a signal group to green.
-
-Although this command is intended to be used with coordination it is not actually specified to be used for this yet. It is reserved in the SXL for possible future use.
-
-Intended for use with coordination of signaling systems where a traffic light controller communicates with neighboring controllers. Only used when a primary controller orders signal group of other controller to green or red (Coordination with external control bits).
-
-Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
+``Reserved``
 
 
 .. figtable::
@@ -2293,26 +2327,19 @@ If the incorrect security code is used then the TLC replies with ``MessageNotAck
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.14\linewidth} p{0.07\linewidth} p{0.20\linewidth} p{0.45\linewidth}
 
-   ============  =======  ===========  ===================================
+   ============  =======  ===========  ===============
    Name          Type     Value        Comment
-   ============  =======  ===========  ===================================
-   status        boolean  -False |br|  False: No command (default) |br|
-                          -True        True: Order a signal group to green
+   ============  =======  ===========  ===============
+   status        boolean  -False |br|  ``Reserved``
+                          -True
    securityCode  string   [text]       Security code 2
-   ============  =======  ===========  ===================================
+   ============  =======  ===========  ===============
 ..
 
 M0011
 ^^^^^
 
-Stop of signal group. Orders a signal group to red.
-
-Although this command is intended to be used with coordination it is not actually specified to be used for this yet. It is reserved in the SXL for possible future use.
-
-Intended for use with coordination of signaling systems where a traffic light controller communicates with neighboring controllers. Only used when a primary controller orders signal group of other controller to green or red (Coordination with external control bits).
-
-Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
+``Reserved``
 
 
 .. figtable::
@@ -2322,34 +2349,19 @@ If the incorrect security code is used then the TLC replies with ``MessageNotAck
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.14\linewidth} p{0.07\linewidth} p{0.20\linewidth} p{0.45\linewidth}
 
-   ============  =======  ===========  =================================
+   ============  =======  ===========  ===============
    Name          Type     Value        Comment
-   ============  =======  ===========  =================================
-   status        boolean  -False |br|  False: No command (default) |br|
-                          -True        True: Order a signal group to red
+   ============  =======  ===========  ===============
+   status        boolean  -False |br|  ``Reserved``
+                          -True
    securityCode  string   [text]       Security code 2
-   ============  =======  ===========  =================================
+   ============  =======  ===========  ===============
 ..
 
 M0012
 ^^^^^
 
-Request start or stop of a series of signal groups.
-
-Starts or stops several signal groups.
-
-This command was introduced due to coordination requirements needing to set many signal groups to green and red at the same time and M0010 and M0012 being to slow to send a message for each signal group individually.
-
-Although this command is intended to be used with coordination it is not actually specified to be used for this yet. It is reserved in the SXL for possible future use.
-
-Intended for use with coordination of signaling systems where a traffic light controller communicates with neighboring controllers.
-
-Only used when a primary controller orders signal group of other controller to green or red (Coordination with external control bits).
-
-May also include purposes for adaptive control where a UTC system or a local traffic light controller takes over the phase control (stage control).
-
-Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
+``Reserved``
 
 
 .. figtable::
@@ -2359,32 +2371,12 @@ If the incorrect security code is used then the TLC replies with ``MessageNotAck
    :loc: H
    :spec: >{\raggedright\arraybackslash}p{0.14\linewidth} p{0.07\linewidth} p{0.20\linewidth} p{0.45\linewidth}
 
-   ============  ======  =======  =======================================================================================================================================================================================================================
+   ============  ======  =======  ===============
    Name          Type    Value    Comment
-   ============  ======  =======  =======================================================================================================================================================================================================================
-   status        string  [text]   Orders signal groups to green or red. Sets a block of 16 signal groups at a time. Can be repeated to set several blocks of 16 signal groups. Values are separated with comma. Blocks are separated with semicolon. |br|
-                                  |br|
-                                  1=Order signal group to green |br|
-                                  0=Order signal group to red |br|
-                                  |br|
-                                  Format: [Offset],[Bits to set],[Bits to unset]:… |br|
-                                  |br|
-                                  Offset sets where the 16 inputs starts from followed by two 16 bit values telling which bit to set and unset in binary format, i.e. first bit have value 1 and last bit have value 32768. |br|
-                                  |br|
-                                  Example 1: |br|
-                                  "5, 4134, 65" sets input 6,7,10,17 = on and 5,11 = off |br|
-                                  (Input starts from no. 5 and bit 1,2,5,12 = 1 and bit 0,6 = 0) |br|
-                                  |br|
-                                  Example 2: |br|
-                                  "22, 1, 4" sets input 22 = on and 24 = off |br|
-                                  (Input starts from no. 22 and bit 0 = 1 and bit 2 = 0) |br|
-                                  |br|
-                                  And both these examples could be sent in the same message as: |br|
-                                  "5,4143,65;22,1,4" |br|
-                                  |br|
-                                  Such a message would order signal group 6,7,10,17,22 to green and signal group 5,11,24 to red
+   ============  ======  =======  ===============
+   status        string  [text]   ``Reserved``
    securityCode  string  [text]   Security code 2
-   ============  ======  =======  =======================================================================================================================================================================================================================
+   ============  ======  =======  ===============
 ..
 
 M0013
@@ -2395,7 +2387,6 @@ Activate a series of inputs
 Set given inputs (1-255) of the controllers general purpose I/O to either true or false. This command was introduced due to coordination requirements needing to set many inputs to true/false at the same time and M0006 being to slow to send a message for each input individually. With this command many inputs can be set to true/false at the same time using a single command message. It can be used for all types of input where the traffic light controller must react to external control. Typical usages are bus priority, coordination between traffic controllers, external control systems, and much more.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 The parameter 'status' sets/unsets a block of 16 inputs at a time. It can be repeated to set several blocks of 16 inputs. Values are separated with comma. Blocks are separated with semicolon.
 Format: [Offset];[Bits to set];[Bits to unset];…
@@ -2455,7 +2446,6 @@ Can be used to change between predefined signal timings. Moves the start of sign
 This command can be used to change the split of green time during the cycle. A typical usage is scenario based control where changing of signal timings is used for optimal traffic flow.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2492,7 +2482,6 @@ Offset time is used to define an offset between intersections in coordinated con
 This command can be used to fine tune the coordination for optimal traffic flow.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2521,7 +2510,6 @@ Set which time table for signal programs to use for each day during a week.
 This command changes the signal timings during the week for optimal traffic flow.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2566,7 +2554,6 @@ Set time of day for when to automatically switch signal program (time plan).
 This command changes the signal timings according to time of day for optimal traffic flow.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2612,7 +2599,6 @@ Cycle time (or cycle length) is the sum of all phases in a time plan (traffic pr
 This command provides the ability to change the cycle time when using coordinated or fixed time control. It changes the timings for optimal traffic flow. Can be used with scenario based control.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2641,7 +2627,6 @@ Force a given input (1-255) of the controllers general purpose I/O to either Tru
 Can be used for bus priority, coordination between traffic controllers, external control systems, and much more.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2673,7 +2658,6 @@ Force a given output (1-255) of the controllers general purpose I/O to either Tr
 Can be used for bus priority, coordination between traffic controllers, external control systems, and much more.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2705,7 +2689,6 @@ The trigger level sensitivity determines at what level a loop detector should tr
 This command provides the ability to fine tune loop detectors to make sure they detect traffic as intended.
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2734,8 +2717,11 @@ Useful for bus priority or other type of priorities like emergency vehicles or g
 
 The benefit of using this message over activating inputs or detector logics is that you
 can specify a priority level, vehicle type and estimated time of arrival.
-You can also update or cancel the request, or use the corresponding status request or
-subscription to track the status of the request, including how much priority was actually given.
+You can also update or cancel the request, and use the corresponding status message
+to track the status of the request, including how much priority was actually given.
+
+To understand how this command relates to ETSI/J2735, please see the
+`wiki <https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735>`_.
 
 Activating signal priority is expected to provide more green time for a particular movement
 through the intersection, but the exact mechanism must typically be configured in the controller.
@@ -2747,7 +2733,7 @@ in the controller, and in the system that sends priority requests. Either:
   This method is simple, but will not allow you to have different priority mechanism for the
   same signal group, unless they can be distinguished by the vehicle type. For example, if you
   need to trigger different priorities depending on whether a bus goes straight or makes a turn
-  for the same signal group, you must use of the other referencing methods.
+  for the same signal group, you need to use of the other referencing methods.
 - Reference an input by setting 'inputId'. This can be useful if you previously used
   inputs to activate priority. The input will not be activated, only the priority.
 - Reference a connection by setting 'connectionId'. A connection is a movement from a specific
@@ -2756,7 +2742,8 @@ in the controller, and in the system that sends priority requests. Either:
 - Reference an ingoing lane by setting 'laneInId', and
   optionally also reference an outgoing lane by setting 'laneOutId'.
 
-Referencing attributes that are not used must be left out, rather than set to null or empty strings:
+Referencing attributes that are not used must be left out, rather than set to null or empty strings.
+This includes:
 
 - signalGroupId
 - inputId
@@ -2766,7 +2753,7 @@ Referencing attributes that are not used must be left out, rather than set to nu
 - laneOutId
 
 Referencing attributes are only used when initiating a request. When updating or cancelling the request,
-the request is identified by it's requestId, and no referencing attributes are allowed.
+the request is identified by its requestId, and no referencing attributes are allowed.
 
 You initiate a priority request with type set to 'new'. You must provide a request id that
 uniquely identifies the request on the controller. It can be a randomly generated UUID
@@ -2775,24 +2762,38 @@ and some other identifier. When updating or cancelling a request, you must pass 
 
 Providing ETA (estimated time of arrival) when initiating a request is optional,
 but can help the controller plan ahead in cases where you're able to send the request before
-the vehicle arrives at the intersection. You're allowed the initiate the request without an ETA
+the vehicle arrives at the intersection. You're allowed to initiate the request without an ETA
 and provide it in a later request update. But providing the ETA when initiating
 the request is recommended, since it will give the controller more time to plan ahead.
 
 Like ETA, providing a vehicle type is optional, but can help the controller decide how
-to best handle the request. If not vehicle type is provided.
+to best handle the request.
 
 The priority level provides a way to indicate the relative importance of the request compared
 to other requests. For example, emergency vehicles or delayed buses could be given a higher priority level.
-Another request with a higher level can override an existing priority with a lower level.
 
-If the ETA changes before the priority is cancelled, or you want to change the priority level, you send
+If the ETA changes before the priority is cancelled, or you want to change the priority level, you can send
 another request message with type set to 'update'. The vehicle type cannot be changed.
 
-A priority request should always be cancelled as soon as there's no need for the priority anymore
-(e.g. because the bus has passed the intersection). You cancel a request by sending another request
-message with type set to 'cancel'. If not cancelled, the controller is expected to time-out the priority
-at some point, but until then it might block requests in other direction.
+
+When you send a priority request, it will be processed to decide if it's possible to activate the requested priority.
+
+If the request is accepted, the priority can either be activated immediately, or if another priority is
+currently active, it can be queued for later activation.
+
+If the priority cannot be accepted the request is rejected. Cooldown is a specific type of rejection, which means that
+s similar request has just completed, and some time needs to pass before a similar request can be activated.
+
+When a request is queued, it is expected to become activated later, but in case too long passes without
+activation, the controller is expected to time out the request.
+
+Once a priority is activated, you're excepted to cancel it as soon as there's no need for it anymore, typically
+when the vehicle has passed the intersection. You cancel a request by sending a request passing the
+existing request id setting the type to 'cancel'.
+
+If a request is never cancelled, the controller is expected to remove the priority at some point,
+but until then the priority might block requests in other direction which is why you should always cancel a priority
+when it's not needed anymore.
 
 
 .. figtable::
@@ -2818,16 +2819,19 @@ at some point, but until then it might block requests in other direction.
                            -cancel                 cancel: Cancel an existing priority
    level          integer  [0-14]                  0: Lowest, 14: Highest
    eta            integer  [0-255]                 (Optional) Estimated time of arrival to the intersection, in seconds
-   vehicleType    string   -car |br|               (Optional) Vehicle type
-                           -bus |br|
-                           -bicycle |br|
-                           -pedestrian |br|
-                           -twoWheeler |br|
-                           -lightTruck |br|
-                           -heavyTruck |br|
-                           -tram |br|
-                           -emergencyVehicle |br|
-                           -other
+   vehicleType    string   -pedestrian |br|        (Optional) Vehicle type |br|
+                           -bicycle |br|           pedestrian: Pedestrians |br|
+                           -motorcycle |br|        bicycle: Bicycles |br|
+                           -car |br|               motorcycle: Motorcycles |br|
+                           -bus |br|               car: Passenger vehicle |br|
+                           -lightTruck |br|        bus: Bus used for public transport |br|
+                           -heavyTruck |br|        lightTruck: Light truck |br|
+                           -tram |br|              heavyTruck: Heavy truck |br|
+                           -emergency |br|         tram: Trams used for Public transport |br|
+                           -safetyCar |br|         emergency: Police, fire or ambulance |br|
+                           -specialTransport |br|  safetyCar: For e.g. escort vehicles |br|
+                           -other                  specialTransport: For e.g. heavy load |br|
+                                                   other: Other type of vehicle
    =============  =======  ======================  =========================================================================
 ..
 
@@ -2842,7 +2846,6 @@ Disable by setting timeout to '0'.
 Used in conjunction with dynamic bands, M0014
 
 Requires security code 2.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::
@@ -2895,7 +2898,6 @@ Set clock
 Can be used to manually set the clock of the traffic light controller if automatic  time synchronization (NTP or watchdog sync) is not available. For instance, during maintenance work.
 
 Requires security code 1.
-If the incorrect security code is used then the TLC replies with ``MessageNotAck`` where ``rea`` is set to ``Incorrect security code``.
 
 
 .. figtable::

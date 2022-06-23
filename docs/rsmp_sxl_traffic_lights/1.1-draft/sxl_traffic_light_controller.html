@@ -25,6 +25,7 @@
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -196,7 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="signal_group_status.html">3. Signal Group status</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traffic_data.html">4. Traffic data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coordination.html">5. Coordination between traffic light controllers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">6. JSon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_supervisors.html">6. Multiple supervisors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_codes.html">7. Security codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">8. JSon Examples</a></li>
 </ul>
 
             
@@ -1151,7 +1154,12 @@ Signal group status is described in detail in the corresponding section <br>
 <br> 
 Used for handling of coordination between TLC’s. <br> 
 Is counted from 0 until it reaches the cycle time (See S0028). <br> 
-Cycle counter is the “base cycle counter” + “offset time” (See S0024) <br> 
+<span class="math notranslate nohighlight">\({c=(b+o)\mod t}\)</span> <br> 
+where c = cycle counter, <br> 
+b = base cycle counter, <br> 
+o = offset, <br> 
+t = cycle time, <br> 
+mod = modulo <br> 
 <br> 
 See the coordination section for more information.</td>
 </tr>
@@ -1243,7 +1251,7 @@ Each character represent the state of the input in consecutive order. <br>
 <tr class="row-odd"><td>extendedinputstatus</td>
 <td>string</td>
 <td>[text]</td>
-<td>Extended input status as text field <br> 
+<td><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Extended input status as text field <br> 
 <br> 
 Each character represent the state of the extended input status in consecutive order. <br> 
 0 = Input is not active <br> 
@@ -1288,7 +1296,7 @@ Each character represent the state of the output status in consecutive order. <b
 <tr class="row-odd"><td>extendedoutputstatus</td>
 <td>string</td>
 <td>[text]</td>
-<td>Output status as text field <br> 
+<td><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Output status as text field <br> 
 <br> 
 Each character represent the state of the exteded output status in consecutive order. <br> 
 0 = Output is not active <br> 
@@ -1374,8 +1382,8 @@ True: Emergency stage active</td>
 <p>The controller is active and is not in dark mode.</p>
 <p>Used to determine if the controller is operating, e.g. it shows red, green or yellow to the vehicles.</p>
 <p>During maintenance work the controller might be using dark mode (no output to the signal heads).</p>
-<p>Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. “1,2” and “True,False”</p>
+<p>Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. “0” and “True” (one intersection) or “1,2” and “True,False” (two intersections).</p>
 <div class="figure align-center" id="S0007">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -1430,8 +1438,8 @@ other: Other reason</td>
 <p>Manual control</p>
 <p>Traffic control deactivated in controller</p>
 <p>Signal timings is controlled manually by service personnel using the operating panel of the controller.</p>
-<p>Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. “1,2” and “True,False”</p>
+<p>Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. “0” and “True” (one intersection) or “1,2” and “True,False” (two intersections).</p>
 <div class="figure align-center" id="S0008">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -1486,8 +1494,8 @@ other: Other reason</td>
 <p>Fixed time control</p>
 <p>Traffic actuated control deactivated and a pre-timed control is used.</p>
 <p>Usually only used in case normal detectors can’t be used, e.g. during maintenance work.</p>
-<p>Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. “1,2” and “True,False”</p>
+<p>Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. “0” and “True” (one intersection) or “1,2” and “True,False” (two intersections).</p>
 <div class="figure align-center" id="S0009">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -1540,10 +1548,10 @@ other: Other reason</td>
 <div class="section" id="s0010">
 <h3>2.4.10. S0010<a class="headerlink" href="#s0010" title="Permalink to this headline">¶</a></h3>
 <p>Isolated control</p>
-<p>Isolated control mode indicates that the controller operates independently of any other traffic light controllers. This may different depending on traffic program (time plan).</p>
-<p>Used to determine if the controller is operating independently or operating with other controllers (coordination).</p>
-<p>Please note that all values in this status uses comma-separated lists
-- one value for each intersection, e.g. “1,2” and “True,False”</p>
+<p>Isolated control mode indicates that the controller operates independently of any other traffic light controller.
+This control mode may be active or not depending on the current traffic program (time plan).</p>
+<p>Please note that all values in this status uses comma-separated lists - one value for each intersection,
+e.g. “0” and “True” (one intersection) or “1,2” and “True,False” (two intersections).</p>
 <div class="figure align-center" id="S0010">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -2499,9 +2507,60 @@ other: Other reason</td>
 <p>Signal Priority Status</p>
 <p>This status can be used to get updates about priority requests. For example, you can use it to know when
 priority requests are activated or cancelled.</p>
-<p>A list of priority events is returned. Each event refer to a particular request, using a requestId.
-Several events can refer to the same request, for example if the request was first enqueued, then activated.</p>
-<div class="figure align-center" id="S0033eventarray">
+<p>A list of priorities is returned, referred to by their request ids. The same request id can appear only once.</p>
+<p>All priorities are included in the list (not only the ones that have changed state since the last update).
+This is done regardless of whether the status is send in respond to a status request, or due to a
+status subscription, and also regardless of whether a status subscription uses an update interval,
+or send-on-change, or both.</p>
+<p>If you subscribe using an update interval, you’re not guaranteed to get all intermediate states.
+To guarantee that, send-on-change must be used when subscribing.</p>
+<p>To understand how this status relates to ETSI/J2735, please see the
+<a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.</p>
+<p>All priorities are send on every status update, regardless of whether an interval, or sendOnChange (or both) is used.</p>
+<p>When a priority reaches an end states (completed, timeout, rejected, cooldown or stale), it must be
+sent once on the next status update, then removed from the list.</p>
+<p>A request always starts in the ‘received’ state. The following table shows the possible state transitions:</p>
+<div class="figure align-center" id="S0033requesttransitions">
+<center><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">State</th>
+<th class="head">Possible next states</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>received</td>
+<td>queued, activated, rejected, cooldown</td>
+</tr>
+<tr class="row-odd"><td>queued</td>
+<td>activated, timeout</td>
+</tr>
+<tr class="row-even"><td>activated</td>
+<td>completed, stale</td>
+</tr>
+<tr class="row-odd"><td>completed</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>timeout</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>rejected</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>cooldown</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>stale</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033 request transitions</span></p>
+<span class="target" id="S0033requesttransitions"></span></center></div><p>The priorities are passed as an array:</p>
+<div class="figure align-center" id="S0033priorityarray">
 <center><table border="1" class="docutils">
 <colgroup>
 <col width="9%" />
@@ -2519,20 +2578,20 @@ Several events can refer to the same request, for example if the request was fir
 <tbody valign="top">
 <tr class="row-even"><td>status</td>
 <td>array</td>
-<td>[events]</td>
-<td>List of events. See the table below for details.</td>
+<td>[list]</td>
+<td>List of priorities. See the table below for details.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.47:</strong> S0033 event array</span></p>
-<span class="target" id="S0033eventarray"></span></center></div><p>Each event is passed as a hash with the following attributes:</p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.48:</strong> S0033 priority array</span></p>
+<span class="target" id="S0033priorityarray"></span></center></div><p>Each priority is passed as a hash with the following attributes:</p>
 <div class="figure align-center" id="S0033">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="4%" />
-<col width="4%" />
-<col width="10%" />
-<col width="82%" />
+<col width="5%" />
+<col width="6%" />
+<col width="13%" />
+<col width="77%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -2550,36 +2609,44 @@ Several events can refer to the same request, for example if the request was fir
 <tr class="row-odd"><td>t</td>
 <td>string</td>
 <td>[timestamp]</td>
-<td>Timestamp. When the event happened. <br> 
-Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
+<td>Timestamp, indicating when the priority last changed state. <br> 
+Format according to W3C XML dateTime with a resolution of 3 decimal places. <br> 
+All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</td>
 </tr>
 <tr class="row-even"><td>s</td>
 <td>string</td>
-<td>-queued <br> 
+<td>-received <br> 
+-queued <br> 
 -activated <br> 
 -completed <br> 
--overridden <br> 
--timeout</td>
-<td>queued: A new priority request was received and has been queued <br> 
+-timeout <br> 
+-rejected <br> 
+-cooldown <br> 
+-stale</td>
+<td>received: A new priority request was received but has not yet been processed <br> 
+queued: The priority request has been queued for later activation <br> 
 activated: The priority was activated <br> 
-completed: The priority was cancelled (as expected) <br> 
-overridden: The priority was overridden by another request with a higher priority <br> 
-timeout: The priority has timed out because it was never cancelled</td>
+completed: The priority was cancelled as expected <br> 
+timeout: The priority has been queued for too long <br> 
+rejected: The priority request cannot be granted <br> 
+cooldown: A similar priority request means the priority request cannot be activated now <br> 
+stale: The priority has been active too long without cancellation, and was therefore removed</td>
 </tr>
-<tr class="row-odd"><td>o</td>
-<td>string</td>
-<td>[id]</td>
-<td>(Optional) ID of the overriding priority request. Only used if status is set to overridden</td>
-</tr>
-<tr class="row-even"><td>g</td>
+<tr class="row-odd"><td>e</td>
 <td>integer</td>
 <td>[0-255]</td>
-<td>(Optional) Actual number of seconds gained by the priority <br> 
-Only used when status is complete, override or timeout.</td>
+<td>(Optional) Estimated green extension provided by the priority, in seconds <br> 
+Only used when state is ‘completed’.</td>
+</tr>
+<tr class="row-even"><td>d</td>
+<td>integer</td>
+<td>[0-255]</td>
+<td>(Optional) Estimated red reduction provided by the priority, in seconds <br> 
+Only used when state is ‘completed’.</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.48:</strong> S0033</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.49:</strong> S0033</span></p>
 <span class="target" id="S0033"></span></center></div></div>
 <div class="section" id="s0034">
 <h3>2.4.34. S0034<a class="headerlink" href="#s0034" title="Permalink to this headline">¶</a></h3>
@@ -2610,7 +2677,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.49:</strong> S0034</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.50:</strong> S0034</span></p>
 <span class="target" id="S0034"></span></center></div></div>
 <div class="section" id="s0091">
 <h3>2.4.35. S0091<a class="headerlink" href="#s0091" title="Permalink to this headline">¶</a></h3>
@@ -2643,12 +2710,12 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.50:</strong> S0091</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.51:</strong> S0091</span></p>
 <span class="target" id="S0091"></span></center></div></div>
 <div class="section" id="s0092">
 <h3>2.4.36. S0092<a class="headerlink" href="#s0092" title="Permalink to this headline">¶</a></h3>
 <p>Operator logged in/out web-interface</p>
-<p>Provides information if maintenance personnel is currently working with the controller.</p>
+<p>Provides information about whether maintenance personnel is currently working with the controller.</p>
 <div class="figure align-center" id="S0092">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -2676,7 +2743,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.51:</strong> S0092</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.52:</strong> S0092</span></p>
 <span class="target" id="S0092"></span></center></div></div>
 <div class="section" id="s0095">
 <h3>2.4.37. S0095<a class="headerlink" href="#s0095" title="Permalink to this headline">¶</a></h3>
@@ -2705,7 +2772,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.52:</strong> S0095</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.53:</strong> S0095</span></p>
 <span class="target" id="S0095"></span></center></div></div>
 <div class="section" id="s0096">
 <h3>2.4.38. S0096<a class="headerlink" href="#s0096" title="Permalink to this headline">¶</a></h3>
@@ -2759,7 +2826,7 @@ Disabled if set to ‘0’.</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.53:</strong> S0096</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.54:</strong> S0096</span></p>
 <span class="target" id="S0096"></span></center></div></div>
 <div class="section" id="s0097">
 <h3>2.4.39. S0097<a class="headerlink" href="#s0097" title="Permalink to this headline">¶</a></h3>
@@ -2802,7 +2869,8 @@ It should NOT include: <br>
 - other device settings that are not part of the signal program <br> 
 <br> 
 Note: <br> 
-- The checksum should be calculated using the same data as used in S0098</td>
+The checksum should be calculated using the same data as used in S0098 <br> 
+Downloaded data with S0098, hashed with SHA-2, should match this value.</td>
 </tr>
 <tr class="row-odd"><td>timestamp</td>
 <td>string</td>
@@ -2811,7 +2879,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.54:</strong> S0097</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.55:</strong> S0097</span></p>
 <span class="target" id="S0097"></span></center></div></div>
 <div class="section" id="s0098">
 <h3>2.4.40. S0098<a class="headerlink" href="#s0098" title="Permalink to this headline">¶</a></h3>
@@ -2868,7 +2936,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.55:</strong> S0098</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.56:</strong> S0098</span></p>
 <span class="target" id="S0098"></span></center></div></div>
 <div class="section" id="s0201">
 <h3>2.4.41. S0201<a class="headerlink" href="#s0201" title="Permalink to this headline">¶</a></h3>
@@ -2902,7 +2970,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.56:</strong> S0201</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.57:</strong> S0201</span></p>
 <span class="target" id="S0201"></span></center></div></div>
 <div class="section" id="s0202">
 <h3>2.4.42. S0202<a class="headerlink" href="#s0202" title="Permalink to this headline">¶</a></h3>
@@ -2936,7 +3004,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.57:</strong> S0202</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.58:</strong> S0202</span></p>
 <span class="target" id="S0202"></span></center></div></div>
 <div class="section" id="s0203">
 <h3>2.4.43. S0203<a class="headerlink" href="#s0203" title="Permalink to this headline">¶</a></h3>
@@ -2970,7 +3038,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.58:</strong> S0203</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.59:</strong> S0203</span></p>
 <span class="target" id="S0203"></span></center></div></div>
 <div class="section" id="s0204">
 <h3>2.4.44. S0204<a class="headerlink" href="#s0204" title="Permalink to this headline">¶</a></h3>
@@ -3044,7 +3112,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.59:</strong> S0204</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.60:</strong> S0204</span></p>
 <span class="target" id="S0204"></span></center></div></div>
 <div class="section" id="s0205">
 <h3>2.4.45. S0205<a class="headerlink" href="#s0205" title="Permalink to this headline">¶</a></h3>
@@ -3081,7 +3149,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.60:</strong> S0205</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.61:</strong> S0205</span></p>
 <span class="target" id="S0205"></span></center></div></div>
 <div class="section" id="s0206">
 <h3>2.4.46. S0206<a class="headerlink" href="#s0206" title="Permalink to this headline">¶</a></h3>
@@ -3118,7 +3186,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.61:</strong> S0206</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.62:</strong> S0206</span></p>
 <span class="target" id="S0206"></span></center></div></div>
 <div class="section" id="s0207">
 <h3>2.4.47. S0207<a class="headerlink" href="#s0207" title="Permalink to this headline">¶</a></h3>
@@ -3155,7 +3223,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.62:</strong> S0207</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.63:</strong> S0207</span></p>
 <span class="target" id="S0207"></span></center></div></div>
 <div class="section" id="s0208">
 <h3>2.4.48. S0208<a class="headerlink" href="#s0208" title="Permalink to this headline">¶</a></h3>
@@ -3256,7 +3324,7 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.63:</strong> S0208</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.64:</strong> S0208</span></p>
 <span class="target" id="S0208"></span></center></div></div>
 </div>
 <div class="section" id="commands">
@@ -3264,10 +3332,10 @@ Note: <br>
 <div class="figure align-center" id="Commands">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="21%" />
-<col width="13%" />
-<col width="18%" />
-<col width="47%" />
+<col width="22%" />
+<col width="14%" />
+<col width="20%" />
+<col width="44%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">ObjectType</th>
@@ -3320,17 +3388,17 @@ Note: <br>
 <tr class="row-even"><td>Signal group</td>
 <td><a class="reference internal" href="#m0010">M0010</a></td>
 <td>setStart</td>
-<td>Start of signal group. Orders a signal group to green.</td>
+<td><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></td>
 </tr>
 <tr class="row-odd"><td>Signal group</td>
 <td><a class="reference internal" href="#m0011">M0011</a></td>
 <td>setStop</td>
-<td>Stop of signal group. Orders a signal group to red.</td>
+<td><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></td>
 </tr>
 <tr class="row-even"><td>Traffic Light Controller</td>
 <td><a class="reference internal" href="#m0012">M0012</a></td>
 <td>setStart</td>
-<td>Request start or stop of a series of signal groups.</td>
+<td><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></td>
 </tr>
 <tr class="row-odd"><td>Traffic Light Controller</td>
 <td><a class="reference internal" href="#m0013">M0013</a></td>
@@ -3399,13 +3467,12 @@ Note: <br>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.64:</strong> Commands</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.65:</strong> Commands</span></p>
 <span class="target" id="Commands"></span></center></div><div class="section" id="m0001">
 <h3>2.5.1. M0001<a class="headerlink" href="#m0001" title="Permalink to this headline">¶</a></h3>
 <p>Sets functional position</p>
 <p>Sets the controller to yellow flash, dark mode or normal control.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0001">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3449,7 +3516,7 @@ Dark: Enables dark mode</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.65:</strong> M0001</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.66:</strong> M0001</span></p>
 <span class="target" id="M0001"></span></center></div></div>
 <div class="section" id="m0002">
 <h3>2.5.2. M0002<a class="headerlink" href="#m0002" title="Permalink to this headline">¶</a></h3>
@@ -3457,8 +3524,7 @@ Dark: Enables dark mode</td>
 <p>Change of traffic program of the traffic light controller.</p>
 <p>Typical usages is scenario based control where change of program is used to change signal timings etc.</p>
 <p>This command changes the signal timings for optimal traffic flow.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0002">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3494,15 +3560,14 @@ True: Controller uses time plan according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.66:</strong> M0002</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.67:</strong> M0002</span></p>
 <span class="target" id="M0002"></span></center></div></div>
 <div class="section" id="m0003">
 <h3>2.5.3. M0003<a class="headerlink" href="#m0003" title="Permalink to this headline">¶</a></h3>
 <p>Sets traffic situation the controller uses.</p>
 <p>Used for area-based control where a command can be sent to a master traffic light controller about which predefined traffic situation to use (1-255).</p>
 <p>Traffic situation is a concept used to divide multiple TLC’s into areas and sub-areas. The traffic situation gives the possibility to change the TLC sub-area dynamically depending on the time of day and the traffic flow. Depending on the traffic situation each TLC selects the time plan dynamically.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0003">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3538,14 +3603,13 @@ True: Controller uses traffic situation according to command</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.67:</strong> M0003</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.68:</strong> M0003</span></p>
 <span class="target" id="M0003"></span></center></div></div>
 <div class="section" id="m0004">
 <h3>2.5.4. M0004<a class="headerlink" href="#m0004" title="Permalink to this headline">¶</a></h3>
 <p>Restarts Traffic Light Controller</p>
 <p>Used in the event of serious faults in the device where a restart is considered to be able to remedy a problem.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0004">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3575,15 +3639,14 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.68:</strong> M0004</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.69:</strong> M0004</span></p>
 <span class="target" id="M0004"></span></center></div></div>
 <div class="section" id="m0005">
 <h3>2.5.5. M0005<a class="headerlink" href="#m0005" title="Permalink to this headline">¶</a></h3>
 <p>Activate emergency route</p>
 <p>The function is made for emergency prioritization. Works in the same way as the M0006 and M0008 where the traffic light controller responds to an input.</p>
 <p>Should be used in situations where full priority is given in the emergency vehicle program.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0005">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3619,7 +3682,7 @@ True: Activate emergency route</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.69:</strong> M0005</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.70:</strong> M0005</span></p>
 <span class="target" id="M0005"></span></center></div></div>
 <div class="section" id="m0006">
 <h3>2.5.6. M0006<a class="headerlink" href="#m0006" title="Permalink to this headline">¶</a></h3>
@@ -3628,8 +3691,7 @@ True: Activate emergency route</td>
 <p>The function can provide an input to the traffic light controller on which a predefined action can be taken.</p>
 <p>Can be used for all types of input where the traffic light controller must react to external control.</p>
 <p>Typical usages are bus priority, coordination between traffic controllers, external control systems, and much more.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0006">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3665,15 +3727,14 @@ True: Activate input</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.70:</strong> M0006</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.71:</strong> M0006</span></p>
 <span class="target" id="M0006"></span></center></div></div>
 <div class="section" id="m0007">
 <h3>2.5.7. M0007<a class="headerlink" href="#m0007" title="Permalink to this headline">¶</a></h3>
 <p>Activate fixed time control</p>
 <p>Deactivates the traffic actuated control using detectors and activates pre-timed control.</p>
 <p>Can be used in case normal detectors can’t be used, e.g. during maintenance work.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0007">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3704,15 +3765,14 @@ True: Activate fixed time control</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.71:</strong> M0007</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.72:</strong> M0007</span></p>
 <span class="target" id="M0007"></span></center></div></div>
 <div class="section" id="m0008">
 <h3>2.5.8. M0008<a class="headerlink" href="#m0008" title="Permalink to this headline">¶</a></h3>
 <p>Sets manual activation of detector logic</p>
 <p>Set given detector logic (1-255) to either true or false.</p>
 <p>Can e.g. be used to connect RSMP compatible detection equipment to the traffic light controller. Can also be used for prioritization.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0008">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -3750,22 +3810,18 @@ True: Activate detector logic</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.72:</strong> M0008</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.73:</strong> M0008</span></p>
 <span class="target" id="M0008"></span></center></div></div>
 <div class="section" id="m0010">
 <h3>2.5.9. M0010<a class="headerlink" href="#m0010" title="Permalink to this headline">¶</a></h3>
-<p>Start of signal group. Orders a signal group to green.</p>
-<p>Although this command is intended to be used with coordination it is not actually specified to be used for this yet. It is reserved in the SXL for possible future use.</p>
-<p>Intended for use with coordination of signaling systems where a traffic light controller communicates with neighboring controllers. Only used when a primary controller orders signal group of other controller to green or red (Coordination with external control bits).</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p>
 <div class="figure align-center" id="M0010">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="18%" />
-<col width="11%" />
-<col width="17%" />
-<col width="54%" />
+<col width="27%" />
+<col width="16%" />
+<col width="24%" />
+<col width="33%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -3779,8 +3835,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 <td>boolean</td>
 <td>-False <br> 
 -True</td>
-<td>False: No command (default) <br> 
-True: Order a signal group to green</td>
+<td><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></td>
 </tr>
 <tr class="row-odd"><td>securityCode</td>
 <td>string</td>
@@ -3789,22 +3844,18 @@ True: Order a signal group to green</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.73:</strong> M0010</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.74:</strong> M0010</span></p>
 <span class="target" id="M0010"></span></center></div></div>
 <div class="section" id="m0011">
 <h3>2.5.10. M0011<a class="headerlink" href="#m0011" title="Permalink to this headline">¶</a></h3>
-<p>Stop of signal group. Orders a signal group to red.</p>
-<p>Although this command is intended to be used with coordination it is not actually specified to be used for this yet. It is reserved in the SXL for possible future use.</p>
-<p>Intended for use with coordination of signaling systems where a traffic light controller communicates with neighboring controllers. Only used when a primary controller orders signal group of other controller to green or red (Coordination with external control bits).</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p>
 <div class="figure align-center" id="M0011">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
-<col width="11%" />
-<col width="17%" />
-<col width="52%" />
+<col width="27%" />
+<col width="16%" />
+<col width="24%" />
+<col width="33%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -3818,8 +3869,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 <td>boolean</td>
 <td>-False <br> 
 -True</td>
-<td>False: No command (default) <br> 
-True: Order a signal group to red</td>
+<td><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></td>
 </tr>
 <tr class="row-odd"><td>securityCode</td>
 <td>string</td>
@@ -3828,26 +3878,18 @@ True: Order a signal group to red</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.74:</strong> M0011</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.75:</strong> M0011</span></p>
 <span class="target" id="M0011"></span></center></div></div>
 <div class="section" id="m0012">
 <h3>2.5.11. M0012<a class="headerlink" href="#m0012" title="Permalink to this headline">¶</a></h3>
-<p>Request start or stop of a series of signal groups.</p>
-<p>Starts or stops several signal groups.</p>
-<p>This command was introduced due to coordination requirements needing to set many signal groups to green and red at the same time and M0010 and M0012 being to slow to send a message for each signal group individually.</p>
-<p>Although this command is intended to be used with coordination it is not actually specified to be used for this yet. It is reserved in the SXL for possible future use.</p>
-<p>Intended for use with coordination of signaling systems where a traffic light controller communicates with neighboring controllers.</p>
-<p>Only used when a primary controller orders signal group of other controller to green or red (Coordination with external control bits).</p>
-<p>May also include purposes for adaptive control where a UTC system or a local traffic light controller takes over the phase control (stage control).</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p>
 <div class="figure align-center" id="M0012">
 <center><table border="1" class="docutils">
 <colgroup>
-<col width="5%" />
-<col width="3%" />
-<col width="3%" />
-<col width="90%" />
+<col width="30%" />
+<col width="15%" />
+<col width="18%" />
+<col width="38%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -3860,27 +3902,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 <tr class="row-even"><td>status</td>
 <td>string</td>
 <td>[text]</td>
-<td>Orders signal groups to green or red. Sets a block of 16 signal groups at a time. Can be repeated to set several blocks of 16 signal groups. Values are separated with comma. Blocks are separated with semicolon. <br> 
-<br> 
-1=Order signal group to green <br> 
-0=Order signal group to red <br> 
-<br> 
-Format: [Offset],[Bits to set],[Bits to unset]:… <br> 
-<br> 
-Offset sets where the 16 inputs starts from followed by two 16 bit values telling which bit to set and unset in binary format, i.e. first bit have value 1 and last bit have value 32768. <br> 
-<br> 
-Example 1: <br> 
-“5, 4134, 65” sets input 6,7,10,17 = on and 5,11 = off <br> 
-(Input starts from no. 5 and bit 1,2,5,12 = 1 and bit 0,6 = 0) <br> 
-<br> 
-Example 2: <br> 
-“22, 1, 4” sets input 22 = on and 24 = off <br> 
-(Input starts from no. 22 and bit 0 = 1 and bit 2 = 0) <br> 
-<br> 
-And both these examples could be sent in the same message as: <br> 
-“5,4143,65;22,1,4” <br> 
-<br> 
-Such a message would order signal group 6,7,10,17,22 to green and signal group 5,11,24 to red</td>
+<td><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></td>
 </tr>
 <tr class="row-odd"><td>securityCode</td>
 <td>string</td>
@@ -3889,14 +3911,13 @@ Such a message would order signal group 6,7,10,17,22 to green and signal group 5
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.75:</strong> M0012</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.76:</strong> M0012</span></p>
 <span class="target" id="M0012"></span></center></div></div>
 <div class="section" id="m0013">
 <h3>2.5.12. M0013<a class="headerlink" href="#m0013" title="Permalink to this headline">¶</a></h3>
 <p>Activate a series of inputs</p>
 <p>Set given inputs (1-255) of the controllers general purpose I/O to either true or false. This command was introduced due to coordination requirements needing to set many inputs to true/false at the same time and M0006 being to slow to send a message for each input individually. With this command many inputs can be set to true/false at the same time using a single command message. It can be used for all types of input where the traffic light controller must react to external control. Typical usages are bus priority, coordination between traffic controllers, external control systems, and much more.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <p>The parameter ‘status’ sets/unsets a block of 16 inputs at a time. It can be repeated to set several blocks of 16 inputs. Values are separated with comma. Blocks are separated with semicolon.
 Format: [Offset];[Bits to set];[Bits to unset];…</p>
 <ul class="simple">
@@ -3951,15 +3972,14 @@ Format: [Offset];[Bits to set];[Bits to unset];…</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.76:</strong> M0013</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.77:</strong> M0013</span></p>
 <span class="target" id="M0013"></span></center></div></div>
 <div class="section" id="m0014">
 <h3>2.5.13. M0014<a class="headerlink" href="#m0014" title="Permalink to this headline">¶</a></h3>
 <p>Set dynamic bands</p>
 <p>Can be used to change between predefined signal timings. Moves the start of signal groups in the cycle.</p>
 <p>This command can be used to change the split of green time during the cycle. A typical usage is scenario based control where changing of signal timings is used for optimal traffic flow.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0014">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4001,15 +4021,14 @@ dd-ee,dd-ee</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.77:</strong> M0014</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.78:</strong> M0014</span></p>
 <span class="target" id="M0014"></span></center></div></div>
 <div class="section" id="m0015">
 <h3>2.5.14. M0015<a class="headerlink" href="#m0015" title="Permalink to this headline">¶</a></h3>
 <p>Set Offset time</p>
 <p>Offset time is used to define an offset between intersections in coordinated control. It is based on the expected travel time between intersections.</p>
 <p>This command can be used to fine tune the coordination for optimal traffic flow.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0015">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4043,15 +4062,14 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.78:</strong> M0015</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.79:</strong> M0015</span></p>
 <span class="target" id="M0015"></span></center></div></div>
 <div class="section" id="m0016">
 <h3>2.5.15. M0016<a class="headerlink" href="#m0016" title="Permalink to this headline">¶</a></h3>
 <p>Set week time table</p>
 <p>Set which time table for signal programs to use for each day during a week.</p>
 <p>This command changes the signal timings during the week for optimal traffic flow.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0016">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4097,15 +4115,14 @@ d-t,d-t</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.79:</strong> M0016</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.80:</strong> M0016</span></p>
 <span class="target" id="M0016"></span></center></div></div>
 <div class="section" id="m0017">
 <h3>2.5.16. M0017<a class="headerlink" href="#m0017" title="Permalink to this headline">¶</a></h3>
 <p>Set time tables</p>
 <p>Set time of day for when to automatically switch signal program (time plan).</p>
 <p>This command changes the signal timings according to time of day for optimal traffic flow.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0017">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4152,15 +4169,14 @@ t-o-h-m,t-o-h-m</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.80:</strong> M0017</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.81:</strong> M0017</span></p>
 <span class="target" id="M0017"></span></center></div></div>
 <div class="section" id="m0018">
 <h3>2.5.17. M0018<a class="headerlink" href="#m0018" title="Permalink to this headline">¶</a></h3>
 <p>Set Cycle time</p>
 <p>Cycle time (or cycle length) is the sum of all phases in a time plan (traffic program). This time is fixed when using fixed time control or coordination (except “local coordination”). When the cycle counter reaches this length it is reset back to zero.</p>
 <p>This command provides the ability to change the cycle time when using coordinated or fixed time control. It changes the timings for optimal traffic flow. Can be used with scenario based control.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0018">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4194,15 +4210,14 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.81:</strong> M0018</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.82:</strong> M0018</span></p>
 <span class="target" id="M0018"></span></center></div></div>
 <div class="section" id="m0019">
 <h3>2.5.18. M0019<a class="headerlink" href="#m0019" title="Permalink to this headline">¶</a></h3>
 <p>Force input</p>
 <p>Force a given input (1-255) of the controllers general purpose I/O to either True or False. Can be used for all types of input where the traffic light controller must react to external control.</p>
 <p>Can be used for bus priority, coordination between traffic controllers, external control systems, and much more.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0019">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4245,15 +4260,14 @@ True: input forced to True</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.82:</strong> M0019</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.83:</strong> M0019</span></p>
 <span class="target" id="M0019"></span></center></div></div>
 <div class="section" id="m0020">
 <h3>2.5.19. M0020<a class="headerlink" href="#m0020" title="Permalink to this headline">¶</a></h3>
 <p>Force output</p>
 <p>Force a given output (1-255) of the controllers general purpose I/O to either True of False. Can be used for all types of output where the traffic light controller needs to control other equipment.</p>
 <p>Can be used for bus priority, coordination between traffic controllers, external control systems, and much more.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0020">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4296,15 +4310,14 @@ True: output forced to True</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.83:</strong> M0020</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.84:</strong> M0020</span></p>
 <span class="target" id="M0020"></span></center></div></div>
 <div class="section" id="m0021">
 <h3>2.5.20. M0021<a class="headerlink" href="#m0021" title="Permalink to this headline">¶</a></h3>
 <p>Set trigger level sensitivity for loop detector</p>
 <p>The trigger level sensitivity determines at what level a loop detector should trigger. If it set too low then then traffic will not be detected as intended. If it is set too high the detector might give false positives.</p>
 <p>This command provides the ability to fine tune loop detectors to make sure they detect traffic as intended.</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0021">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4335,7 +4348,7 @@ ss=sensitivity value</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.84:</strong> M0021</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.85:</strong> M0021</span></p>
 <span class="target" id="M0021"></span></center></div></div>
 <div class="section" id="m0022">
 <h3>2.5.21. M0022<a class="headerlink" href="#m0022" title="Permalink to this headline">¶</a></h3>
@@ -4343,8 +4356,10 @@ ss=sensitivity value</td>
 <p>Useful for bus priority or other type of priorities like emergency vehicles or groups of cyclists.</p>
 <p>The benefit of using this message over activating inputs or detector logics is that you
 can specify a priority level, vehicle type and estimated time of arrival.
-You can also update or cancel the request, or use the corresponding status request or
-subscription to track the status of the request, including how much priority was actually given.</p>
+You can also update or cancel the request, and use the corresponding status message
+to track the status of the request, including how much priority was actually given.</p>
+<p>To understand how this command relates to ETSI/J2735, please see the
+<a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.</p>
 <p>Activating signal priority is expected to provide more green time for a particular movement
 through the intersection, but the exact mechanism must typically be configured in the controller.</p>
 <p>The movement to prioritize can be referenced in a number of ways, depending on what is configured
@@ -4354,7 +4369,7 @@ in the controller, and in the system that sends priority requests. Either:</p>
 This method is simple, but will not allow you to have different priority mechanism for the
 same signal group, unless they can be distinguished by the vehicle type. For example, if you
 need to trigger different priorities depending on whether a bus goes straight or makes a turn
-for the same signal group, you must use of the other referencing methods.</li>
+for the same signal group, you need to use of the other referencing methods.</li>
 <li>Reference an input by setting ‘inputId’. This can be useful if you previously used
 inputs to activate priority. The input will not be activated, only the priority.</li>
 <li>Reference a connection by setting ‘connectionId’. A connection is a movement from a specific
@@ -4363,7 +4378,8 @@ ingoing lane to a specific outgoing lane.</li>
 <li>Reference an ingoing lane by setting ‘laneInId’, and
 optionally also reference an outgoing lane by setting ‘laneOutId’.</li>
 </ul>
-<p>Referencing attributes that are not used must be left out, rather than set to null or empty strings:</p>
+<p>Referencing attributes that are not used must be left out, rather than set to null or empty strings.
+This includes:</p>
 <ul class="simple">
 <li>signalGroupId</li>
 <li>inputId</li>
@@ -4373,27 +4389,35 @@ optionally also reference an outgoing lane by setting ‘laneOutId’.</li>
 <li>laneOutId</li>
 </ul>
 <p>Referencing attributes are only used when initiating a request. When updating or cancelling the request,
-the request is identified by it’s requestId, and no referencing attributes are allowed.</p>
+the request is identified by its requestId, and no referencing attributes are allowed.</p>
 <p>You initiate a priority request with type set to ‘new’. You must provide a request id that
 uniquely identifies the request on the controller. It can be a randomly generated UUID
 (universally unique identifier), or it can be constructed by combining e.g. a vehicle id
 and some other identifier. When updating or cancelling a request, you must pass the same request id again.</p>
 <p>Providing ETA (estimated time of arrival) when initiating a request is optional,
 but can help the controller plan ahead in cases where you’re able to send the request before
-the vehicle arrives at the intersection. You’re allowed the initiate the request without an ETA
+the vehicle arrives at the intersection. You’re allowed to initiate the request without an ETA
 and provide it in a later request update. But providing the ETA when initiating
 the request is recommended, since it will give the controller more time to plan ahead.</p>
 <p>Like ETA, providing a vehicle type is optional, but can help the controller decide how
-to best handle the request. If not vehicle type is provided.</p>
+to best handle the request.</p>
 <p>The priority level provides a way to indicate the relative importance of the request compared
-to other requests. For example, emergency vehicles or delayed buses could be given a higher priority level.
-Another request with a higher level can override an existing priority with a lower level.</p>
-<p>If the ETA changes before the priority is cancelled, or you want to change the priority level, you send
+to other requests. For example, emergency vehicles or delayed buses could be given a higher priority level.</p>
+<p>If the ETA changes before the priority is cancelled, or you want to change the priority level, you can send
 another request message with type set to ‘update’. The vehicle type cannot be changed.</p>
-<p>A priority request should always be cancelled as soon as there’s no need for the priority anymore
-(e.g. because the bus has passed the intersection). You cancel a request by sending another request
-message with type set to ‘cancel’. If not cancelled, the controller is expected to time-out the priority
-at some point, but until then it might block requests in other direction.</p>
+<p>When you send a priority request, it will be processed to decide if it’s possible to activate the requested priority.</p>
+<p>If the request is accepted, the priority can either be activated immediately, or if another priority is
+currently active, it can be queued for later activation.</p>
+<p>If the priority cannot be accepted the request is rejected. Cooldown is a specific type of rejection, which means that
+s similar request has just completed, and some time needs to pass before a similar request can be activated.</p>
+<p>When a request is queued, it is expected to become activated later, but in case too long passes without
+activation, the controller is expected to time out the request.</p>
+<p>Once a priority is activated, you’re excepted to cancel it as soon as there’s no need for it anymore, typically
+when the vehicle has passed the intersection. You cancel a request by sending a request passing the
+existing request id setting the type to ‘cancel’.</p>
+<p>If a request is never cancelled, the controller is expected to remove the priority at some point,
+but until then the priority might block requests in other direction which is why you should always cancel a priority
+when it’s not needed anymore.</p>
 <div class="figure align-center" id="M0022">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4471,21 +4495,35 @@ cancel: Cancel an existing priority</td>
 </tr>
 <tr class="row-odd"><td>vehicleType</td>
 <td>string</td>
-<td>-car <br> 
--bus <br> 
+<td>-pedestrian <br> 
 -bicycle <br> 
--pedestrian <br> 
--twoWheeler <br> 
+-motorcycle <br> 
+-car <br> 
+-bus <br> 
 -lightTruck <br> 
 -heavyTruck <br> 
 -tram <br> 
--emergencyVehicle <br> 
+-emergency <br> 
+-safetyCar <br> 
+-specialTransport <br> 
 -other</td>
-<td>(Optional) Vehicle type</td>
+<td>(Optional) Vehicle type <br> 
+pedestrian: Pedestrians <br> 
+bicycle: Bicycles <br> 
+motorcycle: Motorcycles <br> 
+car: Passenger vehicle <br> 
+bus: Bus used for public transport <br> 
+lightTruck: Light truck <br> 
+heavyTruck: Heavy truck <br> 
+tram: Trams used for Public transport <br> 
+emergency: Police, fire or ambulance <br> 
+safetyCar: For e.g. escort vehicles <br> 
+specialTransport: For e.g. heavy load <br> 
+other: Other type of vehicle</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.85:</strong> M0022</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.86:</strong> M0022</span></p>
 <span class="target" id="M0022"></span></center></div></div>
 <div class="section" id="m0023">
 <h3>2.5.22. M0023<a class="headerlink" href="#m0023" title="Permalink to this headline">¶</a></h3>
@@ -4493,8 +4531,7 @@ cancel: Cancel an existing priority</td>
 <p>Switch to a designated time plan if this timeout is reached due to lost connection with the supervisor.
 Disable by setting timeout to ‘0’.</p>
 <p>Used in conjunction with dynamic bands, M0014</p>
-<p>Requires security code 2.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 2.</p>
 <div class="figure align-center" id="M0023">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4523,7 +4560,7 @@ If the incorrect security code is used then the TLC replies with <code class="do
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.86:</strong> M0023</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.87:</strong> M0023</span></p>
 <span class="target" id="M0023"></span></center></div></div>
 <div class="section" id="m0103">
 <h3>2.5.23. M0103<a class="headerlink" href="#m0103" title="Permalink to this headline">¶</a></h3>
@@ -4565,14 +4602,13 @@ Level2: Change security code 2</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.87:</strong> M0103</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.88:</strong> M0103</span></p>
 <span class="target" id="M0103"></span></center></div></div>
 <div class="section" id="m0104">
 <h3>2.5.24. M0104<a class="headerlink" href="#m0104" title="Permalink to this headline">¶</a></h3>
 <p>Set clock</p>
 <p>Can be used to manually set the clock of the traffic light controller if automatic  time synchronization (NTP or watchdog sync) is not available. For instance, during maintenance work.</p>
-<p>Requires security code 1.
-If the incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+<p>Requires security code 1.</p>
 <div class="figure align-center" id="M0104">
 <center><table border="1" class="docutils">
 <colgroup>
@@ -4632,7 +4668,7 @@ Second</td>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 2.88:</strong> M0104</span></p>
+<p class="caption"><span class="caption-text"><strong>Figure 2.89:</strong> M0104</span></p>
 <span class="target" id="M0104"></span></center></div></div>
 </div>
 </div>

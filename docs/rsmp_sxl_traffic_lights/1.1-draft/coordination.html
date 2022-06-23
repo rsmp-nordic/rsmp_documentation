@@ -25,6 +25,7 @@
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -35,7 +36,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. JSon Examples" href="examples.html" />
+    <link rel="next" title="6. Multiple supervisors" href="multiple_supervisors.html" />
     <link rel="prev" title="4. Traffic data" href="traffic_data.html" /> 
 </head>
 
@@ -106,7 +107,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#error-codes-for-messagenotack">5.14. Error codes for MessageNotAck</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">6. JSon Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_supervisors.html">6. Multiple supervisors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security_codes.html">7. Security codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">8. JSon Examples</a></li>
 </ul>
 
             
@@ -296,6 +299,8 @@ and signal groups status etc.</p>
 <p>Communication must be established directly between TLC:s. This demands
 the following general requirements:</p>
 <ul class="simple">
+<li>The TLC needs to support communication between sites according to section
+<a class="reference external" href="https://rsmp-nordic.org/rsmp_specifications/core/3.2/applicability/transport_of_data.html">4.3 Transport of data</a> in the RSMP specification</li>
 <li>In every TLC, it must be possible to connect to other TLC:s and to
 receive connections from other TLC:s (client-server).</li>
 <li>The TLC must have a list with every connected and communicating TLC
@@ -590,7 +595,7 @@ common error code list</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="examples.html" class="btn btn-neutral float-right" title="6. JSon Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="multiple_supervisors.html" class="btn btn-neutral float-right" title="6. Multiple supervisors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="traffic_data.html" class="btn btn-neutral float-left" title="4. Traffic data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

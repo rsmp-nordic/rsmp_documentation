@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-sxl-tlc:
-    runs-on: [ self-hosted, Linux ]
+    runs-on: ubuntu-latest
     steps:
     - name: Check out rsmp_documentation repository
       uses: actions/checkout@v2
@@ -25,6 +25,20 @@ jobs:
     - name: Use updated makefile
       run: |
         cp .github/makefiles/makefile-sxl-tlc-1.0.15 rsmp_sxl_traffic_lights/Makefile
+    - name: Install dependencies
+      run: |
+        sudo snap install inkscape
+        sudo apt-get update
+        sudo apt-get -y install \
+              python3-sphinx \
+              python3-sphinx-rtd-theme \
+              texlive \
+              texlive-latex-extra \
+              texlive-humanities \
+              imagemagick \
+              librsvg2-bin \
+              latexmk \
+              mscgen
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
         cd rsmp_sxl_traffic_lights

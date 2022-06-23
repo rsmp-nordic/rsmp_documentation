@@ -217,7 +217,9 @@ JSon boolean elements are used.</p>
 <p>The reason why JSon string elements are heavily used is to simplify
 deserialisation of values where the data type in unknown before casting is
 performed, for instance for the values in “return values”.</p>
-<p>Parsing needs to be performed case sensitive.</p>
+<p>Parsing needs to be performed case sensitive.
+All enum values (e.g. <a class="reference internal" href="#alarm-status"><span class="std std-ref">Alarm status</span></a>) must use the exact casing stated
+in this specification.</p>
 <p>Empty values are sent as <strong>“”</strong> for simple values and as <strong>[]</strong> for arrays.
 Optional values can be omitted, but can not be sent as <strong>null</strong> unless
 otherwise stated.</p>
@@ -540,7 +542,7 @@ or alarm suspend messages).</p>
 <td>The alarm is active</td>
 </tr>
 <tr class="row-even"><td rowspan="2">sS</td>
-<td>suspended</td>
+<td>Suspended</td>
 <td>The alarm is suspended</td>
 </tr>
 <tr class="row-odd"><td>notSuspended</td>
@@ -713,6 +715,9 @@ Defined in the SXL but is not actually sent</p>
 <div class="line"><strong>boolean</strong>: Boolean data type</div>
 <div class="line"><strong>base64</strong>: Binary data expressed in
 base64 format according to RFC-4648</div>
+<div class="line"><strong>array</strong>: List of values. Makes it
+possible to send multiple values in a JSON
+array. Content defined by SXL.</div>
 </div>
 <p class="last">Point (“.”) is always used as decimal mark</p>
 </td>
@@ -1254,7 +1259,7 @@ where <em>yyyy</em> is a unique number.</td>
 <td>Type</td>
 <td><p class="first">The data type of the value.
 Defined in the SXL but is not actually sent</p>
-<div class="last line-block">
+<div class="line-block">
 <div class="line">General definition:</div>
 <div class="line"><strong>string</strong>: Text information</div>
 <div class="line"><strong>integer</strong>: Numerical value
@@ -1266,7 +1271,11 @@ Defined in the SXL but is not actually sent</p>
 <div class="line"><strong>boolean</strong>: Boolean data type</div>
 <div class="line"><strong>base64</strong>: Binary data expressed in
 base64 format according to RFC-4648</div>
+<div class="line"><strong>array</strong>: List of values. Makes it
+possible to send multiple values in a JSON
+array. Content defined by SXL.</div>
 </div>
+<p class="last">Point (“.”) is always used as decimal mark</p>
 </td>
 </tr>
 <tr class="row-odd"><td>s</td>
@@ -1683,7 +1692,7 @@ sent.</td>
 <td>Type</td>
 <td><p class="first">The data type of the value.
 Defined in the SXL but is not actually sent</p>
-<div class="last line-block">
+<div class="line-block">
 <div class="line">General definition:</div>
 <div class="line"><strong>string</strong>: Text information</div>
 <div class="line"><strong>integer</strong>: Numerical value
@@ -1695,7 +1704,11 @@ Defined in the SXL but is not actually sent</p>
 <div class="line"><strong>boolean</strong>: Boolean data type</div>
 <div class="line"><strong>base64</strong>: Binary data expressed in
 base64 format according to RFC-4648</div>
+<div class="line"><strong>array</strong>: List of values. Makes it
+possible to send multiple values in a JSON
+array. Content defined by SXL.</div>
 </div>
+<p class="last">Point (“.”) is always used as decimal mark</p>
 </td>
 </tr>
 <tr class="row-odd"><td>v</td>
@@ -1834,7 +1847,7 @@ where <em>yyyy</em> is a unique number.</td>
 <td>Type</td>
 <td><p class="first">The data type of the value.
 Defined in the SXL but is not actually sent</p>
-<div class="last line-block">
+<div class="line-block">
 <div class="line">General definition:</div>
 <div class="line"><strong>string</strong>: Text information</div>
 <div class="line"><strong>integer</strong>: Numerical value
@@ -1846,7 +1859,11 @@ Defined in the SXL but is not actually sent</p>
 <div class="line"><strong>boolean</strong>: Boolean data type</div>
 <div class="line"><strong>base64</strong>: Binary data expressed in
 base64 format according to RFC-4648</div>
+<div class="line"><strong>array</strong>: List of values. Makes it
+possible to send multiple values in a JSON
+array. Content defined by SXL.</div>
 </div>
+<p class="last">Point (“.”) is always used as decimal mark</p>
 </td>
 </tr>
 <tr class="row-odd"><td>v</td>

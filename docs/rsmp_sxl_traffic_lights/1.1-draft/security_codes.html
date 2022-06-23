@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4. Traffic data &mdash; RSMP Signal Exchange List for Traffic Light Controllers 1.1 documentation</title>
+  <title>7. Security codes &mdash; RSMP Signal Exchange List for Traffic Light Controllers 1.1 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Coordination between traffic light controllers" href="coordination.html" />
-    <link rel="prev" title="3. Signal Group status" href="signal_group_status.html" /> 
+    <link rel="next" title="8. JSon Examples" href="examples.html" />
+    <link rel="prev" title="6. Multiple supervisors" href="multiple_supervisors.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,10 +89,13 @@
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">1. Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sxl_traffic_light_controller.html">2. Signal Exchange List</a></li>
 <li class="toctree-l1"><a class="reference internal" href="signal_group_status.html">3. Signal Group status</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Traffic data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traffic_data.html">4. Traffic data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coordination.html">5. Coordination between traffic light controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multiple_supervisors.html">6. Multiple supervisors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security_codes.html">7. Security codes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Security codes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#incorrect-security-codes">7.1. Incorrect security codes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">8. JSon Examples</a></li>
 </ul>
 
@@ -139,13 +142,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>4. Traffic data</li>
+      <li>7. Security codes</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/traffic_data.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/security_codes.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -158,35 +161,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="traffic-data">
-<h1>4. Traffic data<a class="headerlink" href="#traffic-data" title="Permalink to this headline">¶</a></h1>
-<p>Traffic data (S0201-S0208) needs additional requirements in order to work
-correctly.</p>
-<ul class="simple">
-<li>The supervision system uses <strong>StatusSubscribe</strong> and <strong>StatusUpdate</strong> to
-continuously receive traffic data from the TLC using subscriptions.</li>
-<li><strong>starttime</strong> is the time stamp of start of measuring.
-E.g. if a subscription update is sent at 15:05 using a subscription update
-rate of 300 (5 minutes), <strong>starttime</strong> would be set to 15.00
-and <strong>vehicles</strong> (S0201) would contain the number of vehicles between
-15:00 and 15:05.</li>
-<li>Traffic counting must be made at even time intervals.
-For instance; if <strong>updateRate=300</strong> (every 5 minutes) is set at the
-status subscription, the traffic counter must start at 15:00:00,
-15:05:00, 15:10:00 and so on.</li>
-<li>No initial status update should be sent directly after receiving status
-subscription. Status updates should only be sent at even time intervals
-and not contain partial counting, e.g. 15:01-15:03 if updateRate=300</li>
-<li>The traffic counter must not reset its traffic counter after receiving
-a new subscription request. The traffic counter may only reset its
-traffic counter at even time intervals.</li>
-<li>Buffering of traffic data during connection interruptions should be
-possible to enable/disable in the equipment. If buffering is enabled it
-means that active subscriptions of traffic data (S0201-S0208) should remain
-active and not be canceled at connection interruption or at reestablishment.</li>
-<li>The traffic data must be buffered according to the time interval as
-determined by the status subscription if buffering is enabled.</li>
-</ul>
+  <div class="section" id="security-codes">
+<h1>7. Security codes<a class="headerlink" href="#security-codes" title="Permalink to this headline">¶</a></h1>
+<p>The SXL for TLC’s are using security codes as part of most commands.</p>
+<div class="section" id="incorrect-security-codes">
+<h2>7.1. Incorrect security codes<a class="headerlink" href="#incorrect-security-codes" title="Permalink to this headline">¶</a></h2>
+<p>If an incorrect security code is used then the TLC replies with <code class="docutils literal notranslate"><span class="pre">MessageNotAck</span></code> where <code class="docutils literal notranslate"><span class="pre">rea</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">security</span> <span class="pre">code</span></code>.</p>
+</div>
 </div>
 
 
@@ -197,10 +178,10 @@ determined by the status subscription if buffering is enabled.</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="coordination.html" class="btn btn-neutral float-right" title="5. Coordination between traffic light controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="8. JSon Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="signal_group_status.html" class="btn btn-neutral float-left" title="3. Signal Group status" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="multiple_supervisors.html" class="btn btn-neutral float-left" title="6. Multiple supervisors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
