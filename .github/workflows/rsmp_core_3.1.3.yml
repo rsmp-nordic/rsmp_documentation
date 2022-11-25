@@ -62,7 +62,7 @@ jobs:
           #endif
           }
         EOF
-        patch <gd.diff
+        patch -p1 <gd.diff
         make
         make check
         sudo make install
