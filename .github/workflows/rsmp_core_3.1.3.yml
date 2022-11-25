@@ -51,7 +51,7 @@ jobs:
         autoupdate
         ./configure
         # Apply patch
-        cp .github/patches/gd.diff .
+        cp ../.github/patches/gd.diff .
         patch -p1 <gd.diff
         make
         make check
