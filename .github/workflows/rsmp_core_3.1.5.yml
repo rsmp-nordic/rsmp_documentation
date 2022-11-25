@@ -35,6 +35,11 @@ jobs:
               librsvg2-bin \
               latexmk \
               graphviz
+    - name: Install dependencies for mscgen
+      run: |
+        sudo apt-get remove nginx
+        sudo apt-get remove libgd3
+        sudo apt-get -y install autoconf flex bison gcc make pkg-config libgd-dev
     - name: Clone mscgen
       run: git clone https://github.com/dok-net/mscgen.git
     - name: Fetch patch for mscgen (fixes issue under Ubuntu 20.04)
