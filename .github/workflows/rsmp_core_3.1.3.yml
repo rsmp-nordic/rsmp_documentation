@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-core:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Check out rsmp_documentation repository
       uses: actions/checkout@v2
