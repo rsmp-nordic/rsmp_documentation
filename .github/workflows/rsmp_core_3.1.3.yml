@@ -46,7 +46,6 @@ jobs:
         git clone https://github.com/dok-net/mscgen.git
         cd mscgen
         chmod +x autogen.sh
-        chmod +x test/rendercheck.sh
         ./autogen.sh
         autoupdate
         ./configure
@@ -54,6 +53,7 @@ jobs:
         cp .github/patches/gd.diff .
         patch -p1 <gd.diff
         make
+        chmod +x test/rendercheck.sh
         make check
         sudo make install
     - name: Build rsmp_core repository
