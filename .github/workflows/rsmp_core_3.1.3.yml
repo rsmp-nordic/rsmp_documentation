@@ -39,6 +39,15 @@ jobs:
               latexmk \
               graphviz \
               mscgen
+    - name: Compile mscgen with patch for Ubuntu 20.04
+      run: |
+        sudo apt-get -y install flex bison gcc make pkg-config libgd-dev
+        git clone https://github.com/dok-net/mscgen.git
+        cd mscgen
+        ./configure
+        make
+        make check
+        sudo make install
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core/sphinx
