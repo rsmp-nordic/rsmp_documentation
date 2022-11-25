@@ -24,6 +24,7 @@ jobs:
         ref: 7c532605b196007c37ef3bfe8f837dc5318eab1e
     - name: Install dependencies
       run: |
+        sudo add-apt-repository ppa:inkscape.dev/stable
         sudo apt-get update
         sudo apt-get -y install \
               python3-sphinx \
