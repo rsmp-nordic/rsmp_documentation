@@ -37,10 +37,10 @@ jobs:
               imagemagick \
               librsvg2-bin \
               latexmk \
-              graphviz \
-              mscgen
+              graphviz
     - name: Compile mscgen with patch for Ubuntu 20.04
       run: |
+        sudo apt-get remove nginx
         sudo apt-get remove libgd3
         sudo apt-get -y install autoconf flex bison gcc make pkg-config libgd-dev
         git clone https://github.com/dok-net/mscgen.git
