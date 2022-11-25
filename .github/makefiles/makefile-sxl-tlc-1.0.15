@@ -39,7 +39,7 @@ $(MSC_DIR)/%.png: $(MSC_DIR)/%.msc
 	@echo MSCGEN: $<
 
 $(SVG_DIR)/%.png: $(SVG_DIR)/%.svg
-	@inkscape $< --export-filename=$@
+	@inkscape $< -o=$@
 	@echo CONVERT: $<
 
 generated-images: $(GEN_MSC_DIAGRAMS) $(GEN_PNG_IMGS)
