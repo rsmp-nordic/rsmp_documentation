@@ -200,7 +200,7 @@ central level while a split in locally coordinated sub areas should be
 possible during normal off-peak hours.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="img/svg/types_of_coordination.png"><img alt="img/svg/types_of_coordination.png" src="img/svg/types_of_coordination.png" /></a>
-<p class="caption"><span class="caption-text"><strong>Figure 5.1:</strong> Types of coordination</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Types of coordination</span></p>
 </div>
 <p>Since there are variants of coordination which are not strictly
 centralized but still uses the same principles of communication, the
@@ -208,7 +208,7 @@ term <em>coordination with synchronized cycle counter</em> is used rather than
 <em>central coordination</em> here on after.</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="img/svg/coordination.png"><img alt="img/svg/coordination.png" src="img/svg/coordination.png" /></a>
-<p class="caption"><span class="caption-text"><strong>Figure 5.2:</strong> Coordination</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Coordination</span></p>
 </div>
 </div>
 <div class="section" id="coordination-type-local-coordination">
@@ -240,12 +240,12 @@ communication.</p>
 <tbody valign="top">
 <tr class="row-odd"><td><div class="first last figure" id="id3">
 <a class="reference internal image-reference" href="img/svg/front_edge.png"><img alt="img/svg/front_edge.png" src="img/svg/front_edge.png" /></a>
-<p class="caption"><span class="caption-text"><strong>Figure 5.3:</strong> Control of front edge</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Control of front edge</span></p>
 </div>
 </td>
 <td><div class="first last figure" id="id4">
 <a class="reference internal image-reference" href="img/svg/rear_edge.png"><img alt="img/svg/rear_edge.png" src="img/svg/rear_edge.png" /></a>
-<p class="caption"><span class="caption-text"><strong>Figure 5.4:</strong> Control of rear edge</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Control of rear edge</span></p>
 </div>
 </td>
 </tr>
@@ -327,8 +327,8 @@ time plan/traffic situation and synchronize their cycle timers.</p>
 TLC:s.</li>
 </ul>
 <p>The following input/output is needed</p>
-<div class="figure align-center" id="table-input">
-<center><table border="1" class="docutils">
+<table border="1" class="docutils" id="id5">
+<caption><span class="caption-number">Table 5.1 </span><span class="caption-text">Input needed</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="80%" />
@@ -353,9 +353,8 @@ TLC:s.</li>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 5.5:</strong> Input needed</span></p>
-<span class="target" id="table-input"></span></center></div><div class="figure align-center" id="table-output">
-<center><table border="1" class="docutils">
+<table border="1" class="docutils" id="id6">
+<caption><span class="caption-number">Table 5.2 </span><span class="caption-text">Output needed</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="22%" />
 <col width="78%" />
@@ -377,8 +376,7 @@ TLC:s.</li>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 5.6:</strong> Output needed</span></p>
-<span class="target" id="table-output"></span></center></div><p>Please note:</p>
+<p>Please note:</p>
 <ul class="simple">
 <li>securityCode is ignored at TLC-TLC-communication. Fields for
 securityCode still must be sent at communication exchange – but
@@ -455,9 +453,9 @@ during each cycle.</li>
 <li>Leader receives START/STOP order using output (M0004) from followers
 during each cycle.</li>
 </ol>
-<div class="figure align-center" id="id5">
+<div class="figure align-center" id="id7">
 <img alt="_images/local_coordination.png" src="_images/local_coordination.png" />
-<p class="caption"><span class="caption-text"><strong>Figure 5.7:</strong> Sequence for local coordination</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Sequence for local coordination</span></p>
 </div>
 </div>
 <div class="section" id="initialization-sequence-for-coordination-with-synchronized-cycle-counter">
@@ -486,9 +484,9 @@ followers during each cycle</li>
 <li>If external control bits are used: Leader receives START/STOP order
 using output (M0004) from followers during each cycle.</li>
 </ol>
-<div class="figure align-center" id="id6">
+<div class="figure align-center" id="id8">
 <img alt="_images/central_coordination.png" src="_images/central_coordination.png" />
-<p class="caption"><span class="caption-text"><strong>Figure 5.8:</strong> Sequence for coordination with synchronized cycle timer</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Sequence for coordination with synchronized cycle timer</span></p>
 </div>
 </div>
 <div class="section" id="termination-sequence">
@@ -536,8 +534,8 @@ alarm A0005</li>
 <h2>5.14. Error codes for MessageNotAck<a class="headerlink" href="#error-codes-for-messagenotack" title="Permalink to this headline">¶</a></h2>
 <p>In order to standardize contents in MessageNotAck (”reason”), use this
 common error code list</p>
-<div class="figure align-center" id="table-error">
-<center><table border="1" class="docutils">
+<table border="1" class="docutils" id="id9">
+<caption><span class="caption-number">Table 5.3 </span><span class="caption-text">Error codes</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="38%" />
 <col width="62%" />
@@ -583,8 +581,7 @@ common error code list</p>
 </tr>
 </tbody>
 </table>
-<p class="caption"><span class="caption-text"><strong>Figure 5.9:</strong> Error codes</span></p>
-<span class="target" id="table-error"></span></center></div></div>
+</div>
 </div>
 
 
