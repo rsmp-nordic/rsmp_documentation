@@ -41,10 +41,27 @@ jobs:
               mscgen
     - name: Compile mscgen with patch for Ubuntu 20.04
       run: |
-        sudo apt-get -y install flex bison gcc make pkg-config libgd-dev
+        sudo apt-get -y install autoconf flex bison gcc make pkg-config libgd-dev
         git clone https://github.com/dok-net/mscgen.git
         cd mscgen
+        chmod +x autogen.sh
+        ./autogen
+        autoupdate
         ./configure
+        # Apply patch
+        cat <<"EOF">gd.diff
+        --- a/src/gd_out.c    2011-03-05 11:51:50.000000000 +0100
+        +++ b/src/gd_out.c   2021-02-23 15:23:00.434133429 +0100
+        @@ -212,6 +212,6 @@
+              *  the right of the last character for the fixed width
+              *  font.
+              */
+        -    return rect[2] - 1;
+        +    return rect[2] ? rect[2] - 1 : 0;
+          #endif
+          }
+        EOF
+        patch <gd.diff
         make
         make check
         sudo make install
