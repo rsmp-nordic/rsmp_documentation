@@ -51,6 +51,7 @@ jobs:
         cd mscgen
         patch -p1 <gd.diff
     - name: Compile and install mscgen
+      run: |
         cd mscgen
         chmod +x autogen.sh
         chmod +x test/renderercheck.sh
