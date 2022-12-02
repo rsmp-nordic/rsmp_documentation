@@ -24,7 +24,7 @@ jobs:
         ref: bafc5ef712669e9f2777be1068e2cdc5351af37b
     - name: Install dependencies
       run: |
-        sudo snap install inkscape
+        sudo add-apt-repository ppa:inkscape.dev/stable
         sudo apt-get update
         sudo apt-get -y install \
               python3-sphinx \
@@ -33,6 +33,7 @@ jobs:
               texlive-latex-extra \
               texlive-humanities \
               imagemagick \
+              inkscape \
               librsvg2-bin \
               latexmk \
               mscgen
