@@ -40,7 +40,7 @@ jobs:
     - name: Build rsmp_sxl_traffic_lights repository
       run: |
         cd rsmp_sxl_traffic_lights
-        make html
+        make html latexpdf
     - name: Commit documentation changes
       run: |
         mkdir -p docs/rsmp_sxl_traffic_lights/1.1
@@ -57,3 +57,8 @@ jobs:
       with:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Upload PDF as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: PDF
+        path: rsmp_sxl_traffic_lights/build/latex/sxl-tlc.pdf
