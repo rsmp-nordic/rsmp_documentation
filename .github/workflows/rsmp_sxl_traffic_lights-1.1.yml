@@ -57,7 +57,7 @@ jobs:
       with:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
-            - name: Upload PDF as artifact
+    - name: Upload PDF as artifact
       uses: actions/upload-artifact@v1
       with:
         name: PDF
