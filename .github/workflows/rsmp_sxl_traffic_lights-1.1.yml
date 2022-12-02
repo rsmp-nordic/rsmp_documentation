@@ -32,6 +32,7 @@ jobs:
               texlive \
               texlive-latex-extra \
               texlive-humanities \
+              texlive-fonts-extra \
               imagemagick \
               inkscape \
               librsvg2-bin \
