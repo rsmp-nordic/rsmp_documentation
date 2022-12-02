@@ -21,7 +21,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
-        ref: 288870b0678ff960699ea7ec9273f932502ab297
+        ref: bafc5ef712669e9f2777be1068e2cdc5351af37b
     - name: Install dependencies
       run: |
         sudo snap install inkscape
