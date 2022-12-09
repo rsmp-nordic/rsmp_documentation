@@ -2531,15 +2531,19 @@ sent once on the next status update, then removed from the list.</p>
 <table class="longtable docutils align-default" id="id50">
 <caption><span class="caption-number">Table 2.49 </span><span class="caption-text">S0033 status</span><a class="headerlink" href="#id50" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 24%" />
-<col style="width: 24%" />
-<col style="width: 31%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 12%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
 <th class="head"><p>Type</p></th>
-<th class="head"><p>Value</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Enum</p></th>
 <th class="head"><p>Comment</p></th>
 </tr>
 </thead>
@@ -2548,26 +2552,54 @@ sent once on the next status update, then removed from the list.</p>
 <td><p>string</p></td>
 <td></td>
 <td></td>
+<td></td>
+<td><p>ID of the priority request</p></td>
 </tr>
 <tr class="row-odd"><td><p>t</p></td>
 <td><p>string</p></td>
 <td></td>
 <td></td>
+<td></td>
+<td><p>Timestamp, indicating when the priority last changed state. <br> 
+Format according to W3C XML dateTime with a resolution of 3 decimal places. <br> 
+All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 <tr class="row-even"><td><p>s</p></td>
 <td><p>string</p></td>
 <td></td>
 <td></td>
+<td><p>-received <br> 
+-queued <br> 
+-activated <br> 
+-completed <br> 
+-timeout <br> 
+-rejected <br> 
+-cooldown <br> 
+-stale</p></td>
+<td><p>received: A new priority request was received but has not yet been processed <br> 
+queued: The priority request has been queued for later activation <br> 
+activated: The priority was activated <br> 
+completed: The priority was cancelled as expected <br> 
+timeout: The priority has been queued for too long <br> 
+rejected: The priority request cannot be granted <br> 
+cooldown: A similar priority request means the priority request cannot be activated now <br> 
+stale: The priority has been active too long without cancellation, and was therefore removed</p></td>
 </tr>
 <tr class="row-odd"><td><p>e</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>255</p></td>
+<td></td>
+<td><p>(Optional) Estimated green extension provided by the priority, in seconds <br> 
+Only used when state is ‘completed’.</p></td>
 </tr>
 <tr class="row-even"><td><p>d</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>255</p></td>
+<td></td>
+<td><p>(Optional) Estimated red reduction provided by the priority, in seconds <br> 
+Only used when state is ‘completed’.</p></td>
 </tr>
 </tbody>
 </table>
