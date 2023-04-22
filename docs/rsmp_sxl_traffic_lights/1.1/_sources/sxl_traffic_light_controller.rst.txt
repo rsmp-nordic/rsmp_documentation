@@ -535,9 +535,9 @@ Can be used to draw a live signal group diagram as well provide diagnostic infor
    detectorlogicstatus  string  Detector logic status as text field. |br|
                                 |br|
                                 Each character represent the state of the detector logic in consecutive order. |br|
-                                0 = Detector logic is not active |br|
-                                1 = Detector logic is active |br|
-                                - = Detector logic is undefined/does not exist
+                                0 : Detector logic is not active |br|
+                                1 : Detector logic is active |br|
+                                - : Detector logic is undefined/does not exist
    ===================  ======  ===================================================================================
 
 
@@ -563,15 +563,15 @@ Input is used where the traffic light controller must react to external control.
    inputstatus          string  Input status as text field |br|
                                 |br|
                                 Each character represent the state of the input in consecutive order. |br|
-                                0 = Input is not active |br|
-                                1 = Input is active |br|
-                                - = Input is undefined/does not exist
+                                0 : Input is not active |br|
+                                1 : Input is active |br|
+                                - : Input is undefined/does not exist
    extendedinputstatus  string  ``Deprecated`` Extended input status as text field |br|
                                 |br|
                                 Each character represent the state of the extended input status in consecutive order. |br|
-                                0 = Input is not active |br|
-                                1 = Input is active |br|
-                                - = Input is undefined/does not exist
+                                0 : Input is not active |br|
+                                1 : Input is active |br|
+                                - : Input is undefined/does not exist
    ===================  ======  ==========================================================================================
 
 
@@ -591,22 +591,22 @@ Can be used for all types of output where the traffic light controller needs to 
    :class: longtable
 
 
-   ====================  ======  ==========================================================================================
+   ====================  ======  ===========================================================================================
    Name                  Type    Comment
-   ====================  ======  ==========================================================================================
+   ====================  ======  ===========================================================================================
    outputstatus          string  Output status as text field |br|
                                  |br|
                                  Each character represent the state of the output status in consecutive order. |br|
-                                 0 = Output is not active |br|
-                                 1 = Output is active |br|
-                                 - = Output is undefined/does not exist
-   extendedoutputstatus  string  ``Deprecated`` Output status as text field |br|
+                                 0 : Output is not active |br|
+                                 1 : Output is active |br|
+                                 - : Output is undefined/does not exist
+   extendedoutputstatus  string  ``Deprecated`` Extended output status as text field |br|
                                  |br|
-                                 Each character represent the state of the exteded output status in consecutive order. |br|
-                                 0 = Output is not active |br|
-                                 1 = Output is active |br|
-                                 - = Output is undefined/does not exist
-   ====================  ======  ==========================================================================================
+                                 Each character represent the state of the extended output status in consecutive order. |br|
+                                 0 : Output is not active |br|
+                                 1 : Output is active |br|
+                                 - : Output is undefined/does not exist
+   ====================  ======  ===========================================================================================
 
 
 S0005
@@ -757,8 +757,8 @@ e.g. "0" and "True" (one intersection) or "1,2" and "True,False" (two intersecti
    ============  =======  =====  =====  ====================  =======================================================================
    intersection  integer  0      255                          Comma separated list of intersections which the status relates to, |br|
                                                               e.g. "1,2". Use "0" for all intersections of the TLC
-   status        boolean                                      False:  Fixed time control inactive |br|
-                                                              True:  Fixed time control active
+   status        boolean                                      False: Fixed time control inactive |br|
+                                                              True: Fixed time control active
    source        string                 -operator_panel |br|  Source of the status change |br|
                                         -calendar_clock |br|  operator_panel: Operator panel |br|
                                         -control_block |br|   calendar_clock: Calendar/clock |br|
@@ -1474,22 +1474,18 @@ sent once on the next status update, then removed from the list.
 
 A request always starts in the 'received' state. The following table shows the possible state transitions:
 
-.. tabularcolumns:: |\Yl{0.15}|\Yl{0.50}|
-
-.. table:: S0033 request transitions
-   
-   ==========  =====================================
-   State       Possible next states
-   ==========  =====================================
-   received    queued, activated, rejected, cooldown
-   queued      activated, timeout
-   activated   completed, stale
-   completed
-   timeout
-   rejected
-   cooldown
-   stale
-   ==========  =====================================
+==========  =====================================
+State       Possible next states
+==========  =====================================
+received    queued, activated, rejected, cooldown
+queued      activated, timeout
+activated   completed, stale
+completed
+timeout
+rejected
+cooldown
+stale
+==========  =====================================
 
 
 .. tabularcolumns:: |\Yl{0.25}|\Yl{0.10}|\Yl{0.6499999999999999}|
@@ -1518,14 +1514,15 @@ A request always starts in the 'received' state. The following table shows the p
    t       string                                  Timestamp, indicating when the priority last changed state. |br|
                                                    Format according to W3C XML dateTime with a resolution of 3 decimal places. |br|
                                                    All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z
-   s       string                 -received |br|   received: A new priority request was received but has not yet been processed |br|
-                                  -queued |br|     queued: The priority request has been queued for later activation |br|
-                                  -activated |br|  activated: The priority was activated |br|
-                                  -completed |br|  completed: The priority was cancelled as expected |br|
-                                  -timeout |br|    timeout: The priority has been queued for too long |br|
-                                  -rejected |br|   rejected: The priority request cannot be granted |br|
-                                  -cooldown |br|   cooldown: A similar priority request means the priority request cannot be activated now |br|
-                                  -stale           stale: The priority has been active too long without cancellation, and was therefore removed
+   s       string                 -received |br|   Current status of the priority request |br|
+                                  -queued |br|     received: A new priority request was received but has not yet been processed |br|
+                                  -activated |br|  queued: The priority request has been queued for later activation |br|
+                                  -completed |br|  activated: The priority was activated |br|
+                                  -timeout |br|    completed: The priority was cancelled as expected |br|
+                                  -rejected |br|   timeout: The priority has been queued for too long |br|
+                                  -cooldown |br|   rejected: The priority request cannot be granted |br|
+                                  -stale           cooldown: A similar priority request means the priority request cannot be activated now |br|
+                                                   stale: The priority has been active too long without cancellation, and was therefore removed
    e       integer  0      255                     (Optional) Estimated green extension provided by the priority, in seconds |br|
                                                    Only used when state is 'completed'.
    d       integer  0      255                     (Optional) Estimated red reduction provided by the priority, in seconds |br|
@@ -1628,7 +1625,7 @@ S0096
 ^^^^^^^^
 
 Current date and time
-
+Note: UTC is used
 Provides diagnostic information about the current date and time set in the controller.
 
 
@@ -1638,16 +1635,16 @@ Provides diagnostic information about the current date and time set in the contr
    :class: longtable
 
 
-   ======  =======  =====  =====  ================================
+   ======  =======  =====  =====  ============
    Name    Type       Min    Max  Comment
-   ======  =======  =====  =====  ================================
-   year    integer      0   9999  Year. Note: UTC is used
-   month   integer      1     12  Month. Note: UTC is used
-   day     integer      1     31  Day of month.  Note: UTC is used
-   hour    integer      0     23  Hour of day. Note: UTC is used
-   minute  integer      0     59  Minute. Note: UTC is used
-   second  integer      0     59  Second. Note: UTC is used
-   ======  =======  =====  =====  ================================
+   ======  =======  =====  =====  ============
+   year    integer      0   9999  Year
+   month   integer      1     12  Month
+   day     integer      1     31  Day of month
+   hour    integer      0     23  Hour
+   minute  integer      0     59  Minute
+   second  integer      0     59  Second
+   ======  =======  =====  =====  ============
 
 
 S0097
@@ -2240,12 +2237,12 @@ M0010
    :class: longtable
 
 
-   ============  =======  ===============
+   ============  =======  ============
    Name          Type     Comment
-   ============  =======  ===============
+   ============  =======  ============
    status        boolean  ``Reserved``
-   securityCode  string   Security code 2
-   ============  =======  ===============
+   securityCode  string   ``Reserved``
+   ============  =======  ============
 
 
 M0011
@@ -2260,12 +2257,12 @@ M0011
    :class: longtable
 
 
-   ============  =======  ===============
+   ============  =======  ============
    Name          Type     Comment
-   ============  =======  ===============
+   ============  =======  ============
    status        boolean  ``Reserved``
-   securityCode  string   Security code 2
-   ============  =======  ===============
+   securityCode  string   ``Reserved``
+   ============  =======  ============
 
 
 M0012
@@ -2280,12 +2277,12 @@ M0012
    :class: longtable
 
 
-   ============  ======  ===============
+   ============  ======  ============
    Name          Type    Comment
-   ============  ======  ===============
+   ============  ======  ============
    status        string  ``Reserved``
-   securityCode  string  Security code 2
-   ============  ======  ===============
+   securityCode  string  ``Reserved``
+   ============  ======  ============
 
 
 M0013
@@ -2793,7 +2790,7 @@ M0104
 Set clock
 
 Can be used to manually set the clock of the traffic light controller if automatic  time synchronization (NTP or watchdog sync) is not available. For instance, during maintenance work.
-
+Note: UTC is used
 Requires security code 1.
 
 
@@ -2803,23 +2800,17 @@ Requires security code 1.
    :class: longtable
 
 
-   ============  =======  =====  =====  ==============================================
+   ============  =======  =====  =====  ===============
    Name          Type     Min    Max    Comment
-   ============  =======  =====  =====  ==============================================
+   ============  =======  =====  =====  ===============
    securityCode  string                 Security code 1
-   year          integer  0      9999   Changes internal clock. Note: UTC is used |br|
-                                        Year
-   month         integer  1      12     Changes internal clock. Note: UTC is used |br|
-                                        Month
-   day           integer  1      31     Changes internal clock. Note: UTC is used |br|
-                                        Day in month
-   hour          integer  0      23     Changes internal clock. Note: UTC is used |br|
-                                        Hour
-   minute        integer  0      59     Changes internal clock. Note: UTC is used |br|
-                                        Minute
-   second        integer  0      59     Changes internal clock. Note: UTC is used |br|
-                                        Second
-   ============  =======  =====  =====  ==============================================
+   year          integer  0      9999   Year
+   month         integer  1      12     Month
+   day           integer  1      31     Day of month
+   hour          integer  0      23     Hour
+   minute        integer  0      59     Minute
+   second        integer  0      59     Second
+   ============  =======  =====  =====  ===============
 
 
 .. |br| replace:: |br_html| |br_latex|

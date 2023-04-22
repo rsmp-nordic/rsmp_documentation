@@ -1111,9 +1111,9 @@ See the coordination section for more information.</p></td>
 <td><p>Detector logic status as text field. <br> 
 <br> 
 Each character represent the state of the detector logic in consecutive order. <br> 
-0 = Detector logic is not active <br> 
-1 = Detector logic is active <br> 
-- = Detector logic is undefined/does not exist</p></td>
+0 : Detector logic is not active <br> 
+1 : Detector logic is active <br> 
+- : Detector logic is undefined/does not exist</p></td>
 </tr>
 </tbody>
 </table>
@@ -1142,18 +1142,18 @@ Each character represent the state of the detector logic in consecutive order. <
 <td><p>Input status as text field <br> 
 <br> 
 Each character represent the state of the input in consecutive order. <br> 
-0 = Input is not active <br> 
-1 = Input is active <br> 
-- = Input is undefined/does not exist</p></td>
+0 : Input is not active <br> 
+1 : Input is active <br> 
+- : Input is undefined/does not exist</p></td>
 </tr>
 <tr class="row-odd"><td><p>extendedinputstatus</p></td>
 <td><p>string</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Extended input status as text field <br> 
 <br> 
 Each character represent the state of the extended input status in consecutive order. <br> 
-0 = Input is not active <br> 
-1 = Input is active <br> 
-- = Input is undefined/does not exist</p></td>
+0 : Input is not active <br> 
+1 : Input is active <br> 
+- : Input is undefined/does not exist</p></td>
 </tr>
 </tbody>
 </table>
@@ -1182,18 +1182,18 @@ Each character represent the state of the extended input status in consecutive o
 <td><p>Output status as text field <br> 
 <br> 
 Each character represent the state of the output status in consecutive order. <br> 
-0 = Output is not active <br> 
-1 = Output is active <br> 
-- = Output is undefined/does not exist</p></td>
+0 : Output is not active <br> 
+1 : Output is active <br> 
+- : Output is undefined/does not exist</p></td>
 </tr>
 <tr class="row-odd"><td><p>extendedoutputstatus</p></td>
 <td><p>string</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Output status as text field <br> 
+<td><p><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Extended output status as text field <br> 
 <br> 
-Each character represent the state of the exteded output status in consecutive order. <br> 
-0 = Output is not active <br> 
-1 = Output is active <br> 
-- = Output is undefined/does not exist</p></td>
+Each character represent the state of the extended output status in consecutive order. <br> 
+0 : Output is not active <br> 
+1 : Output is active <br> 
+- : Output is undefined/does not exist</p></td>
 </tr>
 </tbody>
 </table>
@@ -1433,8 +1433,8 @@ e.g. “1,2”. Use “0” for all intersections of the TLC</p></td>
 <td></td>
 <td></td>
 <td></td>
-<td><p>False:  Fixed time control inactive <br> 
-True:  Fixed time control active</p></td>
+<td><p>False: Fixed time control inactive <br> 
+True: Fixed time control active</p></td>
 </tr>
 <tr class="row-even"><td><p>source</p></td>
 <td><p>string</p></td>
@@ -2470,8 +2470,7 @@ To guarantee that, send-on-change must be used when subscribing.</p>
 <p>When a priority reaches an end states (completed, timeout, rejected, cooldown or stale), it must be
 sent once on the next status update, then removed from the list.</p>
 <p>A request always starts in the ‘received’ state. The following table shows the possible state transitions:</p>
-<table class="docutils align-default" id="id48">
-<caption><span class="caption-number">Table 2.47 </span><span class="caption-text">S0033 request transitions</span><a class="headerlink" href="#id48" title="Permalink to this table"></a></caption>
+<table class="docutils align-default">
 <colgroup>
 <col style="width: 21%" />
 <col style="width: 79%" />
@@ -2508,8 +2507,8 @@ sent once on the next status update, then removed from the list.</p>
 </tr>
 </tbody>
 </table>
-<table class="longtable docutils align-default" id="id49">
-<caption><span class="caption-number">Table 2.48 </span><span class="caption-text">S0033</span><a class="headerlink" href="#id49" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id48">
+<caption><span class="caption-number">Table 2.47 </span><span class="caption-text">S0033</span><a class="headerlink" href="#id48" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 13%" />
 <col style="width: 13%" />
@@ -2528,8 +2527,8 @@ sent once on the next status update, then removed from the list.</p>
 </tr>
 </tbody>
 </table>
-<table class="longtable docutils align-default" id="id50">
-<caption><span class="caption-number">Table 2.49 </span><span class="caption-text">S0033 status</span><a class="headerlink" href="#id50" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id49">
+<caption><span class="caption-number">Table 2.48 </span><span class="caption-text">S0033 status</span><a class="headerlink" href="#id49" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 5%" />
@@ -2576,7 +2575,8 @@ All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 -rejected <br> 
 -cooldown <br> 
 -stale</p></td>
-<td><p>received: A new priority request was received but has not yet been processed <br> 
+<td><p>Current status of the priority request <br> 
+received: A new priority request was received but has not yet been processed <br> 
 queued: The priority request has been queued for later activation <br> 
 activated: The priority was activated <br> 
 completed: The priority was cancelled as expected <br> 
@@ -2610,8 +2610,8 @@ Only used when state is ‘completed’.</p></td>
 <p>Time until a designated time plan is entered due to lost connection with the supervisor.
 Disabled if set to ‘0’.</p>
 <p>Used in conjunction with dynamic bands, M0014</p>
-<table class="longtable docutils align-default" id="id51">
-<caption><span class="caption-number">Table 2.50 </span><span class="caption-text">S0034</span><a class="headerlink" href="#id51" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id50">
+<caption><span class="caption-number">Table 2.49 </span><span class="caption-text">S0034</span><a class="headerlink" href="#id50" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 14%" />
 <col style="width: 17%" />
@@ -2641,8 +2641,8 @@ Disabled if set to ‘0’.</p>
 <h3><span class="section-number">2.4.35. </span>S0091<a class="headerlink" href="#s0091" title="Permalink to this headline"></a></h3>
 <p>Operator logged in/out OP-panel</p>
 <p>Provides information if maintenance personnel is currently working on site.</p>
-<table class="longtable docutils align-default" id="id52">
-<caption><span class="caption-number">Table 2.51 </span><span class="caption-text">S0091</span><a class="headerlink" href="#id52" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id51">
+<caption><span class="caption-number">Table 2.50 </span><span class="caption-text">S0091</span><a class="headerlink" href="#id51" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
 <col style="width: 10%" />
@@ -2673,8 +2673,8 @@ Disabled if set to ‘0’.</p>
 <h3><span class="section-number">2.4.36. </span>S0092<a class="headerlink" href="#s0092" title="Permalink to this headline"></a></h3>
 <p>Operator logged in/out web-interface</p>
 <p>Provides information about whether maintenance personnel is currently working with the controller.</p>
-<table class="longtable docutils align-default" id="id53">
-<caption><span class="caption-number">Table 2.52 </span><span class="caption-text">S0092</span><a class="headerlink" href="#id53" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id52">
+<caption><span class="caption-number">Table 2.51 </span><span class="caption-text">S0092</span><a class="headerlink" href="#id52" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
 <col style="width: 10%" />
@@ -2705,8 +2705,8 @@ Disabled if set to ‘0’.</p>
 <h3><span class="section-number">2.4.37. </span>S0095<a class="headerlink" href="#s0095" title="Permalink to this headline"></a></h3>
 <p>Version of Traffic Light Controller</p>
 <p>Provides diagnostic version information.</p>
-<table class="longtable docutils align-default" id="id54">
-<caption><span class="caption-number">Table 2.53 </span><span class="caption-text">S0095</span><a class="headerlink" href="#id54" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id53">
+<caption><span class="caption-number">Table 2.52 </span><span class="caption-text">S0095</span><a class="headerlink" href="#id53" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 8%" />
 <col style="width: 8%" />
@@ -2728,16 +2728,17 @@ Disabled if set to ‘0’.</p>
 </section>
 <section id="s0096">
 <h3><span class="section-number">2.4.38. </span>S0096<a class="headerlink" href="#s0096" title="Permalink to this headline"></a></h3>
-<p>Current date and time</p>
-<p>Provides diagnostic information about the current date and time set in the controller.</p>
-<table class="longtable docutils align-default" id="id55">
-<caption><span class="caption-number">Table 2.54 </span><span class="caption-text">S0096</span><a class="headerlink" href="#id55" title="Permalink to this table"></a></caption>
+<p>Current date and time
+Note: UTC is used
+Provides diagnostic information about the current date and time set in the controller.</p>
+<table class="longtable docutils align-default" id="id54">
+<caption><span class="caption-number">Table 2.53 </span><span class="caption-text">S0096</span><a class="headerlink" href="#id54" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 11%" />
-<col style="width: 13%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 58%" />
+<col style="width: 17%" />
+<col style="width: 20%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 34%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -2752,37 +2753,37 @@ Disabled if set to ‘0’.</p>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>9999</p></td>
-<td><p>Year. Note: UTC is used</p></td>
+<td><p>Year</p></td>
 </tr>
 <tr class="row-odd"><td><p>month</p></td>
 <td><p>integer</p></td>
 <td><p>1</p></td>
 <td><p>12</p></td>
-<td><p>Month. Note: UTC is used</p></td>
+<td><p>Month</p></td>
 </tr>
 <tr class="row-even"><td><p>day</p></td>
 <td><p>integer</p></td>
 <td><p>1</p></td>
 <td><p>31</p></td>
-<td><p>Day of month.  Note: UTC is used</p></td>
+<td><p>Day of month</p></td>
 </tr>
 <tr class="row-odd"><td><p>hour</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>23</p></td>
-<td><p>Hour of day. Note: UTC is used</p></td>
+<td><p>Hour</p></td>
 </tr>
 <tr class="row-even"><td><p>minute</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>59</p></td>
-<td><p>Minute. Note: UTC is used</p></td>
+<td><p>Minute</p></td>
 </tr>
 <tr class="row-odd"><td><p>second</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>59</p></td>
-<td><p>Second. Note: UTC is used</p></td>
+<td><p>Second</p></td>
 </tr>
 </tbody>
 </table>
@@ -2792,8 +2793,8 @@ Disabled if set to ‘0’.</p>
 <p>Checksum of traffic parameters</p>
 <p>Can be used to check if any traffic parameter has been changed.</p>
 <p>For instance, depending on controller, maintenance personnel can modify traffic parameters on site to optimize traffic flow. This status provides the ability to monitor if any traffic parameter has been changed. The traffic parameters may be downloaded with S0098.</p>
-<table class="longtable docutils align-default" id="id56">
-<caption><span class="caption-number">Table 2.55 </span><span class="caption-text">S0097</span><a class="headerlink" href="#id56" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id55">
+<caption><span class="caption-number">Table 2.54 </span><span class="caption-text">S0097</span><a class="headerlink" href="#id55" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 3%" />
@@ -2840,8 +2841,8 @@ Downloaded data with S0098, hashed with SHA-2, should match this value.</p></td>
 <p>Configuration of traffic parameters</p>
 <p>Can be used to download all traffic parameters from the controller.</p>
 <p>For instance, depending on controller, maintenance personnel can modify traffic parameters on site to optimize traffic flow. This status provides the ability to downloaded them.</p>
-<table class="longtable docutils align-default" id="id57">
-<caption><span class="caption-number">Table 2.56 </span><span class="caption-text">S0098</span><a class="headerlink" href="#id57" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id56">
+<caption><span class="caption-number">Table 2.55 </span><span class="caption-text">S0098</span><a class="headerlink" href="#id56" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 3%" />
@@ -2890,8 +2891,8 @@ Note: <br>
 <h3><span class="section-number">2.4.41. </span>S0201<a class="headerlink" href="#s0201" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Number of vehicles</p>
 <p>Used for Traffic counting.</p>
-<table class="longtable docutils align-default" id="id58">
-<caption><span class="caption-number">Table 2.57 </span><span class="caption-text">S0201</span><a class="headerlink" href="#id58" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id57">
+<caption><span class="caption-number">Table 2.56 </span><span class="caption-text">S0201</span><a class="headerlink" href="#id57" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 4%" />
@@ -2927,8 +2928,8 @@ Note: <br>
 <h3><span class="section-number">2.4.42. </span>S0202<a class="headerlink" href="#s0202" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Vehicle speed</p>
 <p>Used for Traffic counting.</p>
-<table class="longtable docutils align-default" id="id59">
-<caption><span class="caption-number">Table 2.58 </span><span class="caption-text">S0202</span><a class="headerlink" href="#id59" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id58">
+<caption><span class="caption-number">Table 2.57 </span><span class="caption-text">S0202</span><a class="headerlink" href="#id58" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 4%" />
@@ -2964,8 +2965,8 @@ Note: <br>
 <h3><span class="section-number">2.4.43. </span>S0203<a class="headerlink" href="#s0203" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Occupancy</p>
 <p>Used for Traffic counting.</p>
-<table class="longtable docutils align-default" id="id60">
-<caption><span class="caption-number">Table 2.59 </span><span class="caption-text">S0203</span><a class="headerlink" href="#id60" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id59">
+<caption><span class="caption-number">Table 2.58 </span><span class="caption-text">S0203</span><a class="headerlink" href="#id59" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 4%" />
@@ -3001,8 +3002,8 @@ Note: <br>
 <h3><span class="section-number">2.4.44. </span>S0204<a class="headerlink" href="#s0204" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Number of vehicles of given classification</p>
 <p>Used for Traffic counting.</p>
-<table class="longtable docutils align-default" id="id61">
-<caption><span class="caption-number">Table 2.60 </span><span class="caption-text">S0204</span><a class="headerlink" href="#id61" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id60">
+<caption><span class="caption-number">Table 2.59 </span><span class="caption-text">S0204</span><a class="headerlink" href="#id60" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 4%" />
@@ -3086,8 +3087,8 @@ Note: <br>
 <h3><span class="section-number">2.4.45. </span>S0205<a class="headerlink" href="#s0205" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Number of vehicles</p>
 <p>This status was introduced to improve performance in case traffic counting is done on all all detectors.</p>
-<table class="longtable docutils align-default" id="id62">
-<caption><span class="caption-number">Table 2.61 </span><span class="caption-text">S0205</span><a class="headerlink" href="#id62" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id61">
+<caption><span class="caption-number">Table 2.60 </span><span class="caption-text">S0205</span><a class="headerlink" href="#id61" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 4%" />
 <col style="width: 3%" />
@@ -3118,8 +3119,8 @@ Note: <br>
 <h3><span class="section-number">2.4.46. </span>S0206<a class="headerlink" href="#s0206" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Vehicle speed</p>
 <p>This status was introduced to improve performance in case traffic counting is done on all all detectors.</p>
-<table class="longtable docutils align-default" id="id63">
-<caption><span class="caption-number">Table 2.62 </span><span class="caption-text">S0206</span><a class="headerlink" href="#id63" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id62">
+<caption><span class="caption-number">Table 2.61 </span><span class="caption-text">S0206</span><a class="headerlink" href="#id62" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 3%" />
 <col style="width: 3%" />
@@ -3150,8 +3151,8 @@ Note: <br>
 <h3><span class="section-number">2.4.47. </span>S0207<a class="headerlink" href="#s0207" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Occupancy</p>
 <p>This status was introduced to improve performance in case traffic counting is done on all all detectors.</p>
-<table class="longtable docutils align-default" id="id64">
-<caption><span class="caption-number">Table 2.63 </span><span class="caption-text">S0207</span><a class="headerlink" href="#id64" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id63">
+<caption><span class="caption-number">Table 2.62 </span><span class="caption-text">S0207</span><a class="headerlink" href="#id63" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 3%" />
@@ -3182,8 +3183,8 @@ Note: <br>
 <h3><span class="section-number">2.4.48. </span>S0208<a class="headerlink" href="#s0208" title="Permalink to this headline"></a></h3>
 <p>Traffic Counting: Number of vehicles of given classification</p>
 <p>This status was introduced to improve performance in case traffic counting is done on all all detectors.</p>
-<table class="longtable docutils align-default" id="id65">
-<caption><span class="caption-number">Table 2.64 </span><span class="caption-text">S0208</span><a class="headerlink" href="#id65" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id64">
+<caption><span class="caption-number">Table 2.63 </span><span class="caption-text">S0208</span><a class="headerlink" href="#id64" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 3%" />
 <col style="width: 3%" />
@@ -3269,8 +3270,8 @@ Note: <br>
 </section>
 <section id="commands">
 <h2><span class="section-number">2.5. </span>Commands<a class="headerlink" href="#commands" title="Permalink to this headline"></a></h2>
-<table class="longtable docutils align-default" id="id66">
-<caption><span class="caption-number">Table 2.65 </span><span class="caption-text">Commands</span><a class="headerlink" href="#id66" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id65">
+<caption><span class="caption-number">Table 2.64 </span><span class="caption-text">Commands</span><a class="headerlink" href="#id65" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 22%" />
 <col style="width: 14%" />
@@ -3412,8 +3413,8 @@ Note: <br>
 <p>Sets functional position</p>
 <p>Sets the controller to yellow flash, dark mode or normal control.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id67">
-<caption><span class="caption-number">Table 2.66 </span><span class="caption-text">M0001</span><a class="headerlink" href="#id67" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id66">
+<caption><span class="caption-number">Table 2.65 </span><span class="caption-text">M0001</span><a class="headerlink" href="#id66" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
 <col style="width: 5%" />
@@ -3475,8 +3476,8 @@ Dark: Enables dark mode</p></td>
 <p>Typical usages is scenario based control where change of program is used to change signal timings etc.</p>
 <p>This command changes the signal timings for optimal traffic flow.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id68">
-<caption><span class="caption-number">Table 2.67 </span><span class="caption-text">M0002</span><a class="headerlink" href="#id68" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id67">
+<caption><span class="caption-number">Table 2.66 </span><span class="caption-text">M0002</span><a class="headerlink" href="#id67" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 13%" />
 <col style="width: 8%" />
@@ -3521,8 +3522,8 @@ True: Controller uses time plan according to command</p></td>
 <p>Used for area-based control where a command can be sent to a master traffic light controller about which predefined traffic situation to use (1-255).</p>
 <p>Traffic situation is a concept used to divide multiple TLC’s into areas and sub-areas. The traffic situation gives the possibility to change the TLC sub-area dynamically depending on the time of day and the traffic flow. Depending on the traffic situation each TLC selects the time plan dynamically.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id69">
-<caption><span class="caption-number">Table 2.68 </span><span class="caption-text">M0003</span><a class="headerlink" href="#id69" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id68">
+<caption><span class="caption-number">Table 2.67 </span><span class="caption-text">M0003</span><a class="headerlink" href="#id68" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 14%" />
 <col style="width: 7%" />
@@ -3566,8 +3567,8 @@ True: Controller uses traffic situation according to command</p></td>
 <p>Restarts Traffic Light Controller</p>
 <p>Used in the event of serious faults in the device where a restart is considered to be able to remedy a problem.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id70">
-<caption><span class="caption-number">Table 2.69 </span><span class="caption-text">M0004</span><a class="headerlink" href="#id70" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id69">
+<caption><span class="caption-number">Table 2.68 </span><span class="caption-text">M0004</span><a class="headerlink" href="#id69" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 28%" />
 <col style="width: 16%" />
@@ -3597,8 +3598,8 @@ True: Controller uses traffic situation according to command</p></td>
 <p>The function is made for emergency prioritization. Works in the same way as the M0006 and M0008 where the traffic light controller responds to an input.</p>
 <p>Should be used in situations where full priority is given in the emergency vehicle program.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id71">
-<caption><span class="caption-number">Table 2.70 </span><span class="caption-text">M0005</span><a class="headerlink" href="#id71" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id70">
+<caption><span class="caption-number">Table 2.69 </span><span class="caption-text">M0005</span><a class="headerlink" href="#id70" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 10%" />
@@ -3645,8 +3646,8 @@ True: Activate emergency route</p></td>
 <p>Can be used for all types of input where the traffic light controller must react to external control.</p>
 <p>Typical usages are bus priority, coordination between traffic controllers, external control systems, and much more.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id72">
-<caption><span class="caption-number">Table 2.71 </span><span class="caption-text">M0006</span><a class="headerlink" href="#id72" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id71">
+<caption><span class="caption-number">Table 2.70 </span><span class="caption-text">M0006</span><a class="headerlink" href="#id71" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 21%" />
 <col style="width: 12%" />
@@ -3691,8 +3692,8 @@ True: Activate input</p></td>
 <p>Deactivates the traffic actuated control using detectors and activates pre-timed control.</p>
 <p>Can be used in case normal detectors can’t be used, e.g. during maintenance work.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id73">
-<caption><span class="caption-number">Table 2.72 </span><span class="caption-text">M0007</span><a class="headerlink" href="#id73" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id72">
+<caption><span class="caption-number">Table 2.71 </span><span class="caption-text">M0007</span><a class="headerlink" href="#id72" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 12%" />
@@ -3723,8 +3724,8 @@ True: Activate fixed time control</p></td>
 <p>Set given detector logic (1-255) to either true or false.</p>
 <p>Can e.g. be used to connect RSMP compatible detection equipment to the traffic light controller. Can also be used for prioritization.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id74">
-<caption><span class="caption-number">Table 2.73 </span><span class="caption-text">M0008</span><a class="headerlink" href="#id74" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id73">
+<caption><span class="caption-number">Table 2.72 </span><span class="caption-text">M0008</span><a class="headerlink" href="#id73" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 16%" />
 <col style="width: 9%" />
@@ -3757,12 +3758,12 @@ True: Activate detector logic</p></td>
 <section id="m0010">
 <h3><span class="section-number">2.5.9. </span>M0010<a class="headerlink" href="#m0010" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p>
-<table class="longtable docutils align-default" id="id75">
-<caption><span class="caption-number">Table 2.74 </span><span class="caption-text">M0010</span><a class="headerlink" href="#id75" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id74">
+<caption><span class="caption-number">Table 2.73 </span><span class="caption-text">M0010</span><a class="headerlink" href="#id74" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 35%" />
-<col style="width: 21%" />
-<col style="width: 44%" />
+<col style="width: 39%" />
+<col style="width: 23%" />
+<col style="width: 39%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3777,7 +3778,7 @@ True: Activate detector logic</p></td>
 </tr>
 <tr class="row-odd"><td><p>securityCode</p></td>
 <td><p>string</p></td>
-<td><p>Security code 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -3785,12 +3786,12 @@ True: Activate detector logic</p></td>
 <section id="m0011">
 <h3><span class="section-number">2.5.10. </span>M0011<a class="headerlink" href="#m0011" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p>
-<table class="longtable docutils align-default" id="id76">
-<caption><span class="caption-number">Table 2.75 </span><span class="caption-text">M0011</span><a class="headerlink" href="#id76" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id75">
+<caption><span class="caption-number">Table 2.74 </span><span class="caption-text">M0011</span><a class="headerlink" href="#id75" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 35%" />
-<col style="width: 21%" />
-<col style="width: 44%" />
+<col style="width: 39%" />
+<col style="width: 23%" />
+<col style="width: 39%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3805,7 +3806,7 @@ True: Activate detector logic</p></td>
 </tr>
 <tr class="row-odd"><td><p>securityCode</p></td>
 <td><p>string</p></td>
-<td><p>Security code 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -3813,12 +3814,12 @@ True: Activate detector logic</p></td>
 <section id="m0012">
 <h3><span class="section-number">2.5.11. </span>M0012<a class="headerlink" href="#m0012" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p>
-<table class="longtable docutils align-default" id="id77">
-<caption><span class="caption-number">Table 2.76 </span><span class="caption-text">M0012</span><a class="headerlink" href="#id77" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id76">
+<caption><span class="caption-number">Table 2.75 </span><span class="caption-text">M0012</span><a class="headerlink" href="#id76" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 36%" />
-<col style="width: 18%" />
-<col style="width: 45%" />
+<col style="width: 40%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3833,7 +3834,7 @@ True: Activate detector logic</p></td>
 </tr>
 <tr class="row-odd"><td><p>securityCode</p></td>
 <td><p>string</p></td>
-<td><p>Security code 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -3868,8 +3869,8 @@ Format: [Offset];[Bits to set];[Bits to unset];…</p>
 - Input starts from 0
 - “1” is 1 in binary, which is bit 0
 - “2” is 10 in binary, which is bit 1</p>
-<table class="longtable docutils align-default" id="id78">
-<caption><span class="caption-number">Table 2.77 </span><span class="caption-text">M0013</span><a class="headerlink" href="#id78" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id77">
+<caption><span class="caption-number">Table 2.76 </span><span class="caption-text">M0013</span><a class="headerlink" href="#id77" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 6%" />
 <col style="width: 3%" />
@@ -3900,8 +3901,8 @@ Format: [Offset];[Bits to set];[Bits to unset];…</p></td>
 <p>Can be used to change between predefined signal timings. Moves the start of signal groups in the cycle.</p>
 <p>This command can be used to change the split of green time during the cycle. A typical usage is scenario based control where changing of signal timings is used for optimal traffic flow.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id79">
-<caption><span class="caption-number">Table 2.78 </span><span class="caption-text">M0014</span><a class="headerlink" href="#id79" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id78">
+<caption><span class="caption-number">Table 2.77 </span><span class="caption-text">M0014</span><a class="headerlink" href="#id78" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 15%" />
 <col style="width: 9%" />
@@ -3953,8 +3954,8 @@ dd-ee,dd-ee</p></td>
 <p>Offset time is used to define an offset between intersections in coordinated control. It is based on the expected travel time between intersections.</p>
 <p>This command can be used to fine tune the coordination for optimal traffic flow.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id80">
-<caption><span class="caption-number">Table 2.79 </span><span class="caption-text">M0015</span><a class="headerlink" href="#id80" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id79">
+<caption><span class="caption-number">Table 2.78 </span><span class="caption-text">M0015</span><a class="headerlink" href="#id79" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 22%" />
 <col style="width: 13%" />
@@ -3998,8 +3999,8 @@ dd-ee,dd-ee</p></td>
 <p>Set which time table for signal programs to use for each day during a week.</p>
 <p>This command changes the signal timings during the week for optimal traffic flow.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id81">
-<caption><span class="caption-number">Table 2.80 </span><span class="caption-text">M0016</span><a class="headerlink" href="#id81" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id80">
+<caption><span class="caption-number">Table 2.79 </span><span class="caption-text">M0016</span><a class="headerlink" href="#id80" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 14%" />
 <col style="width: 7%" />
@@ -4046,8 +4047,8 @@ d-t,d-t</p></td>
 <p>Set time of day for when to automatically switch signal program (time plan).</p>
 <p>This command changes the signal timings according to time of day for optimal traffic flow.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id82">
-<caption><span class="caption-number">Table 2.81 </span><span class="caption-text">M0017</span><a class="headerlink" href="#id82" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id81">
+<caption><span class="caption-number">Table 2.80 </span><span class="caption-text">M0017</span><a class="headerlink" href="#id81" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 8%" />
@@ -4095,8 +4096,8 @@ t-o-h-m,t-o-h-m</p></td>
 <p>Cycle time (or cycle length) is the sum of all phases in a time plan (traffic program). This time is fixed when using fixed time control or coordination (except “local coordination”). When the cycle counter reaches this length it is reset back to zero.</p>
 <p>This command provides the ability to change the cycle time when using coordinated or fixed time control. It changes the timings for optimal traffic flow. Can be used with scenario based control.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id83">
-<caption><span class="caption-number">Table 2.82 </span><span class="caption-text">M0018</span><a class="headerlink" href="#id83" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id82">
+<caption><span class="caption-number">Table 2.81 </span><span class="caption-text">M0018</span><a class="headerlink" href="#id82" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 22%" />
 <col style="width: 13%" />
@@ -4140,8 +4141,8 @@ t-o-h-m,t-o-h-m</p></td>
 <p>Force a given input (1-255) of the controllers general purpose I/O to either True or False. Can be used for all types of input where the traffic light controller must react to external control.</p>
 <p>Can be used for bus priority, coordination between traffic controllers, external control systems, and much more.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id84">
-<caption><span class="caption-number">Table 2.83 </span><span class="caption-text">M0019</span><a class="headerlink" href="#id84" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id83">
+<caption><span class="caption-number">Table 2.82 </span><span class="caption-text">M0019</span><a class="headerlink" href="#id83" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 19%" />
 <col style="width: 11%" />
@@ -4193,8 +4194,8 @@ True: input forced to True</p></td>
 <p>Force a given output (1-255) of the controllers general purpose I/O to either True of False. Can be used for all types of output where the traffic light controller needs to control other equipment.</p>
 <p>Can be used for bus priority, coordination between traffic controllers, external control systems, and much more.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id85">
-<caption><span class="caption-number">Table 2.84 </span><span class="caption-text">M0020</span><a class="headerlink" href="#id85" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id84">
+<caption><span class="caption-number">Table 2.83 </span><span class="caption-text">M0020</span><a class="headerlink" href="#id84" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 19%" />
 <col style="width: 11%" />
@@ -4246,8 +4247,8 @@ True: output forced to True</p></td>
 <p>The trigger level sensitivity determines at what level a loop detector should trigger. If it set too low then then traffic will not be detected as intended. If it is set too high the detector might give false positives.</p>
 <p>This command provides the ability to fine tune loop detectors to make sure they detect traffic as intended.</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id86">
-<caption><span class="caption-number">Table 2.85 </span><span class="caption-text">M0021</span><a class="headerlink" href="#id86" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id85">
+<caption><span class="caption-number">Table 2.84 </span><span class="caption-text">M0021</span><a class="headerlink" href="#id85" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 13%" />
 <col style="width: 7%" />
@@ -4341,8 +4342,8 @@ existing request id setting the type to ‘cancel’.</p>
 <p>If a request is never cancelled, the controller is expected to remove the priority at some point,
 but until then the priority might block requests in other direction which is why you should always cancel a priority
 when it’s not needed anymore.</p>
-<table class="longtable docutils align-default" id="id87">
-<caption><span class="caption-number">Table 2.86 </span><span class="caption-text">M0022</span><a class="headerlink" href="#id87" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id86">
+<caption><span class="caption-number">Table 2.85 </span><span class="caption-text">M0022</span><a class="headerlink" href="#id86" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 6%" />
@@ -4482,8 +4483,8 @@ other: Other type of vehicle</p></td>
 Disable by setting timeout to ‘0’.</p>
 <p>Used in conjunction with dynamic bands, M0014</p>
 <p>Requires security code 2.</p>
-<table class="longtable docutils align-default" id="id88">
-<caption><span class="caption-number">Table 2.87 </span><span class="caption-text">M0023</span><a class="headerlink" href="#id88" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id87">
+<caption><span class="caption-number">Table 2.86 </span><span class="caption-text">M0023</span><a class="headerlink" href="#id87" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 15%" />
@@ -4520,8 +4521,8 @@ Disable by setting timeout to ‘0’.</p>
 <p>Set security code</p>
 <p>Change the security code to use when sending commands</p>
 <p>Security codes are used as an extra layer of security in many commands. They need to match between the supervision system and the traffic light controller in order for the commands to be executed.</p>
-<table class="longtable docutils align-default" id="id89">
-<caption><span class="caption-number">Table 2.88 </span><span class="caption-text">M0103</span><a class="headerlink" href="#id89" title="Permalink to this table"></a></caption>
+<table class="longtable docutils align-default" id="id88">
+<caption><span class="caption-number">Table 2.87 </span><span class="caption-text">M0103</span><a class="headerlink" href="#id88" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 22%" />
 <col style="width: 9%" />
@@ -4559,16 +4560,17 @@ Level2: Change security code 2</p></td>
 <section id="m0104">
 <h3><span class="section-number">2.5.24. </span>M0104<a class="headerlink" href="#m0104" title="Permalink to this headline"></a></h3>
 <p>Set clock</p>
-<p>Can be used to manually set the clock of the traffic light controller if automatic  time synchronization (NTP or watchdog sync) is not available. For instance, during maintenance work.</p>
-<p>Requires security code 1.</p>
-<table class="longtable docutils align-default" id="id90">
-<caption><span class="caption-number">Table 2.89 </span><span class="caption-text">M0104</span><a class="headerlink" href="#id90" title="Permalink to this table"></a></caption>
+<p>Can be used to manually set the clock of the traffic light controller if automatic  time synchronization (NTP or watchdog sync) is not available. For instance, during maintenance work.
+Note: UTC is used
+Requires security code 1.</p>
+<table class="longtable docutils align-default" id="id89">
+<caption><span class="caption-number">Table 2.88 </span><span class="caption-text">M0104</span><a class="headerlink" href="#id89" title="Permalink to this table"></a></caption>
 <colgroup>
+<col style="width: 27%" />
 <col style="width: 16%" />
-<col style="width: 9%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 61%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 34%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -4589,43 +4591,37 @@ Level2: Change security code 2</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>9999</p></td>
-<td><p>Changes internal clock. Note: UTC is used <br> 
-Year</p></td>
+<td><p>Year</p></td>
 </tr>
 <tr class="row-even"><td><p>month</p></td>
 <td><p>integer</p></td>
 <td><p>1</p></td>
 <td><p>12</p></td>
-<td><p>Changes internal clock. Note: UTC is used <br> 
-Month</p></td>
+<td><p>Month</p></td>
 </tr>
 <tr class="row-odd"><td><p>day</p></td>
 <td><p>integer</p></td>
 <td><p>1</p></td>
 <td><p>31</p></td>
-<td><p>Changes internal clock. Note: UTC is used <br> 
-Day in month</p></td>
+<td><p>Day of month</p></td>
 </tr>
 <tr class="row-even"><td><p>hour</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>23</p></td>
-<td><p>Changes internal clock. Note: UTC is used <br> 
-Hour</p></td>
+<td><p>Hour</p></td>
 </tr>
 <tr class="row-odd"><td><p>minute</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>59</p></td>
-<td><p>Changes internal clock. Note: UTC is used <br> 
-Minute</p></td>
+<td><p>Minute</p></td>
 </tr>
 <tr class="row-even"><td><p>second</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>59</p></td>
-<td><p>Changes internal clock. Note: UTC is used <br> 
-Second</p></td>
+<td><p>Second</p></td>
 </tr>
 </tbody>
 </table>
