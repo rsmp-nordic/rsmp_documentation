@@ -21,7 +21,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
-        ref: bafc5ef712669e9f2777be1068e2cdc5351af37b
+        ref: 18cefab8abdbabbc5375c0dcf5baf6fa24304e99
     - name: Install dependencies
       run: |
         sudo add-apt-repository ppa:inkscape.dev/stable
