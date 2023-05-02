@@ -54,7 +54,7 @@ jobs:
           --template template.xlsx \
           --stdout \
           --short-desc \
-          --objects rsmp_schema/tlc/1.1/sxl.yaml \
+          --objects rsmp_schema/schemas/tlc/1.1/sxl.yaml \
           --site sxl_tools/tlc/SXL_Traffic_Controller_ver_1_1-site.yaml \
           > sxl.xlsx
 
