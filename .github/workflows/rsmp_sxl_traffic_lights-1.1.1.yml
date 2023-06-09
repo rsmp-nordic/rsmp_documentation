@@ -73,6 +73,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_schema
         path: rsmp_schema
+        ref: 1.1.1
 
     - name: Check out sxl-tools repository
       uses: actions/checkout@v2
