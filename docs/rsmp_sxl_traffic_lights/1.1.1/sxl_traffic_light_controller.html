@@ -865,7 +865,7 @@ intermittent: intermittent logic fault (flutter)</p></td>
 </tr>
 <tr class="row-odd"><td><p>Traffic Light Controller</p></td>
 <td><p><a class="reference internal" href="#s0006">S0006</a></p></td>
-<td><p>Emergency stage</p></td>
+<td><p>Emergency route</p></td>
 </tr>
 <tr class="row-even"><td><p>Traffic Light Controller</p></td>
 <td><p><a class="reference internal" href="#s0007">S0007</a></p></td>
@@ -1249,17 +1249,19 @@ True: Controller is currently in start up mode</p></td>
 </section>
 <section id="s0006">
 <h3><span class="section-number">2.4.6. </span>S0006<a class="headerlink" href="#s0006" title="Permalink to this headline"></a></h3>
-<p>Emergency stage</p>
+<p>Emergency route</p>
 <p>The status is active during emergency prioritization. Used in situations
-where full priority is given in the emergency vehicle program.</p>
+where full priority is given in the emergency vehicle program. If no
+emergency route is active, status should be set to False, and
+emergencystage to zero.</p>
 <table class="longtable docutils align-default" id="id20">
 <caption><span class="caption-number">Table 2.20 </span><span class="caption-text">S0006</span><a class="headerlink" href="#id20" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 54%" />
+<col style="width: 15%" />
+<col style="width: 8%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 66%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1274,14 +1276,14 @@ where full priority is given in the emergency vehicle program.</p>
 <td><p>boolean</p></td>
 <td></td>
 <td></td>
-<td><p>False: Emergency stage inactive <br> 
-True: Emergency stage active</p></td>
+<td><p>False: Emergency route inactive <br> 
+True: Emergency route active</p></td>
 </tr>
 <tr class="row-odd"><td><p>emergencystage</p></td>
 <td><p>integer</p></td>
-<td><p>1</p></td>
+<td><p>0</p></td>
 <td><p>255</p></td>
-<td><p>Number of emergency stage</p></td>
+<td><p>Number of emergency route (set to zero if no route is active)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2147,14 +2149,14 @@ tune the coordination for optimal traffic flow.</p>
 <tr class="row-even"><td><p>status</p></td>
 <td><p>string</p></td>
 <td><p>Offset table <br> 
-Each offset time is written as pp-tt where: <br> 
-pp=time plan <br> 
-tt=offset time in seconds <br> 
+Each offset time is written as p-t where: <br> 
+p=time plan number (from 1 to 255) <br> 
+t=offset time in seconds (from 0 to 255) <br> 
 <br> 
 Each offset time is separated with a comma <br> 
 <br> 
 E.g. <br> 
-pp-tt,pp-tt</p></td>
+1-0,2-13-3-7</p></td>
 </tr>
 </tbody>
 </table>
@@ -2168,10 +2170,10 @@ group. Max, min and likely time to green and red.</p>
 <caption><span class="caption-number">Table 2.39 </span><span class="caption-text">S0025</span><a class="headerlink" href="#id39" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
-<col style="width: 4%" />
+<col style="width: 5%" />
 <col style="width: 3%" />
 <col style="width: 3%" />
-<col style="width: 82%" />
+<col style="width: 81%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -2183,21 +2185,21 @@ group. Max, min and likely time to green and red.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>minToGEstimate</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for the minimum time for the signal group to go to green. If the signal group is green, it is the minimum time for the next green <br> 
 Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 <tr class="row-odd"><td><p>maxToGEstimate</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for the maximum time for the signal group to go to green. If the signal group is green, it is the maximum time for the next green <br> 
 Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 <tr class="row-even"><td><p>likelyToGEstimate</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for the most likely time for the signal group to go to green. If the signal group is green, it is the most likely time for the next green <br> 
@@ -2210,21 +2212,21 @@ Format according to W3C XML dateTime with a resolution of 3 decimal places. All 
 <td><p>Confidence of the likelyToGEstimate. 0-100%</p></td>
 </tr>
 <tr class="row-even"><td><p>minToREstimate</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for the minimum time for the signal group to go to red. If the signal group is red, it is the minimum time for the next red <br> 
 Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 <tr class="row-odd"><td><p>maxToREstimate</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for the maximum time for the signal group to go to red. If the signal group is red, it is the maximum time for the next red <br> 
 Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 <tr class="row-even"><td><p>likelyToREstimate</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for the most likely time for the signal group to go to red. If the signal group is red, it is the most likely time for the next red <br> 
@@ -2525,26 +2527,23 @@ other: Other reason</p></td>
 <p>Signal Priority Status</p>
 <p>This status can be used to get updates about priority requests. For
 example, you can use it to know when priority requests are activated or
-cancelled.</p>
-<p>A list of priorities is returned, referred to by their request ids. The
-same request id can appear only once.</p>
-<p>All priorities are included in the list (not only the ones that have
-changed state since the last update). This is done regardless of whether
-the status is send in respond to a status request, or due to a status
-subscription, and also regardless of whether a status subscription uses
-an update interval, or send-on-change, or both.</p>
-<p>If you subscribe using an update interval, you’re not guaranteed to get
-all intermediate states. To guarantee that, send-on-change must be used
-when subscribing.</p>
-<p>To understand how this status relates to ETSI/J2735, please see the
-<a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.</p>
-<p>All priorities are send on every status update, regardless of whether an
-interval, or sendOnChange (or both) is used.</p>
-<p>When a priority reaches an end states (completed, timeout, rejected,
-cooldown or stale), it must be sent once on the next status update, then
-removed from the list.</p>
-<p>A request always starts in the ‘received’ state. The following table
-shows the possible state transitions:</p>
+cancelled. A list of priorities is returned, referred to by their
+request ids. The same request id can appear only once. All priorities
+are included in the list (not only the ones that have changed state
+since the last update). This is done regardless of whether the status is
+send in respond to a status request, or due to a status subscription,
+and also regardless of whether a status subscription uses an update
+interval, or send-on-change, or both. If you subscribe using an update
+interval, you’re not guaranteed to get all intermediate states. To
+guarantee that, send-on-change must be used when subscribing. To
+understand how this status relates to ETSI/J2735, please see the
+<a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.
+All priorities are send on every status update, regardless of whether an
+interval, or sendOnChange (or both) is used. When a priority reaches an
+end states (completed, timeout, rejected, cooldown or stale), it must be
+sent once on the next status update, then removed from the list. A
+request always starts in the ‘received’ state. The following table shows
+the possible state transitions:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20%" />
@@ -2606,11 +2605,11 @@ shows the possible state transitions:</p>
 <caption><span class="caption-number">Table 2.48 </span><span class="caption-text">S0033 status</span><a class="headerlink" href="#id48" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 5%" />
+<col style="width: 7%" />
 <col style="width: 4%" />
 <col style="width: 4%" />
-<col style="width: 12%" />
-<col style="width: 71%" />
+<col style="width: 11%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -2630,7 +2629,7 @@ shows the possible state transitions:</p>
 <td><p>ID of the priority request</p></td>
 </tr>
 <tr class="row-odd"><td><p>t</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td></td>
@@ -2877,8 +2876,8 @@ changed. The traffic parameters may be downloaded with S0098.</p>
 <caption><span class="caption-number">Table 2.54 </span><span class="caption-text">S0097</span><a class="headerlink" href="#id54" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 3%" />
-<col style="width: 91%" />
+<col style="width: 5%" />
+<col style="width: 90%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -2910,7 +2909,7 @@ Note: <br>
 - Data Downloaded with S0098 and hashed with SHA-2 should match this value.</p></td>
 </tr>
 <tr class="row-odd"><td><p>timestamp</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td><p>Time stamp of the checksum. Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 </tbody>
@@ -2927,8 +2926,8 @@ provides the ability to downloaded them.</p>
 <caption><span class="caption-number">Table 2.55 </span><span class="caption-text">S0098</span><a class="headerlink" href="#id55" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 4%" />
-<col style="width: 91%" />
+<col style="width: 5%" />
+<col style="width: 90%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -2959,7 +2958,7 @@ Note: <br>
 - The format of the binary file is not specified and is not expected to be compatible between suppliers</p></td>
 </tr>
 <tr class="row-odd"><td><p>timestamp</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td><p>Time stamp of the config. Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </tr>
 <tr class="row-even"><td><p>version</p></td>
@@ -2978,10 +2977,10 @@ The format is not specified in detail.</p></td>
 <caption><span class="caption-number">Table 2.56 </span><span class="caption-text">S0201</span><a class="headerlink" href="#id56" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 4%" />
+<col style="width: 5%" />
 <col style="width: 3%" />
 <col style="width: 3%" />
-<col style="width: 86%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -2993,7 +2992,7 @@ The format is not specified in detail.</p></td>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>starttime</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
@@ -3015,10 +3014,10 @@ The format is not specified in detail.</p></td>
 <caption><span class="caption-number">Table 2.57 </span><span class="caption-text">S0202</span><a class="headerlink" href="#id57" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
-<col style="width: 7%" />
+<col style="width: 9%" />
 <col style="width: 5%" />
 <col style="width: 5%" />
-<col style="width: 73%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3030,7 +3029,7 @@ The format is not specified in detail.</p></td>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>starttime</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C <br> 
@@ -3054,10 +3053,10 @@ in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 <caption><span class="caption-number">Table 2.58 </span><span class="caption-text">S0203</span><a class="headerlink" href="#id58" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
-<col style="width: 7%" />
+<col style="width: 9%" />
 <col style="width: 5%" />
 <col style="width: 5%" />
-<col style="width: 73%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3069,7 +3068,7 @@ in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>starttime</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C <br> 
@@ -3093,10 +3092,10 @@ in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 <caption><span class="caption-number">Table 2.59 </span><span class="caption-text">S0204</span><a class="headerlink" href="#id59" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
-<col style="width: 7%" />
+<col style="width: 9%" />
 <col style="width: 5%" />
 <col style="width: 5%" />
-<col style="width: 73%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3108,7 +3107,7 @@ in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>starttime</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C <br> 
@@ -3143,7 +3142,7 @@ in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>65535</p></td>
-<td><p>Number of busses</p></td>
+<td><p>Number of buses</p></td>
 </tr>
 <tr class="row-even"><td><p>SP</p></td>
 <td><p>integer</p></td>
@@ -3181,10 +3180,10 @@ counting is done on all all detectors.</p>
 <caption><span class="caption-number">Table 2.60 </span><span class="caption-text">S0205</span><a class="headerlink" href="#id60" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 4%" />
-<col style="width: 4%" />
+<col style="width: 5%" />
 <col style="width: 3%" />
 <col style="width: 3%" />
-<col style="width: 87%" />
+<col style="width: 86%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3196,7 +3195,7 @@ counting is done on all all detectors.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>start</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C XML dateTime with a resolution of 3 decimal places. All time stamps in UTC. E.g. 2009-10-02T14:34:34.341Z</p></td>
@@ -3222,10 +3221,10 @@ counting is done on all all detectors.</p>
 <caption><span class="caption-number">Table 2.61 </span><span class="caption-text">S0206</span><a class="headerlink" href="#id61" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 6%" />
+<col style="width: 8%" />
 <col style="width: 4%" />
 <col style="width: 4%" />
-<col style="width: 80%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3237,7 +3236,7 @@ counting is done on all all detectors.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>start</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C <br> 
@@ -3264,11 +3263,11 @@ counting is done on all all detectors.</p>
 <table class="longtable docutils align-default" id="id62">
 <caption><span class="caption-number">Table 2.62 </span><span class="caption-text">S0207</span><a class="headerlink" href="#id62" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 6%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
 <col style="width: 4%" />
 <col style="width: 4%" />
-<col style="width: 78%" />
+<col style="width: 77%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3280,7 +3279,7 @@ counting is done on all all detectors.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>start</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C <br> 
@@ -3308,10 +3307,10 @@ counting is done on all all detectors.</p>
 <caption><span class="caption-number">Table 2.63 </span><span class="caption-text">S0208</span><a class="headerlink" href="#id63" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 6%" />
+<col style="width: 8%" />
 <col style="width: 4%" />
 <col style="width: 4%" />
-<col style="width: 80%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -3323,7 +3322,7 @@ counting is done on all all detectors.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>start</p></td>
-<td><p>string</p></td>
+<td><p>timestamp</p></td>
 <td></td>
 <td></td>
 <td><p>Time stamp for start of measuring. Format according to W3C <br> 
@@ -3587,7 +3586,8 @@ Requires security code 2.</p>
 <td><p>-NormalControl <br> 
 -YellowFlash <br> 
 -Dark</p></td>
-<td><p>NormalControl: Normal Control <br> 
+<td><p>Set operating mode <br> 
+NormalControl: Normal Control <br> 
 YellowFlash: Enables yellow flash <br> 
 Dark: Enables dark mode</p></td>
 </tr>
@@ -4458,8 +4458,8 @@ vehicles or groups of cyclists.</p>
 logics is that you can specify a priority level, vehicle type and
 estimated time of arrival. You can also update or cancel the request,
 and use the corresponding status message to track the status of the
-request, including how much priority was actually given. To understand
-how this command relates to ETSI/J2735, please see the
+request, including how much priority was actually given.</p>
+<p>To understand how this command relates to ETSI/J2735, please see the
 <a class="reference external" href="https://github.com/rsmp-nordic/rsmp_sxl_traffic_lights/wiki/Signal-priority-and-ETSI-J2735">wiki</a>.</p>
 <p>Activating signal priority is expected to provide more green time for a
 particular movement through the intersection, but the exact mechanism
