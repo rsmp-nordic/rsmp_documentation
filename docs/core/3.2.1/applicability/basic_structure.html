@@ -16,7 +16,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.5. Data types" href="data_types.html" />
+    <link rel="next" title="4.5. Error handling" href="error_handling.html" />
     <link rel="prev" title="4.3. Transport of data" href="transport_of_data.html" /> 
 </head>
 
@@ -90,8 +90,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">4.5. Data types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sxl.html">4.6. Signal Exchange List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error_handling.html">4.5. Error handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_types.html">4.6. Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sxl.html">4.7. Signal Exchange List</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">5. Change log</a></li>
@@ -1033,8 +1034,6 @@ according to the example below.</p>
 <p>The status code id (<code class="docutils literal notranslate"><span class="pre">sCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
 (<code class="docutils literal notranslate"><span class="pre">sS</span></code>) in order to enable support for responding to multiple statuses at once.
 The following table is describing the variable content of the message.</p>
-<p>If the component (<code class="docutils literal notranslate"><span class="pre">cId</span></code>) is not known, then the site must not disconnect but
-instead answer with this type of message where <code class="docutils literal notranslate"><span class="pre">q</span></code> is set to <code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
 <div class="highlight-json notranslate" id="json-status-response"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;StatusResponse&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1290,9 +1289,6 @@ needs to update with the current statuses.</p></li>
 <li><p>If an subscription is already active then the site must not establish
 a new subscription but use the existing one. It’s allowed to change
 <strong>updateRate</strong> and <strong>sendOnChange</strong>.</p></li>
-<li><p>If the object is not known then the site must not disconnect
-but instead answer with this type of message where <strong>q</strong> is set to
-<strong>undefined</strong>.</p></li>
 </ul>
 <div class="highlight-json notranslate" id="json-status-update"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1564,9 +1560,6 @@ requested object.</p>
 <p>The command code (<code class="docutils literal notranslate"><span class="pre">cCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
 (<code class="docutils literal notranslate"><span class="pre">rvs</span></code>) in order to enable support for responding to multiple commands at
 once.</p>
-<p>If the object is not known then the site must not disconnect
-but instead answer with this type of message where <code class="docutils literal notranslate"><span class="pre">age</span></code> is set to
-<code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
 <div class="highlight-json notranslate" id="json-command-response"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CommandResponse&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2014,7 +2007,7 @@ implicit in the following figures.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="transport_of_data.html" class="btn btn-neutral float-left" title="4.3. Transport of data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data_types.html" class="btn btn-neutral float-right" title="4.5. Data types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="error_handling.html" class="btn btn-neutral float-right" title="4.5. Error handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

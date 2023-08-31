@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.6. Signal Exchange List &mdash; RSMP Specification 3.2.1-draft documentation</title>
+  <title>4.7. Signal Exchange List &mdash; RSMP Specification 3.2.1-draft documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   
@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Change log" href="../changelog.html" />
-    <link rel="prev" title="4.5. Data types" href="data_types.html" /> 
+    <link rel="prev" title="4.6. Data types" href="data_types.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,36 +47,37 @@
 <li class="toctree-l2"><a class="reference internal" href="object_model.html">4.2. Object model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transport_of_data.html">4.3. Transport of data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic_structure.html">4.4. Basic structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">4.5. Data types</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.6. Signal Exchange List</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#structure">4.6.1. Structure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#first-page">4.6.1.1. First page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#object-types-and-object">4.6.1.2. Object types and object</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#object-definitions">4.6.1.3. Object definitions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#single-and-grouped-objects">4.6.1.4. Single and grouped objects</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#other-sheets">4.6.1.5. Other sheets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#overview-on-functional-differences-between-different-message-types">4.6.1.6. Overview on functional differences between different message types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error_handling.html">4.5. Error handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_types.html">4.6. Data types</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.7. Signal Exchange List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure">4.7.1. Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#first-page">4.7.1.1. First page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#object-types-and-object">4.7.1.2. Object types and object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#object-definitions">4.7.1.3. Object definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#single-and-grouped-objects">4.7.1.4. Single and grouped objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-sheets">4.7.1.5. Other sheets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overview-on-functional-differences-between-different-message-types">4.7.1.6. Overview on functional differences between different message types</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#definitions">4.6.2. Definitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#functional-relationships-in-the-signal-exchange-list">4.6.3. Functional relationships in the signal exchange list</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#functional-states">4.6.3.1. Functional states</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#arguments-and-return-values">4.6.3.2. Arguments and return values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#definitions">4.7.2. Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functional-relationships-in-the-signal-exchange-list">4.7.3. Functional relationships in the signal exchange list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functional-states">4.7.3.1. Functional states</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments-and-return-values">4.7.3.2. Arguments and return values</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#version-management">4.6.4. Version management</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#version-of-rsmp">4.6.4.1. Version of RSMP</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#revision-of-sxl">4.6.4.2. Revision of SXL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-management">4.7.4. Version management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#version-of-rsmp">4.7.4.1. Version of RSMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#revision-of-sxl">4.7.4.2. Revision of SXL</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#required-signals">4.6.5. Required signals</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#status-messages">4.6.5.1. Status messages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#command-messages">4.6.5.2. Command messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#required-signals">4.7.5. Required signals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#status-messages">4.7.5.1. Status messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#command-messages">4.7.5.2. Command messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#best-practices">4.6.6. Best practices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#definition-of-object-types">4.6.6.1. Definition of object types</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reading-and-writing-data">4.6.6.2. Reading and writing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices">4.7.6. Best practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#definition-of-object-types">4.7.6.1. Definition of object types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-and-writing-data">4.7.6.2. Reading and writing data</a></li>
 </ul>
 </li>
 </ul>
@@ -101,7 +102,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../applicability.html"><span class="section-number">4. </span>Applicability</a> &raquo;</li>
-      <li><span class="section-number">4.6. </span>Signal Exchange List</li>
+      <li><span class="section-number">4.7. </span>Signal Exchange List</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/applicability/sxl.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,7 +113,7 @@
            <div itemprop="articleBody">
              
   <section id="signal-exchange-list">
-<span id="id1"></span><h1><span class="section-number">4.6. </span>Signal Exchange List<a class="headerlink" href="#signal-exchange-list" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1><span class="section-number">4.7. </span>Signal Exchange List<a class="headerlink" href="#signal-exchange-list" title="Permalink to this headline"></a></h1>
 <p>The signal exchange list an important functional part of RSMP.
 Since the contents of every message using RSMP is dynamic, a predefined
 signal exchange list (<a class="reference internal" href="../definitions.html#term-SXL"><span class="xref std std-term">SXL</span></a>) is prerequisite in order to be able to
@@ -121,15 +122,15 @@ establish communication.</p>
 to send to a specific equipment or object. It is formatted according to
 predefined principles which is defined below.</p>
 <section id="structure">
-<h2><span class="section-number">4.6.1. </span>Structure<a class="headerlink" href="#structure" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.7.1. </span>Structure<a class="headerlink" href="#structure" title="Permalink to this headline"></a></h2>
 <p>The following sections presents the format and contents of the SXL. Each
 section corresponds to the names of each sheet in the SXL.</p>
 <section id="first-page">
-<h3><span class="section-number">4.6.1.1. </span>First page<a class="headerlink" href="#first-page" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.1.1. </span>First page<a class="headerlink" href="#first-page" title="Permalink to this headline"></a></h3>
 <p>The sheet “First page” defines site(s), revision and date of the SXL.</p>
 </section>
 <section id="object-types-and-object">
-<h3><span class="section-number">4.6.1.2. </span>Object types and object<a class="headerlink" href="#object-types-and-object" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.1.2. </span>Object types and object<a class="headerlink" href="#object-types-and-object" title="Permalink to this headline"></a></h3>
 <p>The “object types” sheet defines the types of object that can exist in a
 site, i.e. “LED”.</p>
 <p>The object sheet defines the number of each type of object that exists in
@@ -141,13 +142,13 @@ is renamed to the name of the site.</p>
 NTS identity (externalNtsId) is defined.</p>
 </section>
 <section id="object-definitions">
-<h3><span class="section-number">4.6.1.3. </span>Object definitions<a class="headerlink" href="#object-definitions" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.1.3. </span>Object definitions<a class="headerlink" href="#object-definitions" title="Permalink to this headline"></a></h3>
 <p>Depending on applicability, each object type can either have it’s own
 series or common series of alarm suffix (alarmCodeId), status codes
 (statusCodeId) and command codes (commandCodeId).</p>
 </section>
 <section id="single-and-grouped-objects">
-<h3><span class="section-number">4.6.1.4. </span>Single and grouped objects<a class="headerlink" href="#single-and-grouped-objects" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.1.4. </span>Single and grouped objects<a class="headerlink" href="#single-and-grouped-objects" title="Permalink to this headline"></a></h3>
 <p>An object can either be categorized as a <strong>single object</strong> or <strong>grouped
 object</strong>.</p>
 <p>An object is defined under the title <strong>group object</strong> if the object is a
@@ -157,7 +158,7 @@ under <strong>single object</strong>.</p>
 to be sent to NTS.</p>
 </section>
 <section id="other-sheets">
-<h3><span class="section-number">4.6.1.5. </span>Other sheets<a class="headerlink" href="#other-sheets" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.1.5. </span>Other sheets<a class="headerlink" href="#other-sheets" title="Permalink to this headline"></a></h3>
 <p>The sheets <strong>Alarm</strong>, <strong>Aggregated status</strong>, <strong>Status</strong> and <strong>Command</strong>
 corresponds to the respective message type which is defined in the RSMP
 specification.</p>
@@ -170,11 +171,11 @@ message.</p></li>
 </ul>
 </section>
 <section id="overview-on-functional-differences-between-different-message-types">
-<h3><span class="section-number">4.6.1.6. </span>Overview on functional differences between different message types<a class="headerlink" href="#overview-on-functional-differences-between-different-message-types" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.1.6. </span>Overview on functional differences between different message types<a class="headerlink" href="#overview-on-functional-differences-between-different-message-types" title="Permalink to this headline"></a></h3>
 <p>The following table defines the functional differences between
 different message types.</p>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-number">Table 4.28 </span><span class="caption-text">Functional differences</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<caption><span class="caption-number">Table 4.30 </span><span class="caption-text">Functional differences</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 19%" />
 <col style="width: 46%" />
@@ -208,13 +209,13 @@ different message types.</p>
 </section>
 </section>
 <section id="definitions">
-<h2><span class="section-number">4.6.2. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.7.2. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline"></a></h2>
 <p>The following notions are used as titles from the columns in the SXL. All
 the notions corresponds to the element with the same name in the
 basic structure.</p>
 <p>The following table defines the different versions of command messages.</p>
 <table class="docutils align-default" id="id3">
-<caption><span class="caption-number">Table 4.29 </span><span class="caption-text">Commands - different versions</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<caption><span class="caption-number">Table 4.31 </span><span class="caption-text">Commands - different versions</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 34%" />
 <col style="width: 66%" />
@@ -248,16 +249,16 @@ autonomous traffic parameters of the equipment</p></td>
 </table>
 </section>
 <section id="functional-relationships-in-the-signal-exchange-list">
-<h2><span class="section-number">4.6.3. </span>Functional relationships in the signal exchange list<a class="headerlink" href="#functional-relationships-in-the-signal-exchange-list" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.7.3. </span>Functional relationships in the signal exchange list<a class="headerlink" href="#functional-relationships-in-the-signal-exchange-list" title="Permalink to this headline"></a></h2>
 <section id="functional-states">
-<h3><span class="section-number">4.6.3.1. </span>Functional states<a class="headerlink" href="#functional-states" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.3.1. </span>Functional states<a class="headerlink" href="#functional-states" title="Permalink to this headline"></a></h3>
 <p>The functional states which an object can enter should also be possible to
 control. The commands which are defined in <strong>“Functional states</strong>
 in the <strong>Commands</strong> sheet should correlate to the functional states
 which are defined in <strong>functionalPosition</strong> in “<strong>Aggregated status</strong>”.</p>
 </section>
 <section id="arguments-and-return-values">
-<h3><span class="section-number">4.6.3.2. </span>Arguments and return values<a class="headerlink" href="#arguments-and-return-values" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.3.2. </span>Arguments and return values<a class="headerlink" href="#arguments-and-return-values" title="Permalink to this headline"></a></h3>
 <p>Argument and return values makes it possible to send extra information in
 messages. It is possible to send binary data (base64), such as bitmap
 pictures or other data, both to a site and to supervision system. The
@@ -274,7 +275,7 @@ information with alarm messages</p></li>
 <p>The following table defines the message types which supports arguments and
 return values.</p>
 <table class="docutils align-default" id="id4">
-<caption><span class="caption-number">Table 4.30 </span><span class="caption-text">Support for arguments and return values</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<caption><span class="caption-number">Table 4.32 </span><span class="caption-text">Support for arguments and return values</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 46%" />
 <col style="width: 22%" />
@@ -308,15 +309,15 @@ return values.</p>
 </section>
 </section>
 <section id="version-management">
-<h2><span class="section-number">4.6.4. </span>Version management<a class="headerlink" href="#version-management" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.7.4. </span>Version management<a class="headerlink" href="#version-management" title="Permalink to this headline"></a></h2>
 <section id="version-of-rsmp">
-<h3><span class="section-number">4.6.4.1. </span>Version of RSMP<a class="headerlink" href="#version-of-rsmp" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.4.1. </span>Version of RSMP<a class="headerlink" href="#version-of-rsmp" title="Permalink to this headline"></a></h3>
 <p>The version of RSMP defines the overall version of RSMP. All documents
 which are part of the RSMP specification refers to version of RSMP. The
 following table defines the principles for version numbering for each
 document.</p>
 <table class="docutils align-default" id="id5">
-<caption><span class="caption-number">Table 4.31 </span><span class="caption-text">Version management</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<caption><span class="caption-number">Table 4.33 </span><span class="caption-text">Version management</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -342,7 +343,7 @@ that the SXL uses must de defined.</p>
 updated to reflect this.</p>
 </section>
 <section id="revision-of-sxl">
-<h3><span class="section-number">4.6.4.2. </span>Revision of SXL<a class="headerlink" href="#revision-of-sxl" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.4.2. </span>Revision of SXL<a class="headerlink" href="#revision-of-sxl" title="Permalink to this headline"></a></h3>
 <p>Revision of SXL is unique for a site. In order to uniquely identify a SXL
 for a supervision system the identity of the site (siteId) and it’s
 version of SXL (SXL Revision) needs to be known. In each SXL there must
@@ -353,7 +354,7 @@ differences can emerge; it is recommended that a table is added on the
 front page of each SXL the sites are using. The following table defines
 an example for the design of the table.</p>
 <table class="docutils align-default" id="id6">
-<caption><span class="caption-number">Table 4.32 </span><span class="caption-text">Revision of SXL</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<caption><span class="caption-number">Table 4.34 </span><span class="caption-text">Revision of SXL</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 83%" />
@@ -380,17 +381,17 @@ samt time inform about which sites which the revision applies to.</p>
 </section>
 </section>
 <section id="required-signals">
-<h2><span class="section-number">4.6.5. </span>Required signals<a class="headerlink" href="#required-signals" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.7.5. </span>Required signals<a class="headerlink" href="#required-signals" title="Permalink to this headline"></a></h2>
 <section id="status-messages">
-<h3><span class="section-number">4.6.5.1. </span>Status messages<a class="headerlink" href="#status-messages" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.5.1. </span>Status messages<a class="headerlink" href="#status-messages" title="Permalink to this headline"></a></h3>
 <section id="version-of-component">
-<h4><span class="section-number">4.6.5.1.1. </span>Version of component<a class="headerlink" href="#version-of-component" title="Permalink to this headline"></a></h4>
+<h4><span class="section-number">4.7.5.1.1. </span>Version of component<a class="headerlink" href="#version-of-component" title="Permalink to this headline"></a></h4>
 <p>To make sure that the site is equipped with the correct version of
 components and to simplify troubleshooting there need to exists a special
 status to request version of a component.</p>
 </section>
 <section id="current-date-and-time">
-<h4><span class="section-number">4.6.5.1.2. </span>Current date and time<a class="headerlink" href="#current-date-and-time" title="Permalink to this headline"></a></h4>
+<h4><span class="section-number">4.7.5.1.2. </span>Current date and time<a class="headerlink" href="#current-date-and-time" title="Permalink to this headline"></a></h4>
 <p>To make sure that the site is configured with the correct date and time
 there needs to be a special status to request this. This type of status is
 especially important for those implementations where the equipment’s
@@ -399,9 +400,9 @@ clock. Please note that UTC should be used.</p>
 </section>
 </section>
 <section id="command-messages">
-<h3><span class="section-number">4.6.5.2. </span>Command messages<a class="headerlink" href="#command-messages" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.5.2. </span>Command messages<a class="headerlink" href="#command-messages" title="Permalink to this headline"></a></h3>
 <section id="change-date-and-time">
-<h4><span class="section-number">4.6.5.2.1. </span>Change date and time<a class="headerlink" href="#change-date-and-time" title="Permalink to this headline"></a></h4>
+<h4><span class="section-number">4.7.5.2.1. </span>Change date and time<a class="headerlink" href="#change-date-and-time" title="Permalink to this headline"></a></h4>
 <p>If the automatic time synchronization is missing or disabled there should
 be a possibility to set the date and time using a special command. Please
 note that UTC should be used.</p>
@@ -409,12 +410,12 @@ note that UTC should be used.</p>
 </section>
 </section>
 <section id="best-practices">
-<h2><span class="section-number">4.6.6. </span>Best practices<a class="headerlink" href="#best-practices" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.7.6. </span>Best practices<a class="headerlink" href="#best-practices" title="Permalink to this headline"></a></h2>
 <p>In order to fit as many technical areas as possible there some flexibility
 while designing a signal exchange list. Below are some suggested
 recommendations.</p>
 <section id="definition-of-object-types">
-<h3><span class="section-number">4.6.6.1. </span>Definition of object types<a class="headerlink" href="#definition-of-object-types" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.6.1. </span>Definition of object types<a class="headerlink" href="#definition-of-object-types" title="Permalink to this headline"></a></h3>
 <p>The level of detail in the definition of object types determines the level
 of detail of which:</p>
 <ul class="simple">
@@ -440,10 +441,10 @@ to a lower level of detail can be compensated with arguments and return
 values.</p>
 </section>
 <section id="reading-and-writing-data">
-<h3><span class="section-number">4.6.6.2. </span>Reading and writing data<a class="headerlink" href="#reading-and-writing-data" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.7.6.2. </span>Reading and writing data<a class="headerlink" href="#reading-and-writing-data" title="Permalink to this headline"></a></h3>
 <p>Read and write operations uses different message types in RSMP.</p>
 <section id="read-operation">
-<h4><span class="section-number">4.6.6.2.1. </span>Read operation<a class="headerlink" href="#read-operation" title="Permalink to this headline"></a></h4>
+<h4><span class="section-number">4.7.6.2.1. </span>Read operation<a class="headerlink" href="#read-operation" title="Permalink to this headline"></a></h4>
 <p>Status messages are used for read operations. Read operations works
 as “Process value”.</p>
 <p>Sequence for a read operation:</p>
@@ -455,7 +456,7 @@ is attached as a return value.</p></li>
 </ol>
 </section>
 <section id="write-operation">
-<h4><span class="section-number">4.6.6.2.2. </span>Write operation<a class="headerlink" href="#write-operation" title="Permalink to this headline"></a></h4>
+<h4><span class="section-number">4.7.6.2.2. </span>Write operation<a class="headerlink" href="#write-operation" title="Permalink to this headline"></a></h4>
 <p>Commands messages are used for write operations. Write operations works as
 “Set point”/Desired value.</p>
 <p>Sequence for a write operation:</p>
@@ -479,7 +480,7 @@ determine if the new value could be set or or not.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="data_types.html" class="btn btn-neutral float-left" title="4.5. Data types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_types.html" class="btn btn-neutral float-left" title="4.6. Data types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../changelog.html" class="btn btn-neutral float-right" title="5. Change log" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

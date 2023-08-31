@@ -58,8 +58,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="basic_structure.html">4.4. Basic structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">4.5. Data types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sxl.html">4.6. Signal Exchange List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error_handling.html">4.5. Error handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_types.html">4.6. Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sxl.html">4.7. Signal Exchange List</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">5. Change log</a></li>
@@ -283,6 +284,9 @@ reason (<cite>rea</cite>) set to the cause of rejection. For instance,
 <li><p>The connection is closed</p></li>
 </ol>
 <img alt="../_images/communication-rejection.png" class="align-center" src="../_images/communication-rejection.png" />
+<p>Is it not allowed to disconnect for any other circumstance other than mismatch
+during RSMP/SXL Version or <a class="reference internal" href="basic_structure.html#message-acknowledgement"><span class="std std-ref">missing message acknowledgement</span></a>
+unless there is a communication disruption.</p>
 </section>
 <section id="communication-disruption">
 <span id="id6"></span><h2><span class="section-number">4.3.6. </span>Communication disruption<a class="headerlink" href="#communication-disruption" title="Permalink to this headline"></a></h2>
