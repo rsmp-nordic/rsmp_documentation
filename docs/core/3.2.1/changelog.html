@@ -15,7 +15,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="4.5. Signal Exchange List" href="applicability/sxl.html" /> 
+    <link rel="prev" title="4.6. Signal Exchange List" href="applicability/sxl.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -155,7 +155,7 @@ Discussed in <a class="reference external" href="https://github.com/rsmp-nordic/
 </section>
 <section id="version-3-1-4">
 <h2><span class="section-number">5.3. </span>Version 3.1.4<a class="headerlink" href="#version-3-1-4" title="Permalink to this headline"></a></h2>
-<p>Relase date: 2017-11-03</p>
+<p>Release date: 2017-11-03</p>
 <p><strong>Alarm timestamps</strong></p>
 <p>The Alarm timestamp (aSp) now also represents when the alarm changes status,
 for instance when alarms turns inactive. See issue <a class="reference external" href="https://github.com/rsmp-nordic/rsmp_core/issues/1">[1]</a></p>
@@ -234,7 +234,7 @@ alarm acknowledgment message. “ack”, “aS”, “sS”, “aTs”, “cat�
 <li><p>The abbreviation SUL (for signal exchange list) changed to SXL</p></li>
 <li><p>Appendix 6.3.2 (page 7). Command messages has no return values.
 In RSMP 3.x and later commands only returns values based on the arguments
-in CommandReponse</p></li>
+in CommandResponse</p></li>
 <li><p>Fix typo. Incorrectly used “ageState” instead of “q”</p></li>
 </ul>
 <p><strong>Clarifications</strong></p>
@@ -289,7 +289,7 @@ Clarifications regarding usage of siteId.</p></li>
 <li><p>Appendix 6.2 (page 5,6,7): Clarification regarding descriptions about
 “componentId”, “ntsObjectId”, “externalNtsId”, “alarmCodeId”,
 “description”, “externalAlarmCodeId”, “category”, “functionalState”,
-“functionalPosition” and “Manouver”</p></li>
+“functionalPosition” and “Maneuver”</p></li>
 </ul>
 </section>
 <section id="version-3-1-1">
@@ -301,10 +301,10 @@ makes it possible to send multiple commands in the same message.</p></li>
 <li><p>“ageState” was on the wrong place in the examples</p></li>
 <li><p>“value” renamed to “status” in status messages</p></li>
 <li><p>Clarified description of “siteId”</p></li>
-<li><p>Version message: “ntsObjecId” replaced with “siteId”. All site identities
+<li><p>Version message: “ntsObjectId” replaced with “siteId”. All site identities
 (siteId) which are included in the communication is sent in the
 version message as a list.</p></li>
-<li><p>Adjusted the format of aggregated status in JSon. Sent as an array insted</p></li>
+<li><p>Adjusted the format of aggregated status in JSon. Sent as an array instead</p></li>
 <li><p>Time stamp in JSon adjusted. Now uses the same format as XML</p></li>
 <li><p>Clarification regarding the usage of JSon string elements</p></li>
 </ul>
@@ -339,7 +339,7 @@ of all alarms are unknown.</p></li>
 <h2><span class="section-number">5.10. </span>Version 1.1n<a class="headerlink" href="#version-1-1n" title="Permalink to this headline"></a></h2>
 <p>Release date: 2011-11-02</p>
 <ul class="simple">
-<li><p>requestId (rId) removed. Sufficient data is available to tie a reponse
+<li><p>requestId (rId) removed. Sufficient data is available to tie a response
 to a request</p></li>
 <li><p>sequenceNumber (sNr, seqNr) is removed from status messages, but is kept
 in all other messages (alarm, events, aggregated status) which has used
@@ -397,12 +397,12 @@ events, status and commands.</p></li>
 <li><p>New design of status messages</p>
 <ul>
 <li><p>Makes it possible to send multiple requests in a single message and
-receive reponse in a single message</p></li>
+receive response in a single message</p></li>
 <li><p>Makes it possible to subscribe to multiple status values, either
 by interval or on change</p></li>
 <li><p>sequenceNumber (sNr) removed</p></li>
 <li><p>“description” removed</p></li>
-<li><p>“type” and “unit” removed (stil left in SXL)</p></li>
+<li><p>“type” and “unit” removed (still left in SXL)</p></li>
 </ul>
 </li>
 </ul>
@@ -565,7 +565,7 @@ aggregated status (aggstatusTimeStamp)</p></li>
 <li><p>Major update of the object model</p>
 <ul>
 <li><p>The Object “returnvalue” and “argument” adjusted for global usage
-with it’s associated contens. This removes limitations of the number
+with it’s associated contents. This removes limitations of the number
 of data values which can be included in a single message</p></li>
 <li><p>Bit value of “aggregated status” redesigned for increased readability</p></li>
 </ul>
@@ -614,7 +614,7 @@ message types. No functional changes has been made</p></li>
 particular order</p></li>
 </ul>
 </li>
-<li><p>“alarmState” could enter two values, “ok” and “acitve”. This has been
+<li><p>“alarmState” could enter two values, “ok” and “active”. This has been
 changed to “inactive” and “active”</p></li>
 </ul>
 </section>
@@ -629,7 +629,7 @@ changed to “inactive” and “active”</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="applicability/sxl.html" class="btn btn-neutral float-left" title="4.5. Signal Exchange List" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="applicability/sxl.html" class="btn btn-neutral float-left" title="4.6. Signal Exchange List" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
