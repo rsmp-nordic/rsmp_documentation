@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Check out rsmp_documentation repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Check out rsmp_sxl_traffic_lights repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
