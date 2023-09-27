@@ -72,7 +72,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#s0003-input-status">8.2.3. S0003 Input status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0004-output-status">8.2.4. S0004 Output status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0005-traffic-light-controller-starting">8.2.5. S0005 Traffic Light Controller starting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0006-emergency-stage">8.2.6. S0006 Emergency stage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0006-emergency-route">8.2.6. S0006 Emergency route</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0007-controller-switched-on">8.2.7. S0007 Controller switched on</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0008-manual-control">8.2.8. S0008 Manual control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0009-fixed-time-control">8.2.9. S0009 Fixed time control</a></li>
@@ -101,20 +101,21 @@
 <li class="toctree-l3"><a class="reference internal" href="#s0032-coordinated-control">8.2.32. S0032 Coordinated control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0033-signal-priority-status">8.2.33. S0033 Signal Priority Status</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#s0034-timeout-for-dynamic-bands">8.2.34. S0034 Timeout for dynamic bands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0091-operator-logged-in-out-op-panel">8.2.35. S0091 Operator logged in/out OP-panel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0092-operator-logged-web-interface">8.2.36. S0092 Operator logged web-interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0095-version-of-traffic-light-controller">8.2.37. S0095 Version of Traffic Light Controller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0096-current-date-and-time">8.2.38. S0096 Current date and time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0097-checksum-of-traffic-parameters">8.2.39. S0097 Checksum of traffic parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0098-configuration-of-traffic-parameters">8.2.40. S0098 Configuration of traffic parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0201-traffic-counting-number-of-vehicles">8.2.41. S0201 Traffic Counting: Number of vehicles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0202-traffic-counting-vehicle-speed">8.2.42. S0202 Traffic Counting: Vehicle speed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0203-traffic-counting-occupancy">8.2.43. S0203 Traffic Counting: Occupancy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification">8.2.44. S0204 Traffic Counting: Number of vehicles of given classification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0205-traffic-counting-number-of-vehicles">8.2.45. S0205 Traffic Counting: Number of vehicles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0206-traffic-counting-vehicle-speed">8.2.46. S0206 Traffic Counting: Vehicle speed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0207-traffic-counting-occupancy">8.2.47. S0207 Traffic Counting: Occupancy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification">8.2.48. S0208 Traffic Counting: Number of vehicles of given classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0035-emergency-route">8.2.35. S0035 Emergency route</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0091-operator-logged-in-out-op-panel">8.2.36. S0091 Operator logged in/out OP-panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0092-operator-logged-web-interface">8.2.37. S0092 Operator logged web-interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0095-version-of-traffic-light-controller">8.2.38. S0095 Version of Traffic Light Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0096-current-date-and-time">8.2.39. S0096 Current date and time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0097-checksum-of-traffic-parameters">8.2.40. S0097 Checksum of traffic parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0098-configuration-of-traffic-parameters">8.2.41. S0098 Configuration of traffic parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0201-traffic-counting-number-of-vehicles">8.2.42. S0201 Traffic Counting: Number of vehicles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0202-traffic-counting-vehicle-speed">8.2.43. S0202 Traffic Counting: Vehicle speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0203-traffic-counting-occupancy">8.2.44. S0203 Traffic Counting: Occupancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification">8.2.45. S0204 Traffic Counting: Number of vehicles of given classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0205-traffic-counting-number-of-vehicles">8.2.46. S0205 Traffic Counting: Number of vehicles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0206-traffic-counting-vehicle-speed">8.2.47. S0206 Traffic Counting: Vehicle speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0207-traffic-counting-occupancy">8.2.48. S0207 Traffic Counting: Occupancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification">8.2.49. S0208 Traffic Counting: Number of vehicles of given classification</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#commands">8.3. Commands</a><ul>
@@ -203,7 +204,7 @@
 <li><p><a class="reference internal" href="#s0003-input-status">S0003 Input status</a></p></li>
 <li><p><a class="reference internal" href="#s0004-output-status">S0004 Output status</a></p></li>
 <li><p><a class="reference internal" href="#s0005-traffic-light-controller-starting">S0005 Traffic Light Controller starting</a></p></li>
-<li><p><a class="reference internal" href="#s0006-emergency-stage">S0006 Emergency stage</a></p></li>
+<li><p><a class="reference internal" href="#s0006-emergency-route">S0006 Emergency route</a></p></li>
 <li><p><a class="reference internal" href="#s0007-controller-switched-on">S0007 Controller switched on</a></p></li>
 <li><p><a class="reference internal" href="#s0008-manual-control">S0008 Manual control</a></p></li>
 <li><p><a class="reference internal" href="#s0009-fixed-time-control">S0009 Fixed time control</a></p></li>
@@ -232,6 +233,7 @@
 <li><p><a class="reference internal" href="#s0032-coordinated-control">S0032 Coordinated control</a></p></li>
 <li><p><a class="reference internal" href="#s0033-signal-priority-status">S0033 Signal Priority Status</a></p></li>
 <li><p><a class="reference internal" href="#s0034-timeout-for-dynamic-bands">S0034 Timeout for dynamic bands</a></p></li>
+<li><p><a class="reference internal" href="#s0035-emergency-route">S0035 Emergency route</a></p></li>
 <li><p><a class="reference internal" href="#s0091-operator-logged-in-out-op-panel">S0091 Operator logged in/out OP-panel</a></p></li>
 <li><p><a class="reference internal" href="#s0092-operator-logged-web-interface">S0092 Operator logged web-interface</a></p></li>
 <li><p><a class="reference internal" href="#s0095-version-of-traffic-light-controller">S0095 Version of Traffic Light Controller</a></p></li>
@@ -949,6 +951,9 @@
 <span class="w">     </span><span class="nt">&quot;sS&quot;</span><span class="p">:[{</span><span class="w"></span>
 <span class="w">             </span><span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0005&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">             </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="p">},{</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0005&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;statusByIntersection&quot;</span><span class="w"></span>
 <span class="w">     </span><span class="p">}]</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -967,13 +972,24 @@
 <span class="w">             </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">             </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;False&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">             </span><span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="p">},{</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0005&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"></span>
+<span class="w">                     </span><span class="nt">&quot;intersection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="nt">&quot;startup&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="w"></span>
+<span class="w">             </span><span class="p">},{</span><span class="w"></span>
+<span class="w">                     </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="nt">&quot;startup&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;False&quot;</span><span class="w"></span>
+<span class="w">             </span><span class="p">}]</span><span class="w"></span>
 <span class="w">     </span><span class="p">}]</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
-<section id="s0006-emergency-stage">
-<h3><span class="section-number">8.2.6. </span>S0006 Emergency stage<a class="headerlink" href="#s0006-emergency-stage" title="Permalink to this headline"></a></h3>
+<section id="s0006-emergency-route">
+<h3><span class="section-number">8.2.6. </span>S0006 Emergency route<a class="headerlink" href="#s0006-emergency-route" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2250,8 +2266,48 @@
 </pre></div>
 </div>
 </section>
+<section id="s0035-emergency-route">
+<h3><span class="section-number">8.2.35. </span>S0035 Emergency route<a class="headerlink" href="#s0035-emergency-route" title="Permalink to this headline"></a></h3>
+<p><strong>Status Request</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;StatusRequest&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;1cf1a709-41fe-4072-94ea-75976229bf61&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG0503=001TC000&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG0503=001TC000&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;sS&quot;</span><span class="p">:[{</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S0035&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;emergencyroutes&quot;</span><span class="w"></span>
+<span class="w">     </span><span class="p">}]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Status Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;StatusResponse&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;mId&quot;</span><span class="p">:</span><span class="s2">&quot;8f1cc2aa-06fa-45e6-9448-3d6207e12ece&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;ntsOId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG0503=001TC000&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;xNId&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;cId&quot;</span><span class="p">:</span><span class="s2">&quot;KK+AG0503=001TC000&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;sTs&quot;</span><span class="p">:</span><span class="s2">&quot;2019-09-26T13:08:27.792Z&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;sS&quot;</span><span class="p">:[{</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;sCI&quot;</span><span class="p">:</span><span class="s2">&quot;S0035&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="s2">&quot;status&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;recent&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"></span>
+<span class="w">                     </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"></span>
+<span class="w">             </span><span class="p">},{</span><span class="w"></span>
+<span class="w">                     </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="w"></span>
+<span class="w">             </span><span class="p">}]</span><span class="w"></span>
+<span class="w">     </span><span class="p">}]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 <section id="s0091-operator-logged-in-out-op-panel">
-<h3><span class="section-number">8.2.35. </span>S0091 Operator logged in/out OP-panel<a class="headerlink" href="#s0091-operator-logged-in-out-op-panel" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.36. </span>S0091 Operator logged in/out OP-panel<a class="headerlink" href="#s0091-operator-logged-in-out-op-panel" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2287,7 +2343,7 @@
 </div>
 </section>
 <section id="s0092-operator-logged-web-interface">
-<h3><span class="section-number">8.2.36. </span>S0092 Operator logged web-interface<a class="headerlink" href="#s0092-operator-logged-web-interface" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.37. </span>S0092 Operator logged web-interface<a class="headerlink" href="#s0092-operator-logged-web-interface" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2323,7 +2379,7 @@
 </div>
 </section>
 <section id="s0095-version-of-traffic-light-controller">
-<h3><span class="section-number">8.2.37. </span>S0095 Version of Traffic Light Controller<a class="headerlink" href="#s0095-version-of-traffic-light-controller" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.38. </span>S0095 Version of Traffic Light Controller<a class="headerlink" href="#s0095-version-of-traffic-light-controller" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2359,7 +2415,7 @@
 </div>
 </section>
 <section id="s0096-current-date-and-time">
-<h3><span class="section-number">8.2.38. </span>S0096 Current date and time<a class="headerlink" href="#s0096-current-date-and-time" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.39. </span>S0096 Current date and time<a class="headerlink" href="#s0096-current-date-and-time" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2435,7 +2491,7 @@
 </div>
 </section>
 <section id="s0097-checksum-of-traffic-parameters">
-<h3><span class="section-number">8.2.39. </span>S0097 Checksum of traffic parameters<a class="headerlink" href="#s0097-checksum-of-traffic-parameters" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.40. </span>S0097 Checksum of traffic parameters<a class="headerlink" href="#s0097-checksum-of-traffic-parameters" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2479,7 +2535,7 @@
 </div>
 </section>
 <section id="s0098-configuration-of-traffic-parameters">
-<h3><span class="section-number">8.2.40. </span>S0098 Configuration of traffic parameters<a class="headerlink" href="#s0098-configuration-of-traffic-parameters" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.41. </span>S0098 Configuration of traffic parameters<a class="headerlink" href="#s0098-configuration-of-traffic-parameters" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2531,7 +2587,7 @@
 </div>
 </section>
 <section id="s0201-traffic-counting-number-of-vehicles">
-<h3><span class="section-number">8.2.41. </span>S0201 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0201-traffic-counting-number-of-vehicles" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.42. </span>S0201 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0201-traffic-counting-number-of-vehicles" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2575,7 +2631,7 @@
 </div>
 </section>
 <section id="s0202-traffic-counting-vehicle-speed">
-<h3><span class="section-number">8.2.42. </span>S0202 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0202-traffic-counting-vehicle-speed" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.43. </span>S0202 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0202-traffic-counting-vehicle-speed" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2619,7 +2675,7 @@
 </div>
 </section>
 <section id="s0203-traffic-counting-occupancy">
-<h3><span class="section-number">8.2.43. </span>S0203 Traffic Counting: Occupancy<a class="headerlink" href="#s0203-traffic-counting-occupancy" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.44. </span>S0203 Traffic Counting: Occupancy<a class="headerlink" href="#s0203-traffic-counting-occupancy" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2663,7 +2719,7 @@
 </div>
 </section>
 <section id="s0204-traffic-counting-number-of-vehicles-of-given-classification">
-<h3><span class="section-number">8.2.44. </span>S0204 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.45. </span>S0204 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0204-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2771,7 +2827,7 @@
 </div>
 </section>
 <section id="s0205-traffic-counting-number-of-vehicles">
-<h3><span class="section-number">8.2.45. </span>S0205 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0205-traffic-counting-number-of-vehicles" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.46. </span>S0205 Traffic Counting: Number of vehicles<a class="headerlink" href="#s0205-traffic-counting-number-of-vehicles" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2815,7 +2871,7 @@
 </div>
 </section>
 <section id="s0206-traffic-counting-vehicle-speed">
-<h3><span class="section-number">8.2.46. </span>S0206 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0206-traffic-counting-vehicle-speed" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.47. </span>S0206 Traffic Counting: Vehicle speed<a class="headerlink" href="#s0206-traffic-counting-vehicle-speed" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2859,7 +2915,7 @@
 </div>
 </section>
 <section id="s0207-traffic-counting-occupancy">
-<h3><span class="section-number">8.2.47. </span>S0207 Traffic Counting: Occupancy<a class="headerlink" href="#s0207-traffic-counting-occupancy" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.48. </span>S0207 Traffic Counting: Occupancy<a class="headerlink" href="#s0207-traffic-counting-occupancy" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -2903,7 +2959,7 @@
 </div>
 </section>
 <section id="s0208-traffic-counting-number-of-vehicles-of-given-classification">
-<h3><span class="section-number">8.2.48. </span>S0208 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">8.2.49. </span>S0208 Traffic Counting: Number of vehicles of given classification<a class="headerlink" href="#s0208-traffic-counting-number-of-vehicles-of-given-classification" title="Permalink to this headline"></a></h3>
 <p><strong>Status Request</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
