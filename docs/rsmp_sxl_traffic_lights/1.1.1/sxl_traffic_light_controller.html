@@ -1297,17 +1297,19 @@ True: Intersection is currently in start up mode</p></td>
 <h3><span class="section-number">2.4.6. </span>S0006<a class="headerlink" href="#s0006" title="Permalink to this headline"></a></h3>
 <p>Emergency route</p>
 <p>The status is active during emergency prioritization. Used in situations
-where full priority is given in the emergency vehicle program. If no
-emergency route is active, status should be set to False, and
+where full priority is given in the emergency vehicle program or for
+other types of priority in some cases.</p>
+<p>If no emergency route is active, status should be set to False, and
 emergencystage to zero.</p>
+<p>Deprecated, use S0035 instead.</p>
 <table class="longtable docutils align-default" id="id21">
 <caption><span class="caption-number">Table 2.21 </span><span class="caption-text">S0006</span><a class="headerlink" href="#id21" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 7%" />
 <col style="width: 5%" />
 <col style="width: 5%" />
-<col style="width: 66%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -1322,14 +1324,14 @@ emergencystage to zero.</p>
 <td><p>boolean</p></td>
 <td></td>
 <td></td>
-<td><p>False: Emergency route inactive <br> 
+<td><p><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> False: Emergency route inactive <br> 
 True: Emergency route active</p></td>
 </tr>
 <tr class="row-odd"><td><p>emergencystage</p></td>
 <td><p>integer</p></td>
 <td><p>0</p></td>
 <td><p>255</p></td>
-<td><p>Number of emergency route (set to zero if no route is active)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Number of emergency route (set to zero if no route is active)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1841,13 +1843,13 @@ other: Other reason</p></td>
 <h3><span class="section-number">2.4.15. </span>S0015<a class="headerlink" href="#s0015" title="Permalink to this headline"></a></h3>
 <p>Current traffic situation</p>
 <p>The current traffic situation used in the controller. Used for
-area-based control where a command can be sent to a master traffic light
-controller about which predefined traffic situation to use (1-255).
-Traffic situation is a concept used to divide multiple TLC’s into areas
-and sub-areas. The traffic situation gives the possibility to change the
-TLC sub-area dynamically depending on the time of day and the traffic
-flow. Depending on the traffic situation each TLC selects the time plan
-dynamically.</p>
+area-based control where the M0003 command can be sent to a master
+traffic light controller about which predefined traffic situation to use
+(1-255). Traffic situation is a concept used to divide multiple TLC’s
+into areas and sub-areas. The traffic situation gives the possibility to
+change the TLC sub-area dynamically depending on the time of day and the
+traffic flow. Depending on the traffic situation each TLC selects the
+time plan dynamically.</p>
 <table class="longtable docutils align-default" id="id30">
 <caption><span class="caption-number">Table 2.30 </span><span class="caption-text">S0015</span><a class="headerlink" href="#id30" title="Permalink to this table"></a></caption>
 <colgroup>
@@ -1968,7 +1970,7 @@ configured in the controller.</p>
 <table class="longtable docutils align-default" id="id33">
 <caption><span class="caption-number">Table 2.33 </span><span class="caption-text">S0018</span><a class="headerlink" href="#id33" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 11%" />
+<col style="width: 10%" />
 <col style="width: 12%" />
 <col style="width: 9%" />
 <col style="width: 9%" />
@@ -1987,7 +1989,7 @@ configured in the controller.</p>
 <td><p>integer</p></td>
 <td><p>1</p></td>
 <td><p>65025</p></td>
-<td><p>Number of time plans (depreciated)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code> Number of time plans</p></td>
 </tr>
 </tbody>
 </table>
@@ -2753,7 +2755,8 @@ bands, M0014</p>
 <h3><span class="section-number">2.4.35. </span>S0035<a class="headerlink" href="#s0035" title="Permalink to this headline"></a></h3>
 <p>Emergency route</p>
 <p>The status is active during emergency prioritization. Used in situations
-where full priority is given in the emergency vehicle program.</p>
+where full priority is given in the emergency vehicle program or for
+other types of priority in some cases.</p>
 <p>This status is similar to S0006, but supports multiple routes</p>
 <table class="longtable docutils align-default" id="id51">
 <caption><span class="caption-number">Table 2.51 </span><span class="caption-text">S0035</span><a class="headerlink" href="#id51" title="Permalink to this table"></a></caption>
@@ -3748,7 +3751,7 @@ True: Controller uses time plan according to command</p></td>
 <section id="m0003">
 <h3><span class="section-number">2.5.3. </span>M0003<a class="headerlink" href="#m0003" title="Permalink to this headline"></a></h3>
 <p>Sets traffic situation the controller uses</p>
-<p>Used for area-based control where a command can be sent to a master
+<p>Used for area-based control where this command can be sent to a master
 traffic light controller about which predefined traffic situation to use
 (1-255). Traffic situation is a concept used to divide multiple TLC’s
 into areas and sub-areas. The traffic situation gives the possibility to
