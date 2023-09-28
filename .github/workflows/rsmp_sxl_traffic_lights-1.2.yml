@@ -1,6 +1,6 @@
 # This workflow updates the sphinx documentation and builds a website
 
-name: Build SXL TLC 1.1.1
+name: Build SXL TLC 1.2
 
 on:
   push:
@@ -44,8 +44,8 @@ jobs:
         make html latexpdf
     - name: Commit documentation changes
       run: |
-        mkdir -p docs/rsmp_sxl_traffic_lights/1.1.1
-        cp -r rsmp_sxl_traffic_lights/build/html/* docs/rsmp_sxl_traffic_lights/1.1.1
+        mkdir -p docs/rsmp_sxl_traffic_lights/1.2
+        cp -r rsmp_sxl_traffic_lights/build/html/* docs/rsmp_sxl_traffic_lights/1.2
         git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
