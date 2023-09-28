@@ -49,7 +49,7 @@ jobs:
         git pull -q
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add docs/rsmp_sxl_traffic_lights/1.1.1
+        git add docs/rsmp_sxl_traffic_lights/1.2
         git commit -m "Update documentation" -a || true
         # The above will fail if no changes were present, so
         # we ignore the return code.
