@@ -73,7 +73,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_schema
         path: rsmp_schema
-        ref: 1.1.1
+        ref: 1.2
 
     - name: Check out sxl-tools repository
       uses: actions/checkout@v3
@@ -108,7 +108,7 @@ jobs:
           --template template.xlsx \
           --stdout \
           --short-desc \
-          --objects rsmp_schema/schemas/tlc/1.1.1/sxl.yaml \
+          --objects rsmp_schema/schemas/tlc/1.2/sxl.yaml \
           --site sxl-tools/tlc/SXL_Traffic_Controller_ver_1_1-site.yaml \
           > sxl.xlsx
 
