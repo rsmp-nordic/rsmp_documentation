@@ -21,7 +21,7 @@ jobs:
       with:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
-        ref: 3.2.1
+        ref: v3.2.1
     - name: Install dependencies
       run: |
         sudo apt-get update
