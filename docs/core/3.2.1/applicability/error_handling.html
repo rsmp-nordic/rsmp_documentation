@@ -48,8 +48,8 @@
 <li class="toctree-l2"><a class="reference internal" href="transport_of_data.html">4.3. Transport of data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic_structure.html">4.4. Basic structure</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4.5. Error handling</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sxl-mismatch">4.5.1. SXL mismatch</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#unknown-component">4.5.2. Unknown component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unknown-component">4.5.1. Unknown component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sxl-mismatch">4.5.2. SXL mismatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#unimplemented-statuses-or-commands">4.5.3. Unimplemented statuses or commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#incomplete-commands">4.5.4. Incomplete commands</a></li>
 </ul>
@@ -89,21 +89,8 @@
   <section id="error-handling">
 <span id="id1"></span><h1><span class="section-number">4.5. </span>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline"></a></h1>
 <p>The following sections defines how errors should be handled.</p>
-<section id="sxl-mismatch">
-<h2><span class="section-number">4.5.1. </span>SXL mismatch<a class="headerlink" href="#sxl-mismatch" title="Permalink to this headline"></a></h2>
-<p>If there is a mismatch of the SXL when receiving a CommandRequest or
-StatusRequest, which is not caught during communication handshake (See
-<a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>), then this is considered a serious error resulting in
-MessageNotAck.</p>
-<p>This include mismatch of:</p>
-<ul class="simple">
-<li><p>status code id (<code class="docutils literal notranslate"><span class="pre">sCI</span></code>)</p></li>
-<li><p>command code id (<code class="docutils literal notranslate"><span class="pre">cCI</span></code>)</p></li>
-<li><p>name (<code class="docutils literal notranslate"><span class="pre">n</span></code>)</p></li>
-</ul>
-</section>
 <section id="unknown-component">
-<h2><span class="section-number">4.5.2. </span>Unknown component<a class="headerlink" href="#unknown-component" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.5.1. </span>Unknown component<a class="headerlink" href="#unknown-component" title="Permalink to this headline"></a></h2>
 <p>If the component (<code class="docutils literal notranslate"><span class="pre">cId</span></code>) is not known, then the site must answer with
 CommandResponse/StatusResponse where <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">age</span></code> is set according to the
 table below. <code class="docutils literal notranslate"><span class="pre">v</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
@@ -127,6 +114,20 @@ table below. <code class="docutils literal notranslate"><span class="pre">v</spa
 </tr>
 </tbody>
 </table>
+</section>
+<section id="sxl-mismatch">
+<h2><span class="section-number">4.5.2. </span>SXL mismatch<a class="headerlink" href="#sxl-mismatch" title="Permalink to this headline"></a></h2>
+<p>If there is a mismatch of the SXL when receiving a CommandRequest or
+StatusRequest, which is not caught during communication handshake (See
+<a class="reference internal" href="basic_structure.html#rsmpsxl-version"><span class="std std-ref">RSMP/SXL Version</span></a>), then this is considered a serious error resulting in
+MessageNotAck.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>unknown alarm code id (<code class="docutils literal notranslate"><span class="pre">aCId</span></code>)</p></li>
+<li><p>unknown status code id (<code class="docutils literal notranslate"><span class="pre">sCI</span></code>)</p></li>
+<li><p>unknown command code id (<code class="docutils literal notranslate"><span class="pre">cCI</span></code>)</p></li>
+<li><p>unknown name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) in arguments or return values</p></li>
+</ul>
 </section>
 <section id="unimplemented-statuses-or-commands">
 <h2><span class="section-number">4.5.3. </span>Unimplemented statuses or commands<a class="headerlink" href="#unimplemented-statuses-or-commands" title="Permalink to this headline"></a></h2>
