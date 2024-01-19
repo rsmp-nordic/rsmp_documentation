@@ -233,21 +233,22 @@ otherwise stated.</p>
 <em>(or)</em>
 oMId</p></td>
 <td><p><em>(GUID)</em></p></td>
-<td><p>Message identity. Generated as a GUID
-(Globally unique identifier) in the
-equipment that sent the message. Only
-version 4 of Leach-Salz UUID is used.</p>
-<ul class="simple">
-<li><p><strong>mId</strong> is used i all messages as a
-reference for the message ack</p></li>
-<li><p><strong>oMId</strong> is used in the message ack
-to refer to the message which is
-being acked</p></li>
-</ul>
-</td>
+<td><p>Message identity</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>mId</strong> is generated as GUID (Globally unique identifier) in the equipment
+that sent the message</p></li>
+<li><p><strong>mId</strong> is used in all messages as a reference for the message ack</p></li>
+<li><p><strong>oMId</strong> is used in the message ack to refer to the message which is being acked</p></li>
+<li><p>Only version 4 of Leach-Salz UUID is used for the GUID</p></li>
+<li><p>Each message sent should have a new GUID, even if the message is resent or the
+content is the same</p></li>
+</ul>
+</div>
 <p>The following table describes the variable content in all message types
 which is defined by the signal exchange list (SXL), except version
 messages, message acknowledgement messages and watchdog messages.</p>
@@ -312,8 +313,8 @@ and ‘acknowledged’ (aSp:Acknowledged).</p>
 element ‘aSp’.</p>
 <section id="message-structure">
 <h3><span class="section-number">4.4.1.1. </span>Message structure<a class="headerlink" href="#message-structure" title="Permalink to this headline"></a></h3>
-<section id="structure-for-an-alarm-message">
-<span id="id3"></span><h4><span class="section-number">4.4.1.1.1. </span>Structure for an alarm message<a class="headerlink" href="#structure-for-an-alarm-message" title="Permalink to this headline"></a></h4>
+<section id="structure-of-an-alarm-message">
+<span id="id3"></span><h4><span class="section-number">4.4.1.1.1. </span>Structure of an alarm message<a class="headerlink" href="#structure-of-an-alarm-message" title="Permalink to this headline"></a></h4>
 <p>An alarm message has the structure according to the example below.</p>
 <div class="highlight-json notranslate" id="json-alarm-issue"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -775,7 +776,7 @@ example below.</p>
 </div>
 <p>JSon code 10: Response of a resume message</p>
 <p>Allowed content in alarm suspend message is the same as for alarm messages
-(See <a class="reference internal" href="#structure-for-an-alarm-message"><span class="std std-ref">Structure for an alarm message</span></a>) with the exception for alarm status
+(See <a class="reference internal" href="#structure-of-an-alarm-message"><span class="std std-ref">Structure of an alarm message</span></a>) with the exception for alarm status
 (See <a class="reference internal" href="#alarm-status"><span class="std std-ref">Alarm status</span></a>) and (See <a class="reference internal" href="#return-values"><span class="std std-ref">Return values</span></a>).</p>
 </section>
 </section>
@@ -960,9 +961,9 @@ site</strong></p>
 </section>
 <section id="status-messages">
 <h2><span class="section-number">4.4.4. </span>Status Messages<a class="headerlink" href="#status-messages" title="Permalink to this headline"></a></h2>
-<p>The status message is a type of message that is sent to the
-supervision system or other equipment with the status of one or more
-requested objects.</p>
+<p>The status message is a type of message that is sent to the supervision
+system or other equipment with the value of one or more requested
+statuses, for the referenced object.</p>
 <p>The status message can both be interaction driven or event driver and
 can be sent during the following prerequisites:</p>
 <ul class="simple">
@@ -972,8 +973,8 @@ when the status changes.</p></li>
 </ul>
 <section id="id10">
 <h3><span class="section-number">4.4.4.1. </span>Message structure<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
-<section id="structure-for-a-request-of-a-status-of-one-or-several-objects">
-<h4><span class="section-number">4.4.4.1.1. </span>Structure for a request of a status of one or several objects<a class="headerlink" href="#structure-for-a-request-of-a-status-of-one-or-several-objects" title="Permalink to this headline"></a></h4>
+<section id="structure-of-a-status-request">
+<h4><span class="section-number">4.4.4.1.1. </span>Structure of a status request<a class="headerlink" href="#structure-of-a-status-request" title="Permalink to this headline"></a></h4>
 <p>A status request message has the structure according to the example
 below.</p>
 <div class="highlight-json notranslate" id="json-status-req"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
@@ -1027,10 +1028,9 @@ elements and the titles in the SXL.</p>
 </tbody>
 </table>
 </section>
-<section id="structure-for-a-message-with-status-of-one-or-several-objects">
-<h4><span class="section-number">4.4.4.1.2. </span>Structure for a message with status of one or several objects<a class="headerlink" href="#structure-for-a-message-with-status-of-one-or-several-objects" title="Permalink to this headline"></a></h4>
-<p>A message with status of one or several objects has the structure
-according to the example below.</p>
+<section id="structure-for-status-response-message">
+<h4><span class="section-number">4.4.4.1.2. </span>Structure for status response message<a class="headerlink" href="#structure-for-status-response-message" title="Permalink to this headline"></a></h4>
+<p>A status response message has the structure according to the example below.</p>
 <p>The status code id (<code class="docutils literal notranslate"><span class="pre">sCI</span></code>) and name (<code class="docutils literal notranslate"><span class="pre">n</span></code>) are placed in an array
 (<code class="docutils literal notranslate"><span class="pre">sS</span></code>) in order to enable support for responding to multiple statuses at once.
 The following table is describing the variable content of the message.</p>
@@ -1187,8 +1187,8 @@ Used when sending buffered values</p></td>
 <li><p><code class="docutils literal notranslate"><span class="pre">s</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
 </ul>
 </section>
-<section id="structure-for-a-status-subscription-request-message-on-one-or-several-objects">
-<h4><span class="section-number">4.4.4.1.4. </span>Structure for a status subscription request message on one or several objects<a class="headerlink" href="#structure-for-a-status-subscription-request-message-on-one-or-several-objects" title="Permalink to this headline"></a></h4>
+<section id="structure-for-a-status-subscription-request-message">
+<h4><span class="section-number">4.4.4.1.4. </span>Structure for a status subscription request message<a class="headerlink" href="#structure-for-a-status-subscription-request-message" title="Permalink to this headline"></a></h4>
 <p>A message with the request of subscription to a status has the
 structure according to the example below. The message is used for
 constructing a list of subscriptions of statuses, digital and analogue
@@ -1275,10 +1275,10 @@ it means that no subscription updates will be sent.</p></li>
 new StatusSubscribe during an active subscription.</p></li>
 </ul>
 </section>
-<section id="structure-for-a-response-message-with-answer-to-a-request-for-status-subscription-for-one-or-several-objects">
-<h4><span class="section-number">4.4.4.1.5. </span>Structure for a response message with answer to a request for status subscription for one or several objects<a class="headerlink" href="#structure-for-a-response-message-with-answer-to-a-request-for-status-subscription-for-one-or-several-objects" title="Permalink to this headline"></a></h4>
-<p>A response message with answer to a request for status subscription
-has the structure according to the example below.</p>
+<section id="structure-for-a-status-update-message">
+<h4><span class="section-number">4.4.4.1.5. </span>Structure for a status update message<a class="headerlink" href="#structure-for-a-status-update-message" title="Permalink to this headline"></a></h4>
+<p>The status update message is an answer to a request for status subscription.
+It has the structure according to the example below.</p>
 <p>The following applies:</p>
 <ul class="simple">
 <li><p>A StatusUpdate is always sent immediately after subscription request,
@@ -1375,11 +1375,11 @@ partial StatusUpdates can be sent.</p>
 </div>
 <p>JSon code 18: A partial status update. Only a single status is updated</p>
 </section>
-<section id="structure-for-a-status-unsubscription-message-on-one-or-several-objects">
-<h4><span class="section-number">4.4.4.1.6. </span>Structure for a status unsubscription message on one or several objects<a class="headerlink" href="#structure-for-a-status-unsubscription-message-on-one-or-several-objects" title="Permalink to this headline"></a></h4>
+<section id="structure-for-a-status-unsubscription-message">
+<h4><span class="section-number">4.4.4.1.6. </span>Structure for a status unsubscription message<a class="headerlink" href="#structure-for-a-status-unsubscription-message" title="Permalink to this headline"></a></h4>
 <p>A message with the request of unsubscription to a status has the structure
 according to the example below. The request unsubscribes on one or several
-objects. No particular answer is sent for this request, other than the
+statuses. No particular answer is sent for this request, other than the
 usual message acknowledgement.</p>
 <div class="highlight-json notranslate" id="json-status-unsubscribe"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="nt">&quot;mType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rSMsg&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1417,8 +1417,8 @@ usual message acknowledgement.</p>
 implicit in the following figure.</p>
 <img alt="../_images/status_request_response.png" class="align-center" src="../_images/status_request_response.png" />
 <ol class="arabic simple">
-<li><p>Request of status for an object</p></li>
-<li><p>Response with status of an object</p></li>
+<li><p>Status request</p></li>
+<li><p>Status response</p></li>
 </ol>
 </section>
 <section id="message-exchange-between-site-and-supervision-system-other-equipment-subscription">
@@ -1431,14 +1431,15 @@ implicit in the following figure.</p>
 </section>
 <section id="command-messages">
 <h2><span class="section-number">4.4.5. </span>Command messages<a class="headerlink" href="#command-messages" title="Permalink to this headline"></a></h2>
-<p>Command messages are used to give order to one or more requested objects.
+<p>Command messages are used to give order using one or more commands, for the
+referenced object.
 The site responds with a command acknowledgement.</p>
 <p>Command messages are interaction driven and are sent when command are
 requested on any given object by the supervision system or other equipment</p>
 <section id="id11">
 <h3><span class="section-number">4.4.5.1. </span>Message structure<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
-<section id="structure-of-a-command-for-one-or-more-objects">
-<h4><span class="section-number">4.4.5.1.1. </span>Structure of a command for one or more objects<a class="headerlink" href="#structure-of-a-command-for-one-or-more-objects" title="Permalink to this headline"></a></h4>
+<section id="structure-of-a-command-request">
+<h4><span class="section-number">4.4.5.1.1. </span>Structure of a command request<a class="headerlink" href="#structure-of-a-command-request" title="Permalink to this headline"></a></h4>
 <p>A command request message has the structure according to the example
 below. A command request message with the intent to change a value of the
 requested object</p>
@@ -1552,8 +1553,8 @@ Defined in the SXL but is not actually sent</p></td>
 </tbody>
 </table>
 </section>
-<section id="structure-of-command-response-message">
-<h4><span class="section-number">4.4.5.1.2. </span>Structure of command response message<a class="headerlink" href="#structure-of-command-response-message" title="Permalink to this headline"></a></h4>
+<section id="structure-of-a-command-response-message">
+<h4><span class="section-number">4.4.5.1.2. </span>Structure of a command response message<a class="headerlink" href="#structure-of-a-command-response-message" title="Permalink to this headline"></a></h4>
 <p>A command response message has the structure according to the example
 below. A command response message informs about the updated value of the
 requested object.</p>
@@ -1723,8 +1724,8 @@ Defined in the SXL but is not actually sent</p></td>
 implicit in the following figure.</p>
 <img alt="../_images/command_request_response.png" class="align-center" src="../_images/command_request_response.png" />
 <ol class="arabic simple">
-<li><p>Command request for an object</p></li>
-<li><p>Command response of an object</p></li>
+<li><p>Command request</p></li>
+<li><p>Command response</p></li>
 </ol>
 </section>
 </section>
