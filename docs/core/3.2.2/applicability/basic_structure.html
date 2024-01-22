@@ -1435,6 +1435,8 @@ implicit in the following figure.</p>
 <p>Command messages are used to give order using one or more commands, for the
 referenced object.
 The site responds with a command acknowledgement.</p>
+<p>All arguments needs to included in a command, otherwise it results a serious
+error resulting in MessageNotAck. See section about <a class="reference internal" href="error_handling.html#incomplete-commands"><span class="std std-ref">Incomplete commands</span></a>.</p>
 <p>Command messages are interaction driven and are sent when command are
 requested on any given object by the supervision system or other equipment</p>
 <section id="id11">
