@@ -37,6 +37,13 @@ jobs:
               latexmk \
               graphviz \
               mscgen
+        npm install -g @mermaid-js/mermaid-cli
+    - name: Test mermaid
+      run: |
+        cat << EOF  | mmdc --input -
+            graph TD
+            A[Client] --> B[Load Balancer]
+        EOF
     - name: Build rsmp_core repository
       run: |
         cd rsmp_core
