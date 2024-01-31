@@ -73,44 +73,41 @@
   <section id="definitions">
 <span id="id1"></span><h1><span class="section-number">1. </span>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline"></a></h1>
 <dl class="glossary">
-<dt id="term-SXL">SXL<a class="headerlink" href="#term-SXL" title="Permalink to this term"></a></dt><dd><p>Signal exchange list. Defines which messages types (signals)
-which is possible to send to a specific equipment or object.
-E.g. alarms, statuses and commands</p>
-</dd>
-<dt id="term-NTS">NTS<a class="headerlink" href="#term-NTS" title="Permalink to this term"></a></dt><dd><p>National Traffic management system. Replaces CTS</p>
-</dd>
-<dt id="term-Maximo">Maximo<a class="headerlink" href="#term-Maximo" title="Permalink to this term"></a></dt><dd><p>STA’s support system for maintenance</p>
-</dd>
-<dt id="term-ITS-site">ITS site<a class="headerlink" href="#term-ITS-site" title="Permalink to this term"></a></dt><dd><p>Road side equipment. Covers both field level and local level</p>
-</dd>
-<dt id="term-Site">Site<a class="headerlink" href="#term-Site" title="Permalink to this term"></a></dt><dd><p>See ITS site</p>
-</dd>
-<dt id="term-Local-road-side-equipment">Local road side equipment<a class="headerlink" href="#term-Local-road-side-equipment" title="Permalink to this term"></a></dt><dd><p>See ITS site</p>
-</dd>
-<dt id="term-Supervision-system">Supervision system<a class="headerlink" href="#term-Supervision-system" title="Permalink to this term"></a></dt><dd><p>Control and supervision system for regional and/or national
-level</p>
-</dd>
-<dt id="term-Object">Object<a class="headerlink" href="#term-Object" title="Permalink to this term"></a></dt><dd><p>An object is a abstract term which is used in control and
-supervision systems. An object can have one or more statuses
-that may change depending on changes of circumstance of the
-object or control of the object from external source.
-Communication with the object is made using exchange of
-signals, e.g. commands, status and alarms.</p>
-<p>An object can represent physical equipment or abstract concepts
-E.g. a camera, a control flow algorithm or a group of signs.</p>
-<p>An object is identified using the objects component id. <em>Please
-note that an object is not necessarily the same thing as an NTS
-object.</em></p>
-</dd>
 <dt id="term-Aggregated-object">Aggregated object<a class="headerlink" href="#term-Aggregated-object" title="Permalink to this term"></a></dt><dd><p>An aggregated object consists of one or many other objects.
 E.g. Component group (CG)</p>
 </dd>
-<dt id="term-Object-type">Object type<a class="headerlink" href="#term-Object-type" title="Permalink to this term"></a></dt><dd><p>An object type is a classification of objects that controls the
-properties of all the objects of the same object type. The
-object type determines how the object is presented in
-supervision system, how it is grouped and which functional
-positions, alarm codes, commands and statuses that exists that
-object type.</p>
+<dt id="term-Component">Component<a class="headerlink" href="#term-Component" title="Permalink to this term"></a></dt><dd><p>A component is an object or NTS object.</p>
+<p>A component is identified using component-id.</p>
+</dd>
+<dt id="term-Component-ID">Component-ID<a class="headerlink" href="#term-Component-ID" title="Permalink to this term"></a></dt><dd><p>A component-id identifies components.</p>
+<p>The format used for the STA’s sites is specified in the STA
+publication TDOK 2012:1171, e.g. AA+BBCDD=EEEFFGGG.</p>
+</dd>
+<dt id="term-DATEX-II">DATEX II<a class="headerlink" href="#term-DATEX-II" title="Permalink to this term"></a></dt><dd><p>European standard for message exchange between traffic systems
+(www.datex2.eu)</p>
+</dd>
+<dt id="term-Functional-position">Functional position<a class="headerlink" href="#term-Functional-position" title="Permalink to this term"></a></dt><dd><p>Provides command options for a site. For instance, “start” or “stop”
+It is meant to be used for the entire site and not for an individual
+component. It can be implemented using a command and can be read from
+the site using the aggregated status message.</p>
+</dd>
+<dt id="term-Functional-state">Functional state<a class="headerlink" href="#term-Functional-state" title="Permalink to this term"></a></dt><dd><p>Not used</p>
+</dd>
+<dt id="term-ITS-site">ITS site<a class="headerlink" href="#term-ITS-site" title="Permalink to this term"></a></dt><dd><p>Road side equipment. Covers both field level and local level</p>
+</dd>
+<dt id="term-JSON">JSON<a class="headerlink" href="#term-JSON" title="Permalink to this term"></a></dt><dd><p>JavaScript Object Notation</p>
+</dd>
+<dt id="term-Local-road-side-equipment">Local road side equipment<a class="headerlink" href="#term-Local-road-side-equipment" title="Permalink to this term"></a></dt><dd><p>See <a class="reference internal" href="#term-ITS-site"><span class="xref std std-term">ITS site</span></a></p>
+</dd>
+<dt id="term-Maneuver">Maneuver<a class="headerlink" href="#term-Maneuver" title="Permalink to this term"></a></dt><dd><p>Provides command options for one or many individual components.
+For instance, “start” or “stop”. It can be implemented using a
+command and can be read from the site using a corresponding status
+message.</p>
+<p>Designed to be used with NTS.</p>
+</dd>
+<dt id="term-Maximo">Maximo<a class="headerlink" href="#term-Maximo" title="Permalink to this term"></a></dt><dd><p>STA’s support system for maintenance</p>
+</dd>
+<dt id="term-NTS">NTS<a class="headerlink" href="#term-NTS" title="Permalink to this term"></a></dt><dd><p>National Traffic management system at the STA.</p>
 </dd>
 <dt id="term-NTS-Object">NTS Object<a class="headerlink" href="#term-NTS-Object" title="Permalink to this term"></a></dt><dd><p>Used for objects in NTS</p>
 <p>All control and supervision related functions in NTS consist of
@@ -125,30 +122,49 @@ component-id.</p>
 Determines among other things which functional positions that
 are possible for the NTS object.</p>
 </dd>
-<dt id="term-Component">Component<a class="headerlink" href="#term-Component" title="Permalink to this term"></a></dt><dd><p>A component is an object or NTS object.</p>
-<p>A component is identified using component-id.</p>
+<dt id="term-Object">Object<a class="headerlink" href="#term-Object" title="Permalink to this term"></a></dt><dd><p>An object is a abstract term which is used in control and
+supervision systems. An object can have one or more statuses
+that may change depending on changes of circumstance of the
+object or control of the object from external source.
+Communication with the object is made using exchange of
+signals, e.g. commands, status and alarms.</p>
+<p>An object can represent physical equipment or abstract concepts
+E.g. a camera, a control flow algorithm or a group of signs.</p>
+<p>An object is identified using the objects component id. <em>Please
+note that an object is not necessarily the same thing as an NTS
+object.</em></p>
 </dd>
-<dt id="term-Component-ID">Component-ID<a class="headerlink" href="#term-Component-ID" title="Permalink to this term"></a></dt><dd><p>A component-id identifies components.</p>
-<p>The format used for the STA’s sites is specified in the STA
-publication TDOK 2012:1171, e.g. AA+BBCDD=EEEFFGGG.</p>
+<dt id="term-Object-type">Object type<a class="headerlink" href="#term-Object-type" title="Permalink to this term"></a></dt><dd><p>An object type is a classification of objects that controls the
+properties of all the objects of the same object type. The
+object type determines how the object is presented in
+supervision system, how it is grouped and which functional
+positions, alarm codes, commands and statuses that exists that
+object type.</p>
 </dd>
-<dt id="term-XML">XML<a class="headerlink" href="#term-XML" title="Permalink to this term"></a></dt><dd><p>eXtensible Markup Language</p>
+<dt id="term-Parameter">Parameter<a class="headerlink" href="#term-Parameter" title="Permalink to this term"></a></dt><dd><p>Used for modification of technical or autonomous traffic parameters
+of the equipment. Can be implemented using commands and statuses.</p>
 </dd>
-<dt id="term-JSON">JSON<a class="headerlink" href="#term-JSON" title="Permalink to this term"></a></dt><dd><p>JavaScript Object Notation</p>
+<dt id="term-RSMP">RSMP<a class="headerlink" href="#term-RSMP" title="Permalink to this term"></a></dt><dd><p>Road Side Message Protocol</p>
+</dd>
+<dt id="term-RSMP-Nordic">RSMP Nordic<a class="headerlink" href="#term-RSMP-Nordic" title="Permalink to this term"></a></dt><dd><p>Organization for maintaining and develop the RSMP protocol.
+Collaboration between a group of Nordic road authorities.</p>
+</dd>
+<dt id="term-Site">Site<a class="headerlink" href="#term-Site" title="Permalink to this term"></a></dt><dd><p>See <a class="reference internal" href="#term-ITS-site"><span class="xref std std-term">ITS site</span></a></p>
+</dd>
+<dt id="term-STA">STA<a class="headerlink" href="#term-STA" title="Permalink to this term"></a></dt><dd><p>Swedish Transport Administration</p>
+</dd>
+<dt id="term-Supervision-system">Supervision system<a class="headerlink" href="#term-Supervision-system" title="Permalink to this term"></a></dt><dd><p>Control and supervision system for regional and/or national
+level</p>
+</dd>
+<dt id="term-SXL">SXL<a class="headerlink" href="#term-SXL" title="Permalink to this term"></a></dt><dd><p>Signal exchange list. Defines which messages types (signals)
+which is possible to send to a specific equipment or object.
+E.g. alarms, statuses and commands</p>
 </dd>
 <dt id="term-TCP-IP">TCP/IP<a class="headerlink" href="#term-TCP-IP" title="Permalink to this term"></a></dt><dd><p>Transfer Control Protocol/Internet Protocol</p>
 </dd>
 <dt id="term-W3C">W3C<a class="headerlink" href="#term-W3C" title="Permalink to this term"></a></dt><dd><p>World Wide Web Consortium</p>
 </dd>
-<dt id="term-DATEX-II">DATEX II<a class="headerlink" href="#term-DATEX-II" title="Permalink to this term"></a></dt><dd><p>European standard for message exchange between traffic systems
-(www.datex2.eu)</p>
-</dd>
-<dt id="term-RSMP">RSMP<a class="headerlink" href="#term-RSMP" title="Permalink to this term"></a></dt><dd><p>Road Side Message Protocol</p>
-</dd>
-<dt id="term-STA">STA<a class="headerlink" href="#term-STA" title="Permalink to this term"></a></dt><dd><p>Swedish Transport Administration</p>
-</dd>
-<dt id="term-RSMP-Nordic">RSMP Nordic<a class="headerlink" href="#term-RSMP-Nordic" title="Permalink to this term"></a></dt><dd><p>Organization for maintaining and develop the RSMP protocol.
-Collaboration between a group of Nordic road authorities.</p>
+<dt id="term-XML">XML<a class="headerlink" href="#term-XML" title="Permalink to this term"></a></dt><dd><p>eXtensible Markup Language</p>
 </dd>
 </dl>
 </section>
