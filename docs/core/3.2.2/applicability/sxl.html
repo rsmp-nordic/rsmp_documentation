@@ -61,11 +61,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#command-messages">4.7.3.2. Command messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#best-practices">4.7.4. Best practices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#definition-of-object-types">4.7.4.1. Definition of object types</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reading-and-writing-data">4.7.4.2. Reading and writing data</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="site_configuration.html">4.8. Site configuration</a></li>
@@ -301,71 +296,6 @@ clock. Please note that UTC should be used.</p>
 <p>If the automatic time synchronization is missing or disabled there should
 be a possibility to set the date and time using a special command. Please
 note that UTC should be used.</p>
-</section>
-</section>
-</section>
-<section id="best-practices">
-<h2><span class="section-number">4.7.4. </span>Best practices<a class="headerlink" href="#best-practices" title="Permalink to this headline"></a></h2>
-<p>In order to fit as many technical areas as possible there some flexibility
-while designing a signal exchange list. Below are some suggested
-recommendations.</p>
-<section id="definition-of-object-types">
-<h3><span class="section-number">4.7.4.1. </span>Definition of object types<a class="headerlink" href="#definition-of-object-types" title="Permalink to this headline"></a></h3>
-<p>The level of detail in the definition of object types determines the level
-of detail of which:</p>
-<ul class="simple">
-<li><p>Messages can be sent, e.g. alarms and status</p></li>
-<li><p>Commands of individual object can be performed</p></li>
-<li><p>Information can be presented about the site for maintenance engineers in
-supervision system.</p></li>
-</ul>
-<p>The benefits with a high level of details is:</p>
-<ul class="simple">
-<li><p>Provides the possibility to directly with the component identity be able
-to identify which object the status/alarm is relevant to, which help when
-troubleshooting equipment</p></li>
-<li><p>Provides the possibility to block alarm for each object identity</p></li>
-</ul>
-<p>The benefit with a low level of detail is:</p>
-<ul class="simple">
-<li><p>Reduced need to update the signal exchange list due to changes at the
-site</p></li>
-</ul>
-<p>The disadvantage with the being able to determine to component identity due
-to a lower level of detail can be compensated with arguments and return
-values.</p>
-</section>
-<section id="reading-and-writing-data">
-<h3><span class="section-number">4.7.4.2. </span>Reading and writing data<a class="headerlink" href="#reading-and-writing-data" title="Permalink to this headline"></a></h3>
-<p>Read and write operations uses different message types in RSMP.</p>
-<section id="read-operation">
-<h4><span class="section-number">4.7.4.2.1. </span>Read operation<a class="headerlink" href="#read-operation" title="Permalink to this headline"></a></h4>
-<p>Status messages are used for read operations. Read operations works
-as “Process value”.</p>
-<p>Sequence for a read operation:</p>
-<ol class="arabic simple">
-<li><p>When data is about to be read a status request is sent from supervision
-system or other site to the relevant site.</p></li>
-<li><p>The site responds by sending the value from the equipment. The value
-is attached as a return value.</p></li>
-</ol>
-</section>
-<section id="write-operation">
-<h4><span class="section-number">4.7.4.2.2. </span>Write operation<a class="headerlink" href="#write-operation" title="Permalink to this headline"></a></h4>
-<p>Commands messages are used for write operations. Write operations works as
-“Set point”/Desired value.</p>
-<p>Sequence for a write operation:</p>
-<ol class="arabic simple">
-<li><p>When data is about be written a command request is sent from
-supervision system or other site the relevant site. The new value
-is attached as an argument.</p></li>
-<li><p>The site is responding with returning the new value from the site,
-using the corresponding command response. The value from the site is
-attached as a return value.</p></li>
-<li><p>The supervision system/other site compares the sent value (desired)
-with the new value from the site (actual value/process value) and can
-determine if the new value could be set or or not.</p></li>
-</ol>
 </section>
 </section>
 </section>
