@@ -267,6 +267,13 @@ component id</p></li>
 <li><p>Alarm messages are not sent</p></li>
 <li><p>No communication buffer exist</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that it’s the leader site that connects the the follower site,
+but it’s also the leader site that requests commands and statuses.
+This is different to how the RSMP connection between sites and supervision
+system works.</p>
+</div>
 </section>
 <section id="communication-rejection">
 <span id="id5"></span><h2><span class="section-number">4.3.5. </span>Communication rejection<a class="headerlink" href="#communication-rejection" title="Permalink to this headline"></a></h2>
@@ -410,19 +417,29 @@ establishment) must not be sent, but must be handled</p></li>
 </section>
 <section id="transport-between-site-and-supervision-system">
 <h2><span class="section-number">4.3.8. </span>Transport between site and supervision system<a class="headerlink" href="#transport-between-site-and-supervision-system" title="Permalink to this headline"></a></h2>
-<p>Supervision system acts a socket server and waits for the site to
-connect. If the communication were to fail it is the site’s
-responsibility to reconnect.</p>
+<ul class="simple">
+<li><p>The supervision system implements a socket server and waits for the site
+to connect</p></li>
+<li><p>The site initiates the connection to the supervision system</p></li>
+<li><p>The supervision system can request commands, statuses (with optional
+subscription) and alarms</p></li>
+<li><p>If the communication were to fail it is the site’s responsibility to
+reconnect</p></li>
+</ul>
 </section>
 <section id="transport-between-sites">
 <h2><span class="section-number">4.3.9. </span>Transport between sites<a class="headerlink" href="#transport-between-sites" title="Permalink to this headline"></a></h2>
-<p>One site acts as leader and the other one as a follower.</p>
+<p>One site acts as leader and the other site(s) as followers. The leader can
+request commands, statuses (with optional subscription) and alarms to the
+follower site(s). It is the leader one who connects. This is different to
+how the RSMP connection between sites and supervision system works.</p>
 <ul class="simple">
-<li><p>The leader site initiates the connection to the following site.</p></li>
-<li><p>The follower sites implements a socket server and waits for the leader site
-to connect.</p></li>
-<li><p>If the communication were to fail it is the follower site’s responsibility
-to reconnect.</p></li>
+<li><p>The follower site(s) implements a socket server and waits for the leader
+site to connect</p></li>
+<li><p>The leader site initiates the connection to the follower site(s)</p></li>
+<li><p>The leader can request commands, statuses (with optional subscription)</p></li>
+<li><p>If the communication were to fail it is the leader site’s responsibility
+to reconnect</p></li>
 </ul>
 </section>
 </section>
