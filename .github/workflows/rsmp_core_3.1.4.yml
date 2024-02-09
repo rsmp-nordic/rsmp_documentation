@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Check out rsmp_documentation repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Check out rsmp_core repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: rsmp-nordic/rsmp_core
         path: rsmp_core
@@ -82,7 +82,7 @@ jobs:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload PDF as artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: PDF
         path: rsmp_core/sphinx/build/latex/rsmp-spec.pdf

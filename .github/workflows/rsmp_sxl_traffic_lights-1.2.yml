@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out rsmp_documentation repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Check out rsmp_sxl_traffic_lights repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: rsmp-nordic/rsmp_sxl_traffic_lights
         path: rsmp_sxl_traffic_lights
@@ -59,7 +59,7 @@ jobs:
         branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload PDF as artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: PDF
         path: rsmp_sxl_traffic_lights/build/latex/sxl-tlc.pdf
@@ -69,13 +69,13 @@ jobs:
     steps:
 
     - name: Check out rsmp_schema repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: rsmp-nordic/rsmp_schema
         path: rsmp_schema
 
     - name: Check out sxl-tools repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: rsmp-nordic/sxl-tools
         path: sxl-tools
@@ -112,7 +112,7 @@ jobs:
           > SXL_Traffic_Controller_ver_1_2.xlsx
 
     - name: Upload Excel as artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: Excel
         path: SXL_Traffic_Controller_ver_1_2.xlsx
