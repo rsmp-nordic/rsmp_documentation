@@ -104,7 +104,7 @@ the very top of the YAML version.</p>
 <p>In each SXL there must defined which version of RSMP which it is conforms to.</p>
 <p>It contains:</p>
 <table class="docutils align-default" id="id4">
-<caption><span class="caption-number">Table 4.31 </span><span class="caption-text">meta data</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<caption><span class="caption-number">Table 4.32 </span><span class="caption-text">meta data</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 52%" />
 <col style="width: 48%" />
@@ -173,12 +173,18 @@ Using the YAML format, each object is defined lite this:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">object-1</span></code> is the name of the object. For instance “signal group 1”</p></li>
 </ul>
 <p>An object can either be categorized as a <strong>single object</strong> or <strong>grouped
-object</strong>. There must be at least one grouped object which is typically also
-the main component. Grouped objects are defined by <strong>componentId</strong> and
-<strong>ntsObjectId</strong> are being set equal. Single objects have a unique
-<strong>componentId</strong> but uses the <strong>ntsObjectId</strong> of their main component.</p>
-<p><strong>externalNtsId</strong> is optional and only used if the object is intended to
-be sent to <a class="reference internal" href="../definitions.html#term-NTS"><span class="xref std std-term">NTS</span></a>.</p>
+object</strong>, also known as the main component(s).</p>
+<p>The main component(s) is defined by <strong>componentId</strong> and <strong>ntsObjectId</strong> are
+being set equal. This means that the object is visible from NTS.</p>
+<p>Single objects have a unique <strong>componentId</strong> but uses the <strong>ntsObjectId</strong> of
+their main component.</p>
+<p><strong>externalNtsId</strong> and <strong>ntsObjectId</strong> are optional and only used if the
+object is intended to be sent to <a class="reference internal" href="../definitions.html#term-NTS"><span class="xref std std-term">NTS</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="../definitions.html#term-NTS"><span class="xref std std-term">NTS</span></a> is used at the <a class="reference internal" href="../definitions.html#term-STA"><span class="xref std std-term">STA</span></a>. Other road authorities typically
+leaves the <cite>xNid</cite> and <cite>ntsOid</cite> as empty strings.</p>
+</div>
 </section>
 </section>
 
